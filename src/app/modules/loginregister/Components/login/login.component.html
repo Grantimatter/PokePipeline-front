@@ -20,23 +20,23 @@
           class="form-control form-control-md"
           type="text"
           placeholder="trainer"
+          [(ngModel)]="this.userModel.username"
         />
-        <span class="text-secondary">Enter your trainer id to log in.</span>
+        <span class="text-dark">Enter your trainer id to log in.</span>
       </div>
       <div class="form-group">
         <label for="password-log-in" class="text-purple">
-          <h3>Poke-Pass</h3></label
+          <h3>Password</h3></label
         >
         <input
           class="form-control form-control-md"
-          type="text"
-          placeholder="trainer"
+          type="password"
+          placeholder="password"
+          [(ngModel)]="this.userModel.password"
         />
-        <span class="text-secondary"
-          >Enter your trainer Poke-Pass to log in.</span
-        >
+        <span class="text-dark">Enter your trainer Poke-Pass to log in.</span>
       </div>
-
+      <span>{{ this.userMessage }}</span>
       <div class="form-group">
         <input type="button" class="btn btn-md btn-warning" value="log-in" />
       </div>

@@ -16,6 +16,7 @@ export class LoginService
     private validationService: BasicValidationService
   ) {
     this.httpService = injectedHttpClient;
+    this.validationService = validationService;
 
     this.httpHeaders = new HttpHeaders();
     this.httpHeaders.append('Content-Type', 'Application/Json');
@@ -35,7 +36,7 @@ export class LoginService
   }
 
   provideService(arg: UserModel): Observable<HttpResponse<Object>> {
-    return this.httpService.get('/api/login', {
+    return this.httpService.get('/api/user/login', {
       headers: this.httpHeaders,
       observe: 'response',
       responseType: 'json',

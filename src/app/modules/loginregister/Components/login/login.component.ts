@@ -13,8 +13,6 @@ export class LoginComponent implements OnInit, OnChanges {
     "We couldn't find that poke-user and poke-pass combination, poke-trainer.";
   private static readonly INVALID_CREDENTIALS_MESSAGE: string =
     'Please enter a non-empty poke-user and poke-pass, poke-trainer.';
-  private static readonly ERROR_MESSAGE =
-    "We found a poke error :(. Please try again at a later time, trainer. We'll be back up soon, promise.";
 
   private logInService: LoginService;
   private validationService: BasicValidationService;
@@ -31,23 +29,29 @@ export class LoginComponent implements OnInit, OnChanges {
     this.validationService = injectedGlobalValidationService;
 
     this.userModel = new UserModel();
-    this.userModel.username = null;
-    this.userModel.password = null;
+    this.userModel.username = '';
+    this.userModel.password = '';
 
     this.validUsrPassCombo = false;
   }
 
   public logIn(): void {
     if (this.validUsrPassCombo) {
-    } else {
     }
   }
 
   ngOnInit(): void {}
 
   ngOnChanges(): void {
+    alert('Changes');
     this.validUsrPassCombo = this.logInService.validateServiceArgument(
       this.userModel
     );
+
+    if (!this.validUsrPassCombo) {
+      this.userMessage = LoginComponent.INVALID_CREDENTIALS_MESSAGE;
+    } else {
+      this.userMessage = '';
+    }
   }
 }
