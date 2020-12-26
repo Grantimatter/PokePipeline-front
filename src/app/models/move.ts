@@ -3,10 +3,9 @@ export class Move {
   constructor(
     public name:string,
     public power:number,
-    public type:string,
+    public type:object,
     public accuracy:number,
-    public damage_class:string
+    public damage_class:object
   ) {}
 
 }
-// this class seems redundant. need to discuss with group, but will probably delete.

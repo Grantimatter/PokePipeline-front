@@ -1,0 +1,22 @@
+
+<div class="row">
+  <input class="col" type="number" [(ngModel)]="input">
+  <button class="btn btn-primary" (click)="getPokemonAPI()">Favorite Pokémon?</button>
+</div>
+
+<table class="table" *ngIf="pokemonAPI">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Sprite</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{pokemonAPI.name}}</td>
+      <td>{{pokemonAPI.types[0].type.name}}<span *ngIf="pokemonAPI.types.length > 1"> / {{pokemonAPI.types[1].type.name}}</span></td>
+      <td><img src="{{pokemonAPI.sprites.front_default}}"></td>
+    </tr>
+  </tbody>
+</table>
