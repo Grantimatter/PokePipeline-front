@@ -1,0 +1,42 @@
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login-overlay-map {
+  background-size: contain;
+  background-image: url("../../../../../assets/Images/Backgrounds/pokebg.png");
+  z-index: -3;
+  background-size: auto;
+  animation-name: moving-bg;
+  animation-direction: normal;
+  animation-duration: 20s;
+}
+
+.login-overlay-strip-container {
+  z-index: -2;
+}
+
+.login-overlay-abstract-pattern {
+  z-index: -1;
+}
+
+@keyframes cloud {
+  from {
+    top: 1000;
+  }
+  to {
+    top: -1000;
+  }
+}
+
+.login-container {
+  height: 80vh;
+}
+
+.login-card {
+  background-image: url("../../../../../assets/Images/Backgrounds/yellowblueplus.png");
+  border: 1px solid purple;
+  margin-top: 80px;
+}

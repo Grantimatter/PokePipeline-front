@@ -1,12 +1,12 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { LoginService } from 'src/app/modules/login/services/login.service';
+import { LoginService } from 'src/app/modules/loginregister/services/login.service';
 import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
 import { UserModel } from '../../../../Models/User/UserModel';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css', './login.horizontal.strp.css'],
 })
 export class LoginComponent implements OnInit, OnChanges {
   private static readonly INCORRECT_CREDENTIALS_MESSAGE: string =
