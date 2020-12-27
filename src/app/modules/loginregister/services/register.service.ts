@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserModel } from 'src/app/Models/User/UserModel';
-import { Service } from 'src/app/DesignPatterns/service';
+import { Service } from 'src/app/interfaces/service';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
