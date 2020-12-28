@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class RegisterService implements Service<UserModel, Observable<Object>> {
   private validationService: BasicValidationService;
   private httpClient: HttpClient;

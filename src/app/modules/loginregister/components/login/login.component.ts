@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  DoCheck,
-  Input,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginService } from 'src/app/modules/loginregister/services/login.service';
 import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
 import { UserModel } from '../../../../Models/User/UserModel';
@@ -15,6 +8,7 @@ import { Observable } from 'rxjs';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  providers: [LoginService],
 })
 export class LoginComponent {
   private static readonly INCORRECT_CREDENTIALS_MESSAGE: string =

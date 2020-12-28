@@ -5,7 +5,7 @@ import { Service } from '../../../interfaces/service';
 import { UserModel } from 'src/app/Models/User/UserModel';
 import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class LoginService implements Service<UserModel, Observable<Object>> {
   private httpService: HttpClient;
   private httpHeaders: HttpHeaders;

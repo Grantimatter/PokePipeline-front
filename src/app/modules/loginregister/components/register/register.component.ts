@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  providers: [RegisterService],
 })
 export class RegisterComponent implements OnInit {
   private INVALID_REGISTRATION_FIELDS =
