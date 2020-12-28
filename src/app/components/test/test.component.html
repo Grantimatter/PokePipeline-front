@@ -1,10 +1,10 @@
 
 <div class="row">
   <input class="col" type="number" [(ngModel)]="input">
-  <button class="btn btn-primary" (click)="getPokemonAPI(); getAllPokemonMovesAPI()">Favorite Pokémon?</button>
+  <button class="btn btn-primary" (click)="getPokemonWithAllMovesAPI()">Favorite Pokémon?</button>
 </div>
 
-<table class="table" *ngIf="pokemonAPI">
+<table class="table" *ngIf="pokemon">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -15,10 +15,10 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{pokemonAPI.name}}</td>
-      <td>{{pokemonAPI.types[0].type.name}}<span *ngIf="pokemonAPI.types.length > 1"> / {{pokemonAPI.types[1].type.name}}</span></td>
-      <td><img src="{{pokemonAPI.sprites.front_default}}"></td>
-      <td><span *ngFor="let move of pokemonMovesAPI; first as isFirst"><span *ngIf="!isFirst">, </span>{{move.name | titlecase}} [{{move.type.name | titlecase}}]</span></td>
+      <td>{{pokemon.name | titlecase}}</td>
+      <td>{{pokemon.types[0].type.name |titlecase}}<span *ngIf="pokemon.types.length > 1"> / {{pokemon.types[1].type.name | titlecase}}</span></td>
+      <td><img src="{{pokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
+      <td><span *ngFor="let move of pokemon.moves; first as isFirst"><span *ngIf="!isFirst">, </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type.name | titlecase}}]</span></td>
     </tr>
   </tbody>
 </table>
