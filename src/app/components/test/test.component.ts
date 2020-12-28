@@ -11,6 +11,7 @@ import { GetPokemonAPIService } from 'src/app/services/get-pokemon-api.service';
 export class TestComponent implements OnInit {
 
   public pokemonAPI:PokemonAPI;
+  public pokemonMovesAPI:any;
   public pokemon:Pokemon;
   public input:number = 1;
 
@@ -34,8 +35,7 @@ export class TestComponent implements OnInit {
   getAllPokemonMovesAPI():void{
     this.getPokemonService.getPokemonMoves(this.input).subscribe(
       (pokemonData:any)=>{
-        this.pokemon.moves = pokemonData;
-        console.log(this.pokemon.moves);
+        this.pokemonMovesAPI = pokemonData;
       },
       ()=>{
         console.log("Failed to get Pokemon with moves");
