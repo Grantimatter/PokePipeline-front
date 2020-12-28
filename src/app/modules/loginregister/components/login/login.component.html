@@ -1,0 +1,50 @@
+<log-reg-navbar></log-reg-navbar>
+<section class="overlay login-overlay-map"></section>
+
+<section class="container login-container">
+  <div class="row h-100 align-items-center justify-content-center h-100">
+    <section
+      class="col-lg-3 col-md-5 col-sm-6 col-xs-6 mx-3 border shadow bg-white text-center login-card"
+    >
+      <img
+        src="../../../../../assets/Images/Decorators/pokeball.png"
+        alt="Pokemon!"
+        class="img-fluid"
+      />
+
+      <div class="form-group">
+        <label for="trainer-log-in" class="text-warning">
+          <h4 class="font-weight-bold">Trainer</h4></label
+        >
+        <input
+          class="form-control form-control-md"
+          type="text"
+          placeholder="trainer"
+          [(ngModel)]="this.userModel.username"
+        />
+        <span class="text-dark">Enter your trainer id to log in.</span>
+      </div>
+      <div class="form-group">
+        <label for="password-log-in" class="text-warning">
+          <h4 class="font-weight-bold">Password</h4></label
+        >
+        <input
+          class="form-control form-control-md"
+          type="password"
+          placeholder="password"
+          [(ngModel)]="this.userModel.password"
+        />
+        <span class="text-dark">Enter your trainer Poke-Pass to log in.</span>
+      </div>
+      <small class="text-danger font-weight-bold">{{ this.userMessage }}</small>
+      <div class="form-group">
+        <input
+          type="button"
+          class="btn btn-md btn-warning"
+          (click)="this.logIn()"
+          value="log-in"
+        />
+      </div>
+    </section>
+  </div>
+</section>
