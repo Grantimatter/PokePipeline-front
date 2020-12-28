@@ -1,0 +1,72 @@
+<log-reg-navbar></log-reg-navbar>
+<section class="register-underlay"></section>
+
+<section class="container register-container">
+  <div class="row h-100 align-items-center justify-content-center">
+    <section
+      class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mx-3 bg-white login-card text-center border shadow register-card"
+    >
+      <img
+        src="../../../../../assets/Images/Decorators/pokelogo.png"
+        alt="Pokemon!"
+        class="img-fluid"
+      />
+
+      <div>
+        <h4 class="text-success">Register For An Account</h4>
+
+        <p class="text-dark">
+          It's fast and <span class="text-success">free</span>!
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="trainer-log-in" class="text-danger font-weight-bold">
+          <h4>Username</h4></label
+        >
+        <input
+          class="form-control form-control-sm"
+          type="text"
+          placeholder="trainer"
+          [(ngModel)]="this.userToRegister.username"
+        />
+        <span class="text-dark">Enter your trainer username.</span>
+      </div>
+      <div class="form-group">
+        <label for="password-log-in" class="text-danger">
+          <h4>Password</h4></label
+        >
+        <input
+          class="form-control form-control-sm"
+          type="password"
+          placeholder="password"
+          [(ngModel)]="this.userToRegister.password"
+        />
+        <span class="text-dark">Enter your password.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="password-log-in" class="text-danger">
+          <h4>E-Mail</h4></label
+        >
+        <input
+          class="form-control form-control-sm"
+          type="text"
+          placeholder="@email"
+          [(ngModel)]="this.userToRegister.email"
+        />
+        <span class="text-dark">Enter your e-mail. </span>
+      </div>
+      <div class="form-group">
+        <span class="text-warning">{{ this.warningMessage }}</span>
+      </div>
+      <div class="form-group">
+        <input
+          type="button"
+          class="btn btn-md btn-outline-primary"
+          value="sign-up"
+          (click)="this.registerUser()"
+        />
+      </div>
+    </section>
+  </div>
+</section>

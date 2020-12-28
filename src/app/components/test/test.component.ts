@@ -10,8 +10,7 @@ import { GetPokemonAPIService } from 'src/app/services/get-pokemon-api.service';
 })
 export class TestComponent implements OnInit {
 
-  public pokemonAPI:PokemonAPI;
-  public pokemon:Pokemon;
+  public pokemon:any;
   public input:number = 1;
 
   constructor(private getPokemonService:GetPokemonAPIService) { }
@@ -21,14 +20,23 @@ export class TestComponent implements OnInit {
 
   getPokemonAPI():void {
     this.getPokemonService.getPokemonFromAPI(this.input).subscribe(
-      (data)=>{
-        this.pokemonAPI = data;
+      (pokemonData:Pokemon)=>{
+        this.pokemon=pokemonData;
       },
       ()=>{
-        this.pokemonAPI = null;
-        console.log("couldn't retreive pokemond data from api.");
-      }
-    )
+        this.pokemon=null;
+        console.log("Something went wrong. Try again");
+      });
   }
 
+  getPokemonWithAllMovesAPI():void{
+    this.getPokemonService.getPokemonWithAllMovesAPI(this.input).subscribe(
+      (pokemonData:any)=>{
+        this.pokemon = pokemonData;
+        console.log(this.pokemon);
+      },
+      ()=>{
+        console.log("Failed to get Pokemon with moves");
+      });
+    }
 }

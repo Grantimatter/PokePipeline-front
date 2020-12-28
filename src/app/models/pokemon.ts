@@ -1,5 +1,6 @@
 import { Type } from "../enums/type.enum";
 import { Move } from "./move";
+import { Stats } from "./stats";
 
 export class Pokemon {
 
@@ -8,30 +9,10 @@ export class Pokemon {
     public name:string,
     public currentHP:number,
     public level:number,
-    public type1:Type,
-    public type2:Type,
-
-    // moves
-    public move1:Move,
-    public move2:Move,
-    public move3:Move,
-    public move4:Move,
-    
-    // stats
-    public hp:number,
-    public attack:number,
-    public defense:number,
-    public specialAttack:number,
-    public specialDefense:number,
-    public speed:number,
-
-    // base stats
-    public baseHp:number,
-    public baseAttack:number,
-    public baseDefense:number,
-    public baseSpecialAttack:number,
-    public baseSpecialDefense:number,
-    public baseSpeed:number,
+    public types:Type[],
+    public moves:Move[],
+    public stats:Stats,
+    public baseStats:Stats,
   ) {}
 
 }
