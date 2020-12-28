@@ -24,6 +24,14 @@ export class Pokemon {
     public specialAttack:number,
     public specialDefense:number,
     public speed:number,
+
+    // base stats
+    public baseHp:number,
+    public baseAttack:number,
+    public baseDefense:number,
+    public baseSpecialAttack:number,
+    public baseSpecialDefense:number,
+    public baseSpeed:number,
   ) {}
 
 }
