@@ -31,4 +31,15 @@ export class TestComponent implements OnInit {
     )
   }
 
+  getAllPokemonMovesAPI():void{
+    this.getPokemonService.getPokemonMoves(this.input).subscribe(
+      (pokemonData:any)=>{
+        this.pokemon.moves = pokemonData;
+        console.log(this.pokemon.moves);
+      },
+      ()=>{
+        console.log("Failed to get Pokemon with moves");
+      });
+  }
+
 }
