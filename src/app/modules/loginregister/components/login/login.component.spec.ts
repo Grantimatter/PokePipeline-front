@@ -25,7 +25,7 @@ describe('LoginComponent', () => {
   });
 
   it('should be falsy', () => {
-    expect(component.userModel.aboutMe).toBeFalsy();
+    expect(component.userModel.description).toBeFalsy();
   });
 
   it('should be falsy', () => {

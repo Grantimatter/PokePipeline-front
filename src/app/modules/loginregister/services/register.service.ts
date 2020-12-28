@@ -25,18 +25,23 @@ export class RegisterService implements Service<UserModel, Observable<Object>> {
     let validObjectFields: boolean = false;
 
     if (validObject)
-      validObjectFields = this.injectedValidationService.isTruthyObject(
-        userToRegister.password
-      );
+      validObjectFields =
+        this.injectedValidationService.isTruthyString(
+          userToRegister.username
+        ) &&
+        this.injectedValidationService.isTruthyString(
+          userToRegister.password
+        ) &&
+        this.injectedValidationService.isTruthyString(userToRegister.email);
 
     return validObject && validObjectFields;
   }
-  provideService(arg: UserModel): Observable<Object> {
+  provideService(userToRegister: UserModel): Observable<Object> {
     let headers: HttpHeaders = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
     return this.httpClient.post('/api/user/register', {
-      body: JSON.stringify(arg),
+      body: userToRegister,
       headers: headers,
       responseType: 'json',
       observe: 'response',

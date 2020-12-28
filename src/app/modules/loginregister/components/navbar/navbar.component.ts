@@ -18,8 +18,8 @@ export class LogRegNavbar {
 
     this.adjacentRoute = navigatedToLoginPath ? 'register' : 'login';
     this.adjacentRouteHrefText = navigatedToLoginPath ? 'Register' : 'Login';
-    this.adjacentRouteButtonClass = navigatedToLoginPath
-      ? 'btn btn-outline-success'
-      : 'btn btn-outline-warning';
+    this.adjacentRouteButtonClass = !navigatedToLoginPath
+      ? 'btn btn-warning'
+      : 'btn btn-primary';
   }
 }

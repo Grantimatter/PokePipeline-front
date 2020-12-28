@@ -1,18 +1,26 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  DoCheck,
+  Input,
+} from '@angular/core';
 import { LoginService } from 'src/app/modules/loginregister/services/login.service';
 import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
 import { UserModel } from '../../../../Models/User/UserModel';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', './login.horizontal.strp.css'],
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit, OnChanges {
+export class LoginComponent {
   private static readonly INCORRECT_CREDENTIALS_MESSAGE: string =
-    "We couldn't find that poke-user and poke-pass combination, poke-trainer.";
+    "We couldn't find that username and password combination.";
   private static readonly INVALID_CREDENTIALS_MESSAGE: string =
-    'Please enter a non-empty poke-user and poke-pass, poke-trainer.';
+    'Please enter a non empty username and password combination.';
 
   private logInService: LoginService;
   private validationService: BasicValidationService;
@@ -29,29 +37,31 @@ export class LoginComponent implements OnInit, OnChanges {
     this.validationService = injectedGlobalValidationService;
 
     this.userModel = new UserModel();
-    this.userModel.username = '';
-    this.userModel.password = '';
-
     this.validUsrPassCombo = false;
   }
 
   public logIn(): void {
-    if (this.validUsrPassCombo) {
-    }
-  }
+    let requestTemplate: Observable<Object>;
 
-  ngOnInit(): void {}
-
-  ngOnChanges(): void {
-    alert('Changes');
     this.validUsrPassCombo = this.logInService.validateServiceArgument(
       this.userModel
     );
 
-    if (!this.validUsrPassCombo) {
-      this.userMessage = LoginComponent.INVALID_CREDENTIALS_MESSAGE;
+    if (this.validUsrPassCombo) {
+      requestTemplate = this.logInService.provideService(this.userModel);
     } else {
-      this.userMessage = '';
+      this.userMessage = LoginComponent.INVALID_CREDENTIALS_MESSAGE;
+    }
+  }
+
+  private subscribeToLoginObservable(loginRequestTemplate: Observable<Object>) {
+    if (this.validationService.isTruthyObject(loginRequestTemplate)) {
+      // define next, error, and completion callbacks for the observable subscription
+      loginRequestTemplate.subscribe(
+        (response) => {},
+        (error) => {},
+        () => {}
+      );
     }
   }
 }

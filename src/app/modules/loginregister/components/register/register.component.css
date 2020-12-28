@@ -1,6 +1,16 @@
-.navbar-margin-top {
-  margin-top: 100px;
+.register-underlay {
+  background-image: url("src/assets/Images/Backgrounds/sqrtl.png");
+  background-size: cover;
+  height: 100vh;
+  position: absolute;
+  width: 100vw;
+  z-index: -1;
 }
 
-.register-bg {
+.register-container {
+  height: 100vh;
+}
+
+.register-card {
+  background-image: url("src/assets/Images/Backgrounds/bluestripe.png");
 }

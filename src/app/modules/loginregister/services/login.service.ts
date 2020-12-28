@@ -6,8 +6,7 @@ import { UserModel } from 'src/app/Models/User/UserModel';
 import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
 
 @Injectable({ providedIn: 'root' })
-export class LoginService
-  implements Service<UserModel, Observable<HttpResponse<Object>>> {
+export class LoginService implements Service<UserModel, Observable<Object>> {
   private httpService: HttpClient;
   private httpHeaders: HttpHeaders;
 
@@ -35,11 +34,12 @@ export class LoginService
     return validArgObject && validUsername && validPassword;
   }
 
-  provideService(arg: UserModel): Observable<HttpResponse<Object>> {
-    return this.httpService.get('/api/user/login', {
+  provideService(loginToken: UserModel): Observable<Object> {
+    return this.httpService.post('/api/user/login', {
       headers: this.httpHeaders,
       observe: 'response',
       responseType: 'json',
+      body: loginToken,
     });
   }
 }

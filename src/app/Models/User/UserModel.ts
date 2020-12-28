@@ -2,7 +2,8 @@ class UserModel {
   username?: string;
   password?: string;
   email?: string;
-  aboutMe: string;
+  description?: string;
+  profilePicture?: string;
 }
 
 export { UserModel };

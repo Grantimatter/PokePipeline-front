@@ -32,9 +32,9 @@
 }
 
 .login-container {
-  height: 80vh;
+  height: 100vh;
 }
 
 .login-card {
-  margin-top: 80px;
+  background-image: url("../../../../../assets/Images/Backgrounds/yellowstripe.png");
 }
