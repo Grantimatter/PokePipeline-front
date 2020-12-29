@@ -13,13 +13,13 @@ export class LogRegNavbar {
   public adjacentRouteButtonClass: string;
 
   constructor(private activeRoute: ActivatedRoute) {
-    let currentPath: string = activeRoute.snapshot.url[0].path;
-    let navigatedToLoginPath: boolean = currentPath === 'login';
+    // let currentPath: string = activeRoute.snapshot.url[0].path;
+    // let navigatedToLoginPath: boolean = currentPath === 'login';
 
-    this.adjacentRoute = navigatedToLoginPath ? 'register' : 'login';
-    this.adjacentRouteHrefText = navigatedToLoginPath ? 'Register' : 'Login';
-    this.adjacentRouteButtonClass = !navigatedToLoginPath
-      ? 'btn btn-warning'
-      : 'btn btn-primary';
+    // this.adjacentRoute = navigatedToLoginPath ? 'register' : 'login';
+    // this.adjacentRouteHrefText = navigatedToLoginPath ? 'Register' : 'Login';
+    // this.adjacentRouteButtonClass = !navigatedToLoginPath
+    //   ? 'btn btn-warning'
+    //   : 'btn btn-primary';
   }
 }
