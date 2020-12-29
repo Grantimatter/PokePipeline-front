@@ -5,7 +5,7 @@ import { Stats } from "./stats";
 export class Pokemon {
 
   constructor(
-    public pokemonId:number,
+    public id:number,
     public name:string,
     public currentHP:number,
     public level:number,
