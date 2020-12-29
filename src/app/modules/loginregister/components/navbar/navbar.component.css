@@ -1,5 +1,6 @@
 .navbar-custom {
   height: 60px;
+  z-index: -1;
 }
 
 .navbar-brand-icon {

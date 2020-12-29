@@ -7,19 +7,13 @@ import { LoginModule } from './modules/loginregister/login.module';
 
 const routes: Routes = [
   {
-    path: '/',
+    path: '',
     component: LoginComponent,
-    data: { adjacentRoute: 'register' },
   },
   {
     path: 'login',
     component: LoginComponent,
     data: { adjacentRoute: 'register' },
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: { adjacentRoute: 'login' },
   },
   {
     path: 'test',
