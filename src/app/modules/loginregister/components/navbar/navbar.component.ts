@@ -13,10 +13,13 @@ export class LogRegNavbar {
   public adjacentRouteButtonClass: string;
 
   constructor(private activeRoute: ActivatedRoute) {
-    let currentPath: string = activeRoute.snapshot.url[0].path;
-    let navigatedToLoginPath: boolean = currentPath === 'login';
+    let currentPath: string =
+      activeRoute.snapshot.url[0] == undefined
+        ? ''
+        : activeRoute.snapshot.url[0].path;
+    let navigatedToLoginPath: boolean = currentPath === '';
 
-    this.adjacentRoute = navigatedToLoginPath ? 'register' : 'login';
+    this.adjacentRoute = navigatedToLoginPath ? 'register' : '';
     this.adjacentRouteHrefText = navigatedToLoginPath ? 'Register' : 'Login';
     this.adjacentRouteButtonClass = !navigatedToLoginPath
       ? 'btn btn-warning'

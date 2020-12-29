@@ -10,14 +10,8 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'login',
-    component: LoginComponent,
-    data: { adjacentRoute: 'register' },
-  },
-  {
     path: 'register',
     component: RegisterComponent,
-    data: { adjacentRoute: 'login' },
   },
 ];
 
