@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TempNavBarComponent } from './components/temp-nav-bar/temp-nav-bar.component';
 import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent, TestComponent, TempNavBarComponent],
@@ -22,6 +23,7 @@ import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.
     LoginModule,
     HttpClientModule,
     PokemonUtilityModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
