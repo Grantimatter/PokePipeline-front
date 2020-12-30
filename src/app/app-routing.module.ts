@@ -7,10 +7,6 @@ import { LoginModule } from './modules/loginregister/login.module';
 
 const routes: Routes = [
   {
-    path: '',
-    component: LoginComponent,
-  },
-  {
     path: 'register',
     component: RegisterComponent,
   },
