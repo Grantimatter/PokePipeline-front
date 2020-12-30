@@ -19,9 +19,9 @@ const routes: Routes = [
     path: 'test',
     component: TestComponent,
   },
-  { path: '**', component: LoginComponent },
   { path: 'trainerhub', component: TrainerHubComponent },
-  
+
+  { path: '**', component: LoginComponent }, // DEFAULT: needs to be last
 ];
 
 @NgModule({
