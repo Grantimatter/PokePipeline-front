@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-test',
@@ -9,9 +10,14 @@ import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/p
 })
 export class TestComponent implements OnInit {
 
-  public pokemon: any;
-  public starterPokemon: any;
-  public input: number = 1;
+  pokemon: any;
+  randomPokemon: any;
+  starterPokemon: any;
+  input: number = 1;
+  faSpinner = faSpinner;
+  selectingPokemon:boolean = false;
+  selectingRandom:boolean = false;
+  selectingStarter:boolean = false;
 
   constructor(
     private pokeApiHelperService:PokeApiHelperService
@@ -25,15 +31,35 @@ export class TestComponent implements OnInit {
   }
 
   setStarterPokemon(pokemon: Pokemon): void {
+    this.selectingStarter = false;
     this.starterPokemon = pokemon;
+  }
+
+  selectRandomPokemon(){
+    this.selectingRandom = true;
+    this.pokeApiHelperService.getRandomValidPokemon((x)=>{
+      this.selectingRandom = false;
+      this.randomPokemon = x;
+    });
   }
   
   selectPokemonWithMoves(){
-    this.pokeApiHelperService.getPokemonWithAllMovesAPI(this.input, (x)=>this.setPokemon(x));
+    this.selectingPokemon = true;
+    this.pokeApiHelperService.getPokemonWithAllMovesAPI(this.input, (x)=>{
+      this.selectingPokemon = false;
+      this.pokemon = x;
+    }, ()=>{
+      this.selectingPokemon = false;
+      console.log("The requested Pokemon with detailed moves could not be retrieved!")
+    });
   }
 
   selectStarterPokemon() {
-    this.pokeApiHelperService.getValidStarterPokemon((x) => this.setStarterPokemon(x));
+    this.selectingStarter = true;
+    this.pokeApiHelperService.getValidStarterPokemon((x) => {
+      this.selectingStarter = false;
+      this.starterPokemon = x
+    });
   }
   
 }

@@ -1,7 +1,7 @@
 <div style="padding: 3em">
   <div class="row">
     <input class="col" type="number" [(ngModel)]="input">
-    <button class="btn btn-primary" (click)="selectPokemonWithMoves()">Favorite Pokémon?</button>
+    <button class="btn btn-primary" (click)="selectPokemonWithMoves()">Favorite Pokémon? <fa-icon *ngIf="selectingPokemon" [icon]="faSpinner" [spin]="true"></fa-icon></button>
   </div>
 
   <table class="table" *ngIf="pokemon">
@@ -26,7 +26,33 @@
   </table>
   <br><br>
   <div class="row">
-    <button class="btn btn-primary" (click)="selectStarterPokemon()">Get a Starter</button>
+    <button class="btn btn-primary" (click)="selectRandomPokemon()">Get a random Pokémon <fa-icon *ngIf="selectingRandom" [icon]="faSpinner" [spin]="true"></fa-icon></button>
+  </div>
+  <br>
+  <table class="table" *ngIf="randomPokemon">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Sprite</th>
+        <th scope="col">Moves</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{randomPokemon.name | titlecase}}</td>
+        <td>{{randomPokemon.types[0].type.name |titlecase}}<span *ngIf="randomPokemon.types.length > 1"> /
+            {{randomPokemon.types[1].type.name | titlecase}}</span></td>
+        <td><img src="{{randomPokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
+        <td><span *ngFor="let move of randomPokemon.moves; first as isFirst"><span *ngIf="!isFirst">,
+            </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type.name |
+            titlecase}}]</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br>
+  <div class="row">
+    <button class="btn btn-primary" (click)="selectStarterPokemon()">Get a Starter <fa-icon *ngIf="selectingStarter" [icon]="faSpinner" [spin]="true"></fa-icon></button>
   </div>
   <br>
   <table class="table" *ngIf="starterPokemon">
@@ -50,4 +76,3 @@
       </tr>
     </tbody>
   </table>
-</div>

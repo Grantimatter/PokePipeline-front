@@ -21,7 +21,7 @@ export class GetPokemonAPIService {
 
   /**
    * Retrieves a Pokémon from PokéAPI with the given Pokédex index.
-   * @param {number} id - The Pokedex index of the Pokémon.
+   * @param {number} id - The Pokédex index of the Pokémon.
    */
   getPokemonFromAPI(id: number): Observable<Pokemon> {
     return this.httpClient.get(`${environment.apiUrl}/pokemon/${id}/`) as Observable<Pokemon>;

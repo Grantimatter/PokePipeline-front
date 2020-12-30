@@ -17,7 +17,7 @@ export class PokemonService {
   /**
    * @method isValidPokemonId
    * All calls to get Pokémon from PokéAPI should be validated here first
-   * @param {number} id - The Pokedex index of the Pokémon
+   * @param {number} id - The Pokédex index of the Pokémon
    * @return {boolean} Returns true if the id is a valid Pokémon
    */
   isValidPokemonId(id: number): boolean {
