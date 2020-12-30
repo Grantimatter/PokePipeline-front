@@ -1,14 +1,7 @@
-import {
-  Component,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  DoCheck,
-  Input,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginService } from 'src/app/modules/loginregister/services/login.service';
-import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
-import { UserModel } from '../../../../Models/User/UserModel';
+import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
+import { UserModel } from 'src/app/models/user';
 import { Observable } from 'rxjs';
 
 @Component({

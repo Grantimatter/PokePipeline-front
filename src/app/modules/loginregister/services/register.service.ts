@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { UserModel } from 'src/app/Models/User/UserModel';
 import { Service } from 'src/app/interfaces/service';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
+import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
+import { UserModel } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../../services/register.service';
-import { UserModel } from 'src/app/Models/User/UserModel';
-import { BasicValidationService } from 'src/app/GlobalServices/basic-validation.service';
+import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { Observable } from 'rxjs';
+import { UserModel } from 'src/app/models/user';
 
 @Component({
   selector: 'app-register',

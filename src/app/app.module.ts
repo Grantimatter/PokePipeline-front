@@ -12,11 +12,7 @@ import { TempNavBarComponent } from './components/temp-nav-bar/temp-nav-bar.comp
 import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TestComponent,
-    TempNavBarComponent
-  ],
+  declarations: [AppComponent, TestComponent, TempNavBarComponent],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -25,7 +21,7 @@ import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.
     BrowserAnimationsModule,
     LoginModule,
     HttpClientModule,
-    PokemonUtilityModule
+    PokemonUtilityModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
