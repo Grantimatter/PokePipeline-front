@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TempNavBarComponent } from './components/temp-nav-bar/temp-nav-bar.component';
 import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.module';
 import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
     HttpClientModule,
     PokemonUtilityModule,
     TrainerHubModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

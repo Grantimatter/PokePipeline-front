@@ -12,7 +12,7 @@ import { PokemonScreenComponent } from './components/pokemon-screen/pokemon-scre
   exports: [TrainerHubComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ]
 })
 export class TrainerHubModule { }
