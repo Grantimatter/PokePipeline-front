@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon';
-import { GetPokemonAPIService } from 'src/app/services/get-pokemon-api.service';
-import { PokemonService } from 'src/app/services/pokemon.service';
+import { GetPokemonAPIService } from 'src/app/modules/pokemon-utility/services/get-pokemon-api/get-pokemon-api.service';
+import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
+import { UtilityService } from 'src/app/services/utility/utility.service';
 
+/**
+ * 
+ */
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -11,11 +15,14 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class TestComponent implements OnInit {
 
   public pokemon: any;
+  public starterPokemon: any;
   public input: number = 1;
+  public starterInput: number = 25;
 
   constructor(
     private getPokemonService: GetPokemonAPIService,
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private utilityServce: UtilityService
   ) { }
 
   ngOnInit(): void {
@@ -34,9 +41,35 @@ export class TestComponent implements OnInit {
     }
   }
 
+  getValidStarterPokemon(): void {
+      //let id = this.utilityServce.getRandomInt(1, 806);
+      let id = this.starterInput;
+      console.log(`Checking Pokemon with ID: ${id} for starter validity`);
+      if (this.pokemonService.isValidPokemonId(id)) {
+        this.getPokemonService.getPokemonWithSpeciesAndMovesFromAPI(id).subscribe(
+          (resp: Pokemon) => {
+            if (this.pokemonService.isValidStarter(resp, resp["species"])) {
+              if(this.pokemonService.isFirstEvolution(resp)){
+                this.starterPokemon = resp;
+              }else{
+
+              }
+              console.dir(this.starterPokemon.name + " is a valid starter pokemon!", this.starterPokemon);
+            }else{
+              //this.getValidStarterPokemon();
+              this.starterPokemon = null;
+              console.log(resp.name + " is not a valid starter type.");
+            }
+          }
+        );
+      }
+  }
+
   getPokemonWithAllMovesAPI(): void {
+    // Check input for valid ID before wasting a call to the API on an invalid ID
     if (this.pokemonService.isValidPokemonId(this.input)) {
-      this.getPokemonService.getPokemonWithAllMovesAPI(this.input).subscribe(
+
+      this.getPokemonService.getPokemonWithSpeciesAndMovesFromAPI(this.input).subscribe(
         (pokemonData: Pokemon) => {
           if (this.pokemonService.isValidPokemon(pokemonData)) {
             this.pokemon = pokemonData;
