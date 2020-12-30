@@ -1,48 +1,53 @@
+<div style="padding: 3em">
+  <div class="row">
+    <input class="col" type="number" [(ngModel)]="input">
+    <button class="btn btn-primary" (click)="getPokemonWithAllMovesAPI()">Favorite Pokémon?</button>
+  </div>
 
-<div class="row">
-  <input class="col" type="number" [(ngModel)]="input">
-  <button class="btn btn-primary" (click)="getPokemonWithAllMovesAPI()">Favorite Pokémon?</button>
+  <table class="table" *ngIf="pokemon">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Sprite</th>
+        <th scope="col">Moves</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{pokemon.name | titlecase}}</td>
+        <td>{{pokemon.types[0].type.name |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
+            {{pokemon.types[1].type.name | titlecase}}</span></td>
+        <td><img src="{{pokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
+        <td><span *ngFor="let move of pokemon.moves; first as isFirst"><span *ngIf="!isFirst">, </span>{{move.name |
+            titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type.name | titlecase}}]</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br>
+  <div class="row">
+    <button class="btn btn-primary" (click)="getValidStarterPokemon()">Get a Starter</button>
+  </div>
+  <br>
+  <table class="table" *ngIf="starterPokemon">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Sprite</th>
+        <th scope="col">Moves</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{starterPokemon.name | titlecase}}</td>
+        <td>{{starterPokemon.types[0].type.name |titlecase}}<span *ngIf="starterPokemon.types.length > 1"> /
+            {{starterPokemon.types[1].type.name | titlecase}}</span></td>
+        <td><img src="{{starterPokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
+        <td><span *ngFor="let move of starterPokemon.moves; first as isFirst"><span *ngIf="!isFirst">,
+            </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type.name |
+            titlecase}}]</span></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
-<table class="table" *ngIf="pokemon">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Type</th>
-      <th scope="col">Sprite</th>
-      <th scope="col">Moves</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{pokemon.name | titlecase}}</td>
-      <td>{{pokemon.types[0].type.name |titlecase}}<span *ngIf="pokemon.types.length > 1"> / {{pokemon.types[1].type.name | titlecase}}</span></td>
-      <td><img src="{{pokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
-      <td><span *ngFor="let move of pokemon.moves; first as isFirst"><span *ngIf="!isFirst">, </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type.name | titlecase}}]</span></td>
-    </tr>
-  </tbody>
-</table>
-<br><br>
-<div class="row">
-  <input class="col" type="number" [(ngModel)]="starterInput">
-  <button class="btn btn-primary" (click)="getValidStarterPokemon()">Is it a starter?</button>
-</div>
-
-<table class="table" *ngIf="starterPokemon">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Type</th>
-      <th scope="col">Sprite</th>
-      <th scope="col">Moves</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{starterPokemon.name | titlecase}}</td>
-      <td>{{starterPokemon.types[0].type.name |titlecase}}<span *ngIf="starterPokemon.types.length > 1"> / {{starterPokemon.types[1].type.name | titlecase}}</span></td>
-      <td><img src="{{starterPokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
-      <td><span *ngFor="let move of starterPokemon.moves; first as isFirst"><span *ngIf="!isFirst">, </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type.name | titlecase}}]</span></td>
-    </tr>
-  </tbody>
-</table>
