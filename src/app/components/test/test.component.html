@@ -1,7 +1,7 @@
 <div style="padding: 3em">
   <div class="row">
     <input class="col" type="number" [(ngModel)]="input">
-    <button class="btn btn-primary" (click)="getPokemonWithAllMovesAPI()">Favorite Pokémon?</button>
+    <button class="btn btn-primary" (click)="selectPokemonWithMoves()">Favorite Pokémon?</button>
   </div>
 
   <table class="table" *ngIf="pokemon">
@@ -26,7 +26,7 @@
   </table>
   <br><br>
   <div class="row">
-    <button class="btn btn-primary" (click)="getValidStarterPokemon()">Get a Starter</button>
+    <button class="btn btn-primary" (click)="selectStarterPokemon()">Get a Starter</button>
   </div>
   <br>
   <table class="table" *ngIf="starterPokemon">
