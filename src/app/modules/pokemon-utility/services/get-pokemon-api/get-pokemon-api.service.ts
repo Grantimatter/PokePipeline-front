@@ -4,7 +4,7 @@ import { Observable, forkJoin, combineLatest, concat, of } from 'rxjs';
 import { map, concatAll } from 'rxjs/operators';
 import { PokemonUtilityModule } from '../../pokemon-utility.module';
 import { UtilityService } from 'src/app/services/utility/utility.service';
-import { Pokemon } from 'src/app/models/pokemon';
+import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { environment } from 'src/environments/environment';
 
 /**

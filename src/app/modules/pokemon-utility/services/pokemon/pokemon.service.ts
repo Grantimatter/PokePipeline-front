@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Pokemon } from 'src/app/models/pokemon';
+import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokemonUtilityModule } from '../../pokemon-utility.module';
 
 /**

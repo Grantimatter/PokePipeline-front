@@ -1,6 +1,6 @@
 import { Type } from "../enums/type.enum";
-import { Move } from "./move";
-import { Stats } from "./stats";
+import { Move } from "../move/move";
+import { Stats } from "../stats/stats";
 
 export class Pokemon {
 
