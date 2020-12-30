@@ -58,10 +58,8 @@ export class TestComponent implements OnInit {
             } else {
               console.log(resp.name + " is valid as a starter but is not the first evolution!");
               this.getFirstEvolutionFromPokemon(resp);
-              this.starterPokemon = null;
             }
           } else {
-            this.starterPokemon = null;
             this.getValidStarterPokemon();
             console.log(resp.name + " is not a valid starter type.");
           }

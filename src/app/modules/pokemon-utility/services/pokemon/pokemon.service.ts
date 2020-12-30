@@ -33,12 +33,18 @@ export class PokemonService {
    * Checks the pokemon to make sure it is valid for use anywhere in the application
    * @param {Pokemon} pokemon - The Pokémon to be checked
    */
-  isValidPokemon(pokemon:Pokemon): boolean {
+  isValidPokemon(pokemon:any): boolean {
     if(!this.isValidPokemonId(pokemon.id)) return false;
     if(pokemon.moves.length < 2){
       console.log("Pokemon is invalid due to not having any moves");
       return false;
     }
+    if(pokemon.sprites && pokemon.sprites.official_artwork){
+      if(!pokemon.sprites.front_default || !pokemon.sprites.front_shiny || !pokemon.sprites.back_default || !pokemon.sprites.back_shiny || !pokemon.sprites.other.official_artwork){
+        
+      }
+    }
+    
     return true;
   }
   
