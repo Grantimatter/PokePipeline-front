@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TrainerHubComponent } from './../../modules/trainer-hub/components/trainer-hub/trainer-hub.component';
 
 @Component({
   selector: 'app-temp-nav-bar',
