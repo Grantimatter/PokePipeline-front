@@ -39,11 +39,8 @@ export class PokemonService {
       console.log("Pokemon is invalid due to not having any moves");
       return false;
     }
-    if(pokemon.sprites && pokemon.sprites.official_artwork){
-      if(!pokemon.sprites.front_default || !pokemon.sprites.front_shiny || !pokemon.sprites.back_default || !pokemon.sprites.back_shiny || !pokemon.sprites.other.official_artwork){
-        
-      }
-    }
+    //if(!pokemon.sprites || !pokemon.sprites.official_artwork) return false;
+    console.dir(pokemon.sprites.front_default);
     
     return true;
   }
