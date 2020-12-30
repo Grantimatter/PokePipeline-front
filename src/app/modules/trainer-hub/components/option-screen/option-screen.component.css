@@ -9,7 +9,11 @@
   top: 3%;
 }
 
-#battleButton1, #battleButton2, #battleButton3, #partyButton {
+#battleButton2 {
+  margin-top: 7%;
+}
+
+#battleButton3, #partyButton {
   margin-top: 3%;
 }
 
