@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonScreenComponent implements OnInit {
 
+  
+
   constructor() { }
 
   ngOnInit(): void {

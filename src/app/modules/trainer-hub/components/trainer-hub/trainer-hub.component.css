@@ -20,7 +20,6 @@
 #pokemonScreen {
   border-top: 2px solid black;
   float: left;
-  background: lightblue;
   height:40%;
   width: 100%;
 }
