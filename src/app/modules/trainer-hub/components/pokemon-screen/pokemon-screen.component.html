@@ -11,8 +11,11 @@
       <td id="pokemonType" colspan="2">{{pokemon.types[0].type.name |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
         {{pokemon.types[1].type.name | titlecase}}</span></td>
     </tr>
-    <tr>
-<!-- current health and level goes here -->
+    <tr id="borderBelow">
+      <td>Health</td>
+      <td id="pokemonCurrentHealth">14/25</td>
+      <td>Level</td>
+      <td id="pokemonLevel">10</td> 
     </tr>
     <tr>
       <td>HP</td>
