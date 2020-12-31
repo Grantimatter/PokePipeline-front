@@ -4,17 +4,27 @@
   width: 100%;
 }
 
+#welcome {
+  position: relative;
+  top: 5%;
+  font-size: 20px;
+  font-weight: 600;
+  padding-bottom: 10%;
+}
+
+#battleButton {
+  position: relative;
+  margin-top: 8%;
+}
+
+#partyButton {
+  position: relative;
+  margin-top: 8%;
+}
+
 #settingsButton {
   position: relative;
-  top: 3%;
-}
-
-#battleButton2 {
-  margin-top: 7%;
-}
-
-#battleButton3, #partyButton {
-  margin-top: 3%;
+  margin-top: 8%;
 }
 
 .centerBlock {

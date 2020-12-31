@@ -7,18 +7,11 @@ import { LoginModule } from './modules/loginregister/login.module';
 import { TrainerHubComponent } from './modules/trainer-hub/components/trainer-hub/trainer-hub.component';
 
 const routes: Routes = [
-  {
-    path: 'register',
-    component: RegisterComponent,
-  },
-  {
-    path: 'test',
-    component: TestComponent,
-  },
+  { path: 'register', component: RegisterComponent },
+  { path: 'test', component: TestComponent },
   { path: 'trainerhub', component: TrainerHubComponent },
+  { path: '**', component: LoginComponent }, 
   { path: '**', redirectTo: '' },
-
-  { path: '**', component: LoginComponent }, // DEFAULT: needs to be last
 ];
 
 @NgModule({

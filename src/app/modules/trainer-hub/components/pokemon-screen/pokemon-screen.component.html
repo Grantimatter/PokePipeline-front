@@ -1,29 +1,36 @@
 <div class="table-responsive container-fluid fill">
   <table id="pokemonTable" class="table table-sm table-bordered table-dark fill">
     <tr>
-      <td id="pokemonImage" rowspan="2" colspan="2">Image Here</td>
-      <td id="pokemonName" colspan="2">Ditto</td>
+      <td id="pokemonImage" rowspan="2" colspan="2">
+        <span><fa-icon *ngIf="selectingStarter" [icon]="faSpinner" [spin]="true"></fa-icon></span>
+        <img *ngIf="!selectingStarter" src="{{pokemon.sprites.other['official-artwork'].front_default}}">
+      </td>
+      <td id="pokemonName" colspan="2">{{pokemon.name | titlecase}} <br><span>Lvl 10</span></td>
     </tr>
     <tr>
-      <td id="pokemonType" colspan="2">Normal / Normal</td>
+      <td id="pokemonType" colspan="2">{{pokemon.types[0].type.name |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
+        {{pokemon.types[1].type.name | titlecase}}</span></td>
+    </tr>
+    <tr>
+<!-- current health and level goes here -->
     </tr>
     <tr>
       <td>HP</td>
-      <td id="pokemonHP">45</td>
+      <td id="pokemonHP">{{pokemon.stats[0].base_stat}}</td>
       <td>SPE</td>
-      <td id="pokemonSPE">49</td>
+      <td id="pokemonSPE">{{pokemon.stats[5].base_stat}}</td>
     </tr>
     <tr>
       <td>ATK</td>
-      <td id="pokemonATK">43</td>
+      <td id="pokemonATK">{{pokemon.stats[1].base_stat}}</td>
       <td>SP.ATK</td>
-      <td id="pokemonSPATK">23</td>
+      <td id="pokemonSPATK">{{pokemon.stats[3].base_stat}}</td>
     </tr>
     <tr>
       <td>DEF</td>
-      <td id="pokemonDEF">54</td>
+      <td id="pokemonDEF">{{pokemon.stats[2].base_stat}}</td>
       <td>SP.DEF</td>
-      <td id="pokemonSPDEF">44</td>
+      <td id="pokemonSPDEF">{{pokemon.stats[4].base_stat}}</td>
     </tr>
   </table>
 </div>
