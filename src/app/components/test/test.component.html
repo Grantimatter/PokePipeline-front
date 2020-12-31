@@ -67,7 +67,7 @@
     <tbody>
       <tr>
         <td>{{starterPokemon.name | titlecase}}</td>
-        <td>{{starterPokemon.types[0].type.name |titlecase}}<span *ngIf="starterPokemon.types.length > 1"> /
+        <td>{{starterPokemon.types[0].type.name | titlecase}}<span *ngIf="starterPokemon.types.length > 1"> /
             {{starterPokemon.types[1].type.name | titlecase}}</span></td>
         <td><img src="{{starterPokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
         <td><span *ngFor="let move of starterPokemon.moves; first as isFirst"><span *ngIf="!isFirst">,
