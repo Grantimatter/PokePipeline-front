@@ -1,0 +1,25 @@
+
+#trainerHub {
+  height: 80vh;
+  margin: 1%;
+  padding: 0;
+  border: 2px solid black;
+}
+
+#mainScreen {
+  background-image: url("../../../../../assets/Images/Backgrounds/bluestripe.png");
+  border-right: 2px solid black;
+}
+
+#optionScreen {
+  float: left;
+  height: 60%;
+  width: 100%;
+}
+
+#pokemonScreen {
+  border-top: 2px solid black;
+  float: left;
+  height:40%;
+  width: 100%;
+}

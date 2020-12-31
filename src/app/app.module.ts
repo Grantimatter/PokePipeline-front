@@ -11,9 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { TempNavBarComponent } from './components/temp-nav-bar/temp-nav-bar.component';
 import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
 
 @NgModule({
-  declarations: [AppComponent, TestComponent, TempNavBarComponent],
+  declarations: [
+    AppComponent, 
+    TestComponent, 
+    TempNavBarComponent,
+  ],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -23,6 +28,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginModule,
     HttpClientModule,
     PokemonUtilityModule,
+    FontAwesomeModule,
+    TrainerHubModule,
     FontAwesomeModule,
   ],
   providers: [],
