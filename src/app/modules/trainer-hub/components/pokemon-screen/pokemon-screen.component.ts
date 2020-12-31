@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from 'src/app/models/pokemon/pokemon';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 
 @Component({
@@ -11,6 +11,7 @@ export class PokemonScreenComponent implements OnInit {
 
   pokemon:any;
   selectingStarter:boolean = false;
+  faSpinner = faSpinner;
 
   constructor(private pokeApiHelperService:PokeApiHelperService) { }
 

@@ -4,6 +4,7 @@ import { TrainerHubComponent } from './components/trainer-hub/trainer-hub.compon
 import { RouterModule } from '@angular/router';
 import { OptionScreenComponent } from './components/option-screen/option-screen.component';
 import { PokemonScreenComponent } from './components/pokemon-screen/pokemon-screen.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -13,6 +14,7 @@ import { PokemonScreenComponent } from './components/pokemon-screen/pokemon-scre
   imports: [
     CommonModule,
     RouterModule,
+    FontAwesomeModule,
   ]
 })
 export class TrainerHubModule { }

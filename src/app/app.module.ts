@@ -30,7 +30,6 @@ import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
     PokemonUtilityModule,
     FontAwesomeModule,
     TrainerHubModule,
-    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
