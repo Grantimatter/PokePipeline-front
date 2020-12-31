@@ -4,6 +4,7 @@ import { TestComponent } from './components/test/test.component';
 import { LoginComponent } from './modules/loginregister/components/login/login.component';
 import { RegisterComponent } from './modules/loginregister/components/register/register.component';
 import { LoginModule } from './modules/loginregister/login.module';
+import { TrainerHubComponent } from './modules/trainer-hub/components/trainer-hub/trainer-hub.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,9 @@ const routes: Routes = [
     path: 'test',
     component: TestComponent,
   },
+  { path: 'trainerhub', component: TrainerHubComponent },
   { path: '**', redirectTo: '' },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({
