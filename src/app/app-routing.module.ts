@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   { path: 'trainerhub', component: TrainerHubComponent },
   { path: '**', redirectTo: '' },
-  { path: '**', component: LoginComponent },
+
+  { path: '**', component: LoginComponent }, // DEFAULT: needs to be last
 ];
 
 @NgModule({

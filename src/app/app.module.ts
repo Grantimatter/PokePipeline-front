@@ -12,7 +12,6 @@ import { TempNavBarComponent } from './components/temp-nav-bar/temp-nav-bar.comp
 import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
