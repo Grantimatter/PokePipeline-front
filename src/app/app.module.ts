@@ -13,6 +13,7 @@ import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
 
+
 @NgModule({
   declarations: [
     AppComponent, 
@@ -21,7 +22,6 @@ import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
   ],
   imports: [
     FormsModule,
-    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -30,6 +30,7 @@ import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
     PokemonUtilityModule,
     FontAwesomeModule,
     TrainerHubModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],

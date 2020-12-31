@@ -20,3 +20,7 @@ img {
   height: 60px;
   width: 60px;
 }
+
+#borderBelow {
+  border-bottom: 2px solid white;
+}

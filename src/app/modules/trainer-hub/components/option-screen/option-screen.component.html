@@ -15,7 +15,10 @@
 
   <div id="partyButton" class="type-1 centerBlock">
     <div>
-      <a href="/trainerhub" class="btn btn-3">
+      <a
+      routerLinkActive="active" 
+      [routerLink]="[{ outlets: { main: ['party'] } }]"
+      class="btn btn-3 nav-link">
         <span class="txt">Choose Pokemon</span>
         <span class="round"><i class="icon-group"></i></span>
       </a>
