@@ -5,7 +5,7 @@
         <span><fa-icon *ngIf="selectingStarter" [icon]="faSpinner" [spin]="true"></fa-icon></span>
         <img *ngIf="!selectingStarter" src="{{pokemon.sprites.other['official-artwork'].front_default}}">
       </td>
-      <td id="pokemonName" colspan="2">{{pokemon.name | titlecase}} <br><span>Lvl 10</span></td>
+      <td id="pokemonName" colspan="2">{{pokemon.name | titlecase}}</td>
     </tr>
     <tr>
       <td id="pokemonType" colspan="2">{{pokemon.types[0].type.name |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
