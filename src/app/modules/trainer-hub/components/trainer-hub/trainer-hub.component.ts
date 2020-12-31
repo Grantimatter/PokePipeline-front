@@ -10,7 +10,6 @@ export class TrainerHubComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("got in");
   }
 
 }
