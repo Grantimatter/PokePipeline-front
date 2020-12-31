@@ -13,7 +13,7 @@ export class PokemonScreenComponent implements OnInit {
   selectingStarter:boolean = false;
   faSpinner = faSpinner;
 
-  constructor(private pokeApiHelperService:PokeApiHelperService) { }
+  constructor(private pokeApiHelperService:PokeApiHelperService) {}
 
   ngOnInit(): void {
     this.selectStarterPokemon();
