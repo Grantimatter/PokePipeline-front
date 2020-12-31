@@ -25,7 +25,7 @@ export class PokeApiHelperService {
   getPokemonAPI(id:number, onSuccess: (pokemon:Pokemon) => void, onFail? :() => void): void {
     if (this.pokemonService.isValidPokemonId(id)) {
       this.getPokemonService.getPokemonFromAPI(id).subscribe(
-        (pokemonData: Pokemon) => {
+        (pokemonData) => {
           onSuccess(pokemonData);
         },
         () => {
@@ -36,12 +36,13 @@ export class PokeApiHelperService {
 
   /**
    * Sets starterPokemon to a randomly selected starter Pokémon.
+   * @param {Function} onSuccess - The method to invoke when a starter Pokémon is retrieved.
    */
   getValidStarterPokemon(onSuccess: (pokemon:Pokemon) => void): void {
     let id = this.utilityService.getRandomInt(1, 806);
     if (this.pokemonService.isValidPokemonId(id)) {
       this.getPokemonService.getPokemonWithSpeciesAndMovesFromAPI(id).subscribe(
-        (resp: any) => {
+        (resp) => {
           if (this.pokemonService.isValidStarter(resp, resp["species"])) {
             if (this.pokemonService.isFirstEvolution(resp["species"])) {
               onSuccess(resp);
@@ -58,12 +59,13 @@ export class PokeApiHelperService {
 
   /**
    * Gets a random valid Pokémon with detailed moves and sends it through the callback function provided
+   * @param {Function} onSuccess - The method to invoke when a starter Pokémon is retrieved.
    */
   getRandomValidPokemon(onSuccess: (pokemon:Pokemon) => void): void {
     let id = this.utilityService.getRandomInt(1, 806);
     if (this.pokemonService.isValidPokemonId(id)) {
       this.getPokemonService.getPokemonWithAllMovesAPI(id).subscribe(
-        (resp: any) => {
+        (resp) => {
           if (this.pokemonService.isValidPokemon(resp)) {
               onSuccess(resp);
           } else {
@@ -75,7 +77,7 @@ export class PokeApiHelperService {
   }
 
   /**
-   * 
+   * Retrieve the first evolution of the given pokemon
    * @param pokemon 
    * @param onSuccess 
    */
@@ -88,11 +90,17 @@ export class PokeApiHelperService {
     );
   }
 
+  /**
+   * Retrieves the specified Pokémon from PokéAPI with detailed moves and invokes a callback function
+   * @param id 
+   * @param onSuccess 
+   * @param onFail 
+   */
   getPokemonWithAllMovesAPI(id:number, onSuccess: (pokemon:Pokemon) => void, onFail: () => void): void {
     // Check input for valid ID before wasting a call to the API on an invalid ID
     if (this.pokemonService.isValidPokemonId(id)) {
       this.getPokemonService.getPokemonWithSpeciesAndMovesFromAPI(id).subscribe(
-        (pokemonData: Pokemon) => {
+        (pokemonData) => {
           if (this.pokemonService.isValidPokemon(pokemonData)) {
             onSuccess(pokemonData);
           } else {
