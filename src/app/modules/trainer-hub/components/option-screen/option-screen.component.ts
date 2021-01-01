@@ -9,6 +9,10 @@ import { UserModel } from 'src/app/models/user';
 })
 export class OptionScreenComponent implements OnInit {
 
+  hasParty:boolean = false;
+ // set this to true when the pokemon dies, or user resets game
+  isDisabled:boolean = false;
+
   trainer:UserModel = {
     "username": "Trainer",
     "password": "pass",
@@ -20,6 +24,10 @@ export class OptionScreenComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  choosingPokemon() {
+    this.isDisabled = true;
   }
 
 }

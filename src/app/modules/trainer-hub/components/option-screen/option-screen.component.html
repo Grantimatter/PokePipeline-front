@@ -8,8 +8,8 @@
     <div>
       <a 
       routerLinkActive="active" 
-      [routerLink]="[{ outlets: { main: ['empty'] } }]" 
-      class="btn btn-3">
+      [routerLink]=""
+      class="btn btn-3 animation">
         <span class="txt">Start Battle</span>
         <span class="round"><i class="icon-bolt"></i></span>
       </a>
@@ -19,8 +19,16 @@
   <div id="partyButton" class="type-1 centerBlock">
     <div>
       <a
+      *ngIf="!isDisabled"
+      (click)="choosingPokemon()"
       routerLinkActive="active" 
       [routerLink]="[{ outlets: { main: ['party'] } }]"
+      class="btn btn-3 nav-link animation">
+        <span class="txt">Choose Pokemon</span>
+        <span class="round"><i class="icon-group"></i></span>
+      </a>
+      <a
+      *ngIf="isDisabled"
       class="btn btn-3 nav-link">
         <span class="txt">Choose Pokemon</span>
         <span class="round"><i class="icon-group"></i></span>
@@ -30,7 +38,7 @@
 
   <div id="settingsButton" class="type-1 centerBlock">
     <div>
-      <a href="" class="btn btn-3">
+      <a href="trainerhub" class="btn btn-3 animation">
         <span class="txt">User Settings</span>
         <span class="round"><i class="icon-gear"></i></span>
       </a>
