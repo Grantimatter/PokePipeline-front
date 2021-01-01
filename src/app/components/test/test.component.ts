@@ -33,6 +33,7 @@ export class TestComponent implements OnInit {
     this.pokeApiHelperService.getRandomValidPokemon((x:JSON)=>{
       this.selectingRandom = false;
       this.randomPokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
+      console.log(this.randomPokemon);
     });
   }
   
@@ -54,6 +55,9 @@ export class TestComponent implements OnInit {
     this.pokeApiHelperService.getValidStarterPokemon((x) => {
       this.selectingStarter = false;
       this.starterPokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
+      this.starterPokemon.setLevel(10);
+      this.starterPokemon.heal(this.starterPokemon.stats.hp);
+      console.log(this.starterPokemon);
     });
   }
   
