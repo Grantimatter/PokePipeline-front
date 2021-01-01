@@ -10,9 +10,6 @@ import { Pokemon } from 'src/app/models/pokemon/pokemon';
 })
 export class PartyService {
 
-  // private pokemon:any = new BehaviorSubject(null);
-  // selectedPokemon = this.pokemon.asObservable();
-
   pokemon1: Subject<Pokemon> = new Subject<Pokemon>();
 
   constructor() { }
