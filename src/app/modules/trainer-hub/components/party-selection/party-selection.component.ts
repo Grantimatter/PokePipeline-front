@@ -44,7 +44,7 @@ export class PartySelectionComponent implements OnInit {
    */
   displayStarterPokemon() {
     this.pokeApiHelperService.getValidStarterPokemon((x) => {
-      this.pokemon = new Pokemon(x)
+      this.pokemon = new Pokemon(x);
     });
   }
 

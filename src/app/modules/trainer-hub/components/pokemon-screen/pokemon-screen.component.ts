@@ -23,12 +23,16 @@ export class PokemonScreenComponent implements OnInit {
         this.pokemon = value;
         if(this.pokemon.types[1]) this.hasTwoTypes = true;
         else this.hasTwoTypes = false;
-        console.log(this.pokemon);
         this.pokemon.currentHP = this.pokemon.stats.hp;
       })
     }
 
   ngOnInit(): void {
+   this.getPokemonFromService();
+  }
+
+  getPokemonFromService() {
+    this.pokemon = this.partyService.getPokemon1();
   }
 
 }

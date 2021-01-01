@@ -11,15 +11,22 @@ import { Pokemon } from 'src/app/models/pokemon/pokemon';
 export class PartyService {
 
   pokemon1: Subject<Pokemon> = new Subject<Pokemon>();
+  pokemonVar: Pokemon;
 
   constructor() { }
 
+  getPokemon1() {
+    return this.pokemonVar;
+  }
+
   /**
-   * Use to change pokemon
-   * @data type: Pokemon
+   * Use to change pokemon. Pokemon must be a valid Pokemon model, not a JSON.
+   * @data type: Pokemon 
+   * @description !Warning: might cause problems as well when you're casting a response as a Pokemon 
    */
   pokemonChange(data: Pokemon) {
     this.pokemon1.next(data);
+    this.pokemonVar = data;
   }
 
   /**
