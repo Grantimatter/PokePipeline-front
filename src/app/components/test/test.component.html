@@ -16,11 +16,10 @@
     <tbody>
       <tr>
         <td>{{pokemon.name | titlecase}}</td>
-        <td>{{pokemon.types[0].type.name |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
-            {{pokemon.types[1].type.name | titlecase}}</span></td>
+        <td>{{pokemon.types[0] |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
+            {{pokemon.types[1] | titlecase}}</span></td>
         <td><img src="{{pokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
-        <td><span *ngFor="let move of pokemon.moves; first as isFirst"><span *ngIf="!isFirst">, </span>{{move.name |
-            titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type.name | titlecase}}]</span></td>
+        <td><span *ngFor="let move of pokemon.moves; first as isFirst"><span *ngIf="!isFirst">, </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type | titlecase}}]</span></td>
       </tr>
     </tbody>
   </table>
@@ -41,11 +40,11 @@
     <tbody>
       <tr>
         <td>{{randomPokemon.name | titlecase}}</td>
-        <td>{{randomPokemon.types[0].type.name |titlecase}}<span *ngIf="randomPokemon.types.length > 1"> /
-            {{randomPokemon.types[1].type.name | titlecase}}</span></td>
+        <td>{{randomPokemon.types[0] |titlecase}}<span *ngIf="randomPokemon.types.length > 1"> /
+            {{randomPokemon.types[1] | titlecase}}</span></td>
         <td><img src="{{randomPokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
         <td><span *ngFor="let move of randomPokemon.moves; first as isFirst"><span *ngIf="!isFirst">,
-            </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type.name |
+            </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type |
             titlecase}}]</span></td>
       </tr>
     </tbody>
@@ -67,11 +66,11 @@
     <tbody>
       <tr>
         <td>{{starterPokemon.name | titlecase}}</td>
-        <td>{{starterPokemon.types[0].type.name | titlecase}}<span *ngIf="starterPokemon.types.length > 1"> /
-            {{starterPokemon.types[1].type.name | titlecase}}</span></td>
+        <td>{{starterPokemon.types[0] | titlecase}}<span *ngIf="starterPokemon.types.length > 1"> /
+            {{starterPokemon.types[1] | titlecase}}</span></td>
         <td><img src="{{starterPokemon.sprites.front_default}}" alt="Pokemon Sprite"></td>
         <td><span *ngFor="let move of starterPokemon.moves; first as isFirst"><span *ngIf="!isFirst">,
-            </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type.name |
+            </span>{{move.name | titlecase}} [<span *ngIf="move.power">{{move.power}} </span>{{move.type |
             titlecase}}]</span></td>
       </tr>
     </tbody>
