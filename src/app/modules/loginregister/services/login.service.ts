@@ -35,11 +35,14 @@ export class LoginService implements Service<UserModel, Observable<Object>> {
   }
 
   provideService(loginToken: UserModel): Observable<Object> {
-    return this.httpService.post('/api/user/login', {
-      headers: this.httpHeaders,
-      observe: 'response',
-      responseType: 'json',
-      body: loginToken,
-    });
+    return this.httpService.post(
+      'http://localhost:8080/PokePipeline/login',
+      loginToken,
+      {
+        headers: this.httpHeaders,
+        observe: 'response',
+        responseType: 'json',
+      }
+    );
   }
 }
