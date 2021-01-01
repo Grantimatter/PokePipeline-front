@@ -6,6 +6,7 @@ import { RegisterComponent } from './modules/loginregister/components/register/r
 import { LoginModule } from './modules/loginregister/login.module';
 import { PartySelectionComponent } from './modules/trainer-hub/components/party-selection/party-selection.component';
 import { TrainerHubComponent } from './modules/trainer-hub/components/trainer-hub/trainer-hub.component';
+import { BattleScreenComponent } from './modules/battle/components/battle-screen/battle-screen.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'trainerhub', component: TrainerHubComponent,
     children: [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
+      { path: 'battle', component: BattleScreenComponent, outlet: 'main'}
     ]
   },
   { path: '**', component: LoginComponent }, 
