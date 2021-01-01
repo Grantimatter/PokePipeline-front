@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
     TrainerHubComponent, 
     OptionScreenComponent, 
     PokemonScreenComponent, 
-    PartySelectionComponent, 
+    PartySelectionComponent,
   ],
   exports: [
     TrainerHubComponent,
