@@ -6,6 +6,7 @@ import { PokemonScreenComponent } from './components/pokemon-screen/pokemon-scre
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PartySelectionComponent } from './components/party-selection/party-selection.component';
 import { RouterModule } from '@angular/router';
+import { PartyService } from './services/party/party.service';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FontAwesomeModule,
     RouterModule,
-  ]
+  ],
+  providers: [PartyService]
 })
 export class TrainerHubModule { }
