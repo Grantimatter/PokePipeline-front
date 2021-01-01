@@ -1,4 +1,10 @@
 
+#pokemonTableBackground {
+  height: 100%;
+  width: 100%;
+  background: lightgrey;
+}
+
 .container-fluid {
   padding: 0;
   overflow-y:hidden;

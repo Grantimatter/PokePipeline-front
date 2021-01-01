@@ -1,42 +1,45 @@
-<div class="table-responsive container-fluid fill">
-  <table id="pokemonTable" class="table table-sm table-bordered table-dark fill">
-    <tr>
-      <td id="pokemonImage" rowspan="2" colspan="2">
-        <span></span>
-        <img *ngIf="pokemon.sprites" src="{{pokemon.sprites.official_artwork}}">
-      </td>
-      <td id="pokemonName" colspan="2">{{pokemon.name | titlecase}}</td>
-    </tr>
-    <tr>
-      <td id="pokemonType" 
-      colspan="2">{{pokemon.types[0] |titlecase}}
-      <span *ngIf="hasTwoTypes"> / {{pokemon.types[1] | titlecase}}</span></td>
-      <!-- <td>{{pokemon.types[0] |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
-        {{pokemon.types[1] | titlecase}}</span></td> -->
-    </tr>
-    <tr id="borderBelow">
-      <td>Health</td>
-      <td id="pokemonCurrentHealth">{{pokemon.currentHP}}/{{pokemon.stats.hp}}</td>
-      <td>Level</td>
-      <td id="pokemonLevel">{{pokemon.getLevel()}}</td> 
-    </tr>
-    <tr>
-      <td>HP</td>
-      <td id="pokemonHP">{{pokemon.stats.hp}}</td>
-      <td>SPE</td>
-      <td id="pokemonSPE">{{pokemon.stats.speed}}</td>
-    </tr>
-    <tr>
-      <td>ATK</td>
-      <td id="pokemonATK">{{pokemon.stats.attack}}</td>
-      <td>SP.ATK</td>
-      <td id="pokemonSPATK">{{pokemon.stats.specialAttack}}</td>
-    </tr>
-    <tr>
-      <td>DEF</td>
-      <td id="pokemonDEF">{{pokemon.stats.defense}}</td>
-      <td>SP.DEF</td>
-      <td id="pokemonSPDEF">{{pokemon.stats.specialDefense}}</td>
-    </tr>
-  </table>
+<div id="pokemonTableBackground">
+  <div *ngIf="pokemon" class="table-responsive container-fluid fill">
+    <table id="pokemonTable" class="table table-sm table-bordered table-dark fill">
+      <tr>
+        <td id="pokemonImage" rowspan="2" colspan="2">
+          <span></span>
+          <img *ngIf="pokemon.sprites" src="{{pokemon.sprites.official_artwork}}">
+        </td>
+        <td id="pokemonName" colspan="2">{{pokemon.name | titlecase}}</td>
+      </tr>
+      <tr>
+        <td id="pokemonType" 
+        colspan="2">{{pokemon.types[0] |titlecase}}
+        <span *ngIf="hasTwoTypes"> / {{pokemon.types[1] | titlecase}}</span></td>
+        <!-- <td>{{pokemon.types[0] |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
+          {{pokemon.types[1] | titlecase}}</span></td> -->
+      </tr>
+      <tr id="borderBelow">
+        <td>Health</td>
+        <td id="pokemonCurrentHealth">{{pokemon.currentHP}}/{{pokemon.stats.hp}}</td>
+        <td>Level</td>
+        <td id="pokemonLevel">{{pokemon.getLevel()}}</td> 
+      </tr>
+      <tr>
+        <td>HP</td>
+        <td id="pokemonHP">{{pokemon.stats.hp}}</td>
+        <td>SPE</td>
+        <td id="pokemonSPE">{{pokemon.stats.speed}}</td>
+      </tr>
+      <tr>
+        <td>ATK</td>
+        <td id="pokemonATK">{{pokemon.stats.attack}}</td>
+        <td>SP.ATK</td>
+        <td id="pokemonSPATK">{{pokemon.stats.specialAttack}}</td>
+      </tr>
+      <tr>
+        <td>DEF</td>
+        <td id="pokemonDEF">{{pokemon.stats.defense}}</td>
+        <td>SP.DEF</td>
+        <td id="pokemonSPDEF">{{pokemon.stats.specialDefense}}</td>
+      </tr>
+    </table>
+  </div>
 </div>
+
