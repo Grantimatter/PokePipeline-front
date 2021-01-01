@@ -6,7 +6,10 @@
 
   <div id="battleButton" class="type-1 centerBlock">
     <div>
-      <a href="" class="btn btn-3">
+      <a 
+      routerLinkActive="active" 
+      [routerLink]="[{ outlets: { main: ['empty'] } }]" 
+      class="btn btn-3">
         <span class="txt">Start Battle</span>
         <span class="round"><i class="icon-bolt"></i></span>
       </a>

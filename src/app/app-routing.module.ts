@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'trainerhub', component: TrainerHubComponent,
     children: [
-      { path: 'party', component: PartySelectionComponent, outlet: 'main' }
+      { path: 'party', component: PartySelectionComponent, outlet: 'main' },
     ]
   },
   { path: '**', component: LoginComponent }, 

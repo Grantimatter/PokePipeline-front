@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
+import { PartyService } from '../../services/party/party.service';
 
 @Component({
   selector: 'app-pokemon-screen',
@@ -13,18 +14,13 @@ export class PokemonScreenComponent implements OnInit {
   selectingStarter:boolean = false;
   faSpinner = faSpinner;
 
-  constructor(private pokeApiHelperService:PokeApiHelperService) {}
+  constructor(
+    private pokeApiHelperService:PokeApiHelperService,
+    private data:PartyService,
+    ) {}
 
   ngOnInit(): void {
-    this.selectStarterPokemon();
-  }
-
-  selectStarterPokemon() {
-    this.selectingStarter = true;
-    this.pokeApiHelperService.getValidStarterPokemon((x) => {
-      this.selectingStarter = false;
-      this.pokemon = x
-    });
+    this.data.selectedPokemon.subscribe(transferedPokemon => this.pokemon = transferedPokemon)
   }
 
 }

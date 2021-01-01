@@ -1,4 +1,11 @@
 
+#center {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 #trainerHub {
   height: 80vh;
   margin: 1%;
