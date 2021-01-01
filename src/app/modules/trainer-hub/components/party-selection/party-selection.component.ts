@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
+import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
 import { PartyService } from '../../services/party/party.service';
 
 
@@ -11,13 +12,14 @@ import { PartyService } from '../../services/party/party.service';
 })
 export class PartySelectionComponent implements OnInit {
 
-  pokemon;
+  pokemon:Pokemon;
   selectingStarter:boolean = false;
   private _subscription_user_name: any;
 
   constructor(
     private pokeApiHelperService:PokeApiHelperService,
     private partyService:PartyService,
+    private pokemonService:PokemonService
     // private data:PartyService,
     ) { 
       this._subscription_user_name = this.partyService.pokemon1.subscribe((value) => {
@@ -45,7 +47,7 @@ export class PartySelectionComponent implements OnInit {
     this.selectingStarter = true;
     this.pokeApiHelperService.getValidStarterPokemon((x) => {
       this.selectingStarter = false;
-      this.pokemon = new Pokemon(x)
+      this.pokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
     });
   }
 

@@ -54,6 +54,10 @@ export class Pokemon {
     return this.level;
   }
 
+  /**
+   * Heals the Pokmeon by given points limited by their maximum HP
+   * @param {number} value - The number of hitpoints to heal.
+   */
   heal(value:number): void{
     this.currentHP = this.currentHP + value <= this.stats.hp ? this.currentHP + value : this.stats.hp;
   }

@@ -36,15 +36,19 @@ export class RegisterService implements Service<UserModel, Observable<Object>> {
 
     return validObject && validObjectFields;
   }
+
   provideService(userToRegister: UserModel): Observable<Object> {
     let headers: HttpHeaders = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    return this.httpClient.post('/api/user/register', {
-      body: userToRegister,
-      headers: headers,
-      responseType: 'json',
-      observe: 'response',
-    });
+    return this.httpClient.post(
+      'http://localhost:8080/PokePipeline/register',
+      userToRegister,
+      {
+        headers: headers,
+        responseType: 'json',
+        observe: 'response',
+      }
+    );
   }
 }
