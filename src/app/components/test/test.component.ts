@@ -38,10 +38,11 @@ export class TestComponent implements OnInit {
   
   selectPokemonWithMoves(){
     this.selectingPokemon = true;
-    this.pokeApiHelperService.getPokemonWithAllMovesAPI(this.input, (x:any)=>{
+    this.pokeApiHelperService.getPokemonWithAllMovesAPI(this.input, (x:JSON)=>{
       this.selectingPokemon = false;
       console.log("Selected Pokemon, getting moves");
       this.pokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
+      console.log(this.pokemon);
     }, ()=>{
       this.selectingPokemon = false;
       console.log("The requested Pokemon with detailed moves could not be retrieved!")
