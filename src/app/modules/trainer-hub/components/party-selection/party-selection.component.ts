@@ -23,10 +23,16 @@ export class PartySelectionComponent implements OnInit {
     this.data.selectedPokemon.subscribe(transferedPokemon => this.pokemon = transferedPokemon)
   }
 
+  /**
+   * Will send this.pokemon to PartyService.
+   */
   selectStarter() {
     this.data.changePokemon(this.pokemon);
   }
 
+  /**
+   * Displays the choice(s) for the Trainer's starter Pokemon.
+   */
   displayStarterPokemon() {
     this.selectingStarter = true;
     this.pokeApiHelperService.getValidStarterPokemon((x) => {
