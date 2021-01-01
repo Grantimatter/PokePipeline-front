@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { Type } from 'src/app/models/enums/type.enum';
-import { Move } from 'src/app/models/move/move';
-import { Stats } from 'src/app/models/stats/stats';
+import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
 
 @Component({
   selector: 'app-test',
@@ -23,7 +21,8 @@ export class TestComponent implements OnInit {
   selectingStarter:boolean = false;
 
   constructor(
-    private pokeApiHelperService:PokeApiHelperService
+    private pokeApiHelperService:PokeApiHelperService,
+    private pokemonService:PokemonService
   ) { }
 
   ngOnInit(): void {
@@ -31,9 +30,9 @@ export class TestComponent implements OnInit {
 
   selectRandomPokemon(){
     this.selectingRandom = true;
-    this.pokeApiHelperService.getRandomValidPokemon((x)=>{
+    this.pokeApiHelperService.getRandomValidPokemon((x:JSON)=>{
       this.selectingRandom = false;
-      this.randomPokemon = x;
+      this.randomPokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
     });
   }
   
@@ -41,12 +40,8 @@ export class TestComponent implements OnInit {
     this.selectingPokemon = true;
     this.pokeApiHelperService.getPokemonWithAllMovesAPI(this.input, (x:any)=>{
       this.selectingPokemon = false;
-      this.pokemon = x;
-      
-      let realPokemon:Pokemon = new Pokemon(x, 4);
-      let move1 = new Move(x["moves"][11]);
-      realPokemon.moves = [move1];
-      console.log(realPokemon);
+      console.log("Selected Pokemon, getting moves");
+      this.pokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
     }, ()=>{
       this.selectingPokemon = false;
       console.log("The requested Pokemon with detailed moves could not be retrieved!")
@@ -57,7 +52,7 @@ export class TestComponent implements OnInit {
     this.selectingStarter = true;
     this.pokeApiHelperService.getValidStarterPokemon((x) => {
       this.selectingStarter = false;
-      this.starterPokemon = x
+      this.starterPokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
     });
   }
   
