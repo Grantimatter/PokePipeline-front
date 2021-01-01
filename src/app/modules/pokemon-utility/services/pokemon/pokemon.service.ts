@@ -25,6 +25,7 @@ export class PokemonService {
   createNewPokemonWithRandomMoves(pokemonWithAllMovesJSON: JSON): Pokemon {
     let pokemon: Pokemon = new Pokemon(pokemonWithAllMovesJSON);
     pokemon.moves = this.selectMovesForPokemon(pokemonWithAllMovesJSON["moves"], pokemon.types);
+    pokemon.setLevel(1);
     return pokemon;
   }
 
@@ -42,7 +43,7 @@ export class PokemonService {
       for (let i = 0; i < moveCount; i++) {
         if (this.isValidMove(detailedMovesJSON[i])) {
           moves.push(new Move(detailedMovesJSON[i]))
-        };
+        }
       }
     }
 
@@ -60,8 +61,8 @@ export class PokemonService {
     }
     // Apply next 2 moves of the single-type Pokemon making sure they are the same type
     if (pokemonTypes.length == 1) {
+      console.debug("Choosing last 2 moves of single-type");
       do {
-        console.log("Choosing new move!")
         let x = this.utilityService.getRandomInt(0, moveCount - 1);
         let move: Move = new Move(detailedMovesJSON[x]);
         if (!moves.includes(move) && this.isValidMove(detailedMovesJSON[x], pokemonTypes[0])) {
@@ -71,8 +72,8 @@ export class PokemonService {
       // Apply next 2 moves of dual-type pokemon making sure there is at least one of each type
     } else {
       for (let i = 0; i < 2; i++) {
+        console.debug("Choosing last 2 moves of dual-type");
         do {
-          console.log("Choosing last move!");
           let x = this.utilityService.getRandomInt(0, moveCount - 1);
           let move: Move = new Move(detailedMovesJSON[x]);
           if (!moves.includes(move) && this.isValidMove(detailedMovesJSON[x], pokemonTypes[i])) {
@@ -93,15 +94,12 @@ export class PokemonService {
   isValidMove(moveJSON: JSON, type?: Type): boolean {
     let move: Move = new Move(moveJSON);
     if (!move.power || move.power <= 0) {
-      console.log("Move power invalid");
       return false;
     }
     if (move.damage_class.toUpperCase() != "PHYSICAL" && move.damage_class.toUpperCase() != "SPECIAL") {
-      console.log("Invalid Damage Class", move.damage_class.toString());
       return false;
     }
     if (type && type.toString() != move.type.toString()) {
-      console.log(`Does ${type} == ${move.type}? ${type == move.type}`);
       return false
     }
     return true;
@@ -114,7 +112,7 @@ export class PokemonService {
    * @return {boolean} Returns true if the id is a valid Pokémon
    */
   isValidPokemonId(id: number): boolean {
-    if (id == 132 || id < 1 || id > 807) {
+    if (id == 132 || id == 772 || id < 1 || id > 807) {
       console.log("Invalid Pokemon ID! Try another one!");
       return false;
     }
