@@ -2,6 +2,7 @@ import { Type } from "../enums/type.enum";
 
 export class Move {
   
+  public id:number;
   public name: string;
   public power: number;
   public type: Type;
@@ -17,14 +18,14 @@ export class Move {
    * @param {JSON} moveJSON - The JSON object representing the move
    */
   constructor(moveJSON: any) {
-    console.dir(moveJSON);
+    this.id = moveJSON["id"];
     this.name = moveJSON["name"];
     this.power = moveJSON["power"];
     this.type = moveJSON["type"]["name"].toUpperCase() as Type;
     this.accuracy = moveJSON["accuracy"];
     this.recoil = moveJSON["meta"]["drain"];
     this.healing = moveJSON["meta"]["healing"];
-    this.damage_class = moveJSON["damage_class"]["name"].toUpperCase();
+    this.damage_class = moveJSON["damage_class"]["name"].toLowerCase();
     this.min_hits = moveJSON["meta"]["min_hits"];
     this.max_hits = moveJSON["meta"]["max_hits"];
   }

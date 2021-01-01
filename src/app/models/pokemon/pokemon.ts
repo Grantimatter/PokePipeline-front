@@ -1,5 +1,7 @@
+import { Url } from "url";
 import { Type } from "../enums/type.enum";
 import { Move } from "../move/move";
+import { Sprites } from "../sprites/sprites";
 import { Stats } from "../stats/stats";
 
 export class Pokemon {
@@ -12,6 +14,7 @@ export class Pokemon {
   public moves: Move[];
   public stats: Stats;
   public baseStats: Stats;
+  public sprites: Sprites;
 
   /**
    * 
@@ -23,14 +26,17 @@ export class Pokemon {
   constructor(pokemonJSON: JSON, level?: number, currentHP?: number, moves?: Move[]) {
     this.name = pokemonJSON["name"];
     this.baseStats = Stats.createFromJSON(pokemonJSON["stats"]);
+    this.stats = Stats.createFromJSON(pokemonJSON["stats"], this.level);
+    this.types = [pokemonJSON["types"][0]["type"]["name"].toUpperCase() as Type];
+    this.sprites = new Sprites(pokemonJSON["sprites"]);
+
+    if(pokemonJSON["types"][1]) this.types.push(pokemonJSON["types"][1]["type"]["name"].toUpperCase() as Type);
 
     if(level && level > 0){
       this.level = level;
     }else{
       this.level = 1;
     }
-
-    this.stats = Stats.createFromJSON(pokemonJSON["stats"], this.level);
 
     if (moves) {
       this.moves = moves;
