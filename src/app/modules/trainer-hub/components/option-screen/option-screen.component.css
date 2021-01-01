@@ -40,14 +40,13 @@
   background-color: #737478;
 }
 
-a {
+.animation {
   text-decoration: none;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   padding: 12px 53px 12px 23px;
   color: #fff;
-  /* text-transform: uppercase; */
   font-weight: bold;
   position: relative;
   -moz-transition: all 0.3s;
@@ -56,11 +55,11 @@ a {
   transition: all 0.3s;
   display: block;
 }
-a span {
+.animation span {
   position: relative;
   z-index: 3;
 }
-a .round {
+.animation .round {
   -moz-border-radius: 30%;
   -webkit-border-radius: 30%;
   border-radius: 30%;
@@ -75,7 +74,7 @@ a .round {
   transition: all 0.3s ease-out;
   z-index: 2;
 }
-a .round i {
+.animation .round i {
   position: absolute;
   top: 45%;
   margin-top: -6px;
@@ -92,16 +91,16 @@ a .round i {
   line-height: 1.45;
 }
 
-.type-1 a:hover {
+.animation:hover {
   padding-left: 48px;
   padding-right: 28px;
 }
-.type-1 a:hover .round {
+.animation:hover .round {
   width: calc(100% - 6px);
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
   border-radius: 30px;
 }
-.type-1 a:hover .round i {
+.animation:hover .round i {
   left: 12%;
 }
