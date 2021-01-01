@@ -14,7 +14,9 @@ export class Stats {
     this.specialAttack = specialAttack;
     this.specialDefense = specialDefense;
     this.speed = speed;
-    this.setScaledStats((level && level >= 1) ? level : 1);
+    if(level){
+      this.setScaledStats(level >= 1 ? level : 1);
+    }
   }
 
   setScaledStats(level: number): void {
