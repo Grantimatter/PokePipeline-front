@@ -1,0 +1,14 @@
+<div class="jumbotron vertical-center text-center shadow fill">
+  <h1>Select Your Pokémon!</h1>
+  <div class="pokemonChoice" *ngIf="pokemon">
+    <a routerLinkActive="active" 
+    routerLink="trainerhub"
+    (click)="selectStarter()"
+    class="btn nav-link">
+      <div id="pokemonImage">
+        <img src="{{pokemon.sprites.official_artwork}}">
+      </div>
+      <p id="pokemonName">{{pokemon.name | titlecase}}</p>
+    </a>
+  </div>
+</div>
