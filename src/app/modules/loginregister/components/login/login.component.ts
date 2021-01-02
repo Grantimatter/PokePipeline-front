@@ -4,6 +4,8 @@ import { BasicValidationService } from 'src/app/services/basicvalidation/basic-v
 import { UserModel } from 'src/app/models/user';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
+import { AuthenticationGuardService } from 'src/app/modules/authentication/services/guards/authentication.guard.service';
+import { Router } from '@angular/router';
 
 /** This component is responsible for providing login View functionality. */
 @Component({
@@ -30,8 +32,16 @@ export class LoginComponent {
    */
   constructor(
     private injectedLoginService: LoginService,
-    private injectedGlobalValidationService: BasicValidationService
+    injectedAuthenticationGuard: AuthenticationGuardService,
+    private injectedGlobalValidationService: BasicValidationService,
+    private router: Router
   ) {
+    injectedAuthenticationGuard.canActivate(null, null).subscribe((resp) => {
+      if (resp) {
+        router.navigate(['/account']);
+      }
+    });
+
     this.logInService = injectedLoginService;
     this.validationService = injectedGlobalValidationService;
 
@@ -76,7 +86,7 @@ export class LoginComponent {
 
           if (httpResponse.status == 200) {
             this.clearLogInForm();
-            alert('Login success');
+            this.router.navigate(['']);
           } //we get a 401 because of invalid credentials.
           else {
             this.userMessage = LoginComponent.INCORRECT_CREDENTIALS_MESSAGE;

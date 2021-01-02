@@ -42,6 +42,7 @@ export class LoginService implements Service<UserModel, Observable<Object>> {
         headers: this.httpHeaders,
         observe: 'response',
         responseType: 'json',
+        withCredentials: true,
       }
     );
   }
