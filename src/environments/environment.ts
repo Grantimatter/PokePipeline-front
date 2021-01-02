@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://pokeapi.co/api/v2"
+  apiUrl: "https://pokeapi.co/api/v2",
+  ec2Url: "http://3.137.201.253:8085/PokePipeline"
 };
 
 /*
