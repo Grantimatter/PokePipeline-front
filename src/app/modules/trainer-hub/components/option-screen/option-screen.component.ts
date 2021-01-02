@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { UserModel } from 'src/app/models/user';
+import { PartyService } from '../../services/party/party.service';
 
 @Component({
   selector: 'app-option-screen',
@@ -10,8 +11,7 @@ import { UserModel } from 'src/app/models/user';
 export class OptionScreenComponent implements OnInit {
 
   hasParty:boolean = false;
- // set this to true when the pokemon dies, or user resets game
-  isDisabled:boolean = false;
+  isDisabledChoosePokemon:boolean = true;
 
   trainer:UserModel = {
     "username": "Trainer",
@@ -21,13 +21,20 @@ export class OptionScreenComponent implements OnInit {
     "profilePicture": null
   };
 
-  constructor() { }
+  constructor(private partyService:PartyService,) { }
 
   ngOnInit(): void {
+    this.getPokemonFromService();
   }
 
-  choosingPokemon() {
-    this.isDisabled = true;
+  setDisabled() {
+    this.isDisabledChoosePokemon = true;
+  }
+
+  getPokemonFromService() {
+    let pokemon = this.partyService.getPokemon1();
+    if (pokemon == null) this.isDisabledChoosePokemon = false;
+    else this.isDisabledChoosePokemon = true;
   }
 
 }

@@ -19,8 +19,8 @@
   <div id="partyButton" class="type-1 centerBlock">
     <div>
       <a
-      *ngIf="!isDisabled"
-      (click)="choosingPokemon()"
+      *ngIf="!isDisabledChoosePokemon"
+      (click)="setDisabled()"
       routerLinkActive="active" 
       [routerLink]="[{ outlets: { main: ['party'] } }]"
       class="btn btn-3 nav-link animation">
@@ -28,8 +28,9 @@
         <span class="round"><i class="icon-group"></i></span>
       </a>
       <a
-      *ngIf="isDisabled"
-      class="btn btn-3 nav-link">
+      *ngIf="isDisabledChoosePokemon"
+      class="btn btn-3 nav-link"
+      style="cursor: not-allowed;">
         <span class="txt">Choose Pokemon</span>
         <span class="round"><i class="icon-group"></i></span>
       </a>
