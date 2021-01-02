@@ -7,16 +7,39 @@ import { LoginModule } from './modules/loginregister/login.module';
 import { PartySelectionComponent } from './modules/trainer-hub/components/party-selection/party-selection.component';
 import { TrainerHubComponent } from './modules/trainer-hub/components/trainer-hub/trainer-hub.component';
 
+import { AccountComponent } from './modules/useraccount/account/account.component';
+import { AuthenticationGuardService } from './modules/authentication/services/guards/authentication.guard.service';
+import { LoggedOutGuardService } from './modules/authentication/services/guards/logged.out.guard.service';
+
 const routes: Routes = [
-  { path: 'register', component: RegisterComponent },
-  { path: 'test', component: TestComponent },
-  { path: 'trainerhub', component: TrainerHubComponent,
+  {
+    path: 'trainerhub',
+    component: TrainerHubComponent,
     children: [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
-    ]
+    ],
   },
-  { path: '**', component: LoginComponent }, 
-  { path: '**', redirectTo: '' },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [AuthenticationGuardService],
+    pathMatch: 'full',
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [LoggedOutGuardService],
+  },
+  {
+    path: 'test',
+    component: TestComponent,
+    canActivate: [LoggedOutGuardService],
+  },
+  {
+    path: '',
+    component: LoginComponent,
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

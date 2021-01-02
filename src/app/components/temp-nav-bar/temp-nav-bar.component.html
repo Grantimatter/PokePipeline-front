@@ -4,13 +4,29 @@
       <a class="nav-link" routerLinkActive="active" routerLink="login">LOGIN</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" routerLink="register">REGISTER</a>
+      <a class="nav-link" routerLinkActive="active" routerLink="register"
+        >REGISTER</a
+      >
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLinkActive="active" routerLink="test">TEST</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" routerLink="trainerhub">TRAINERHUB</a>
+      <a class="nav-link" routerLinkActive="active" routerLink="trainerhub"
+        >TRAINERHUB</a
+      >
+
+      <a class="nav-link" routerLinkActive="active" routerLink="account"
+        >ACCOUNT</a
+      >
+    </li>
+    <li>
+      <input
+        type="button"
+        class="btn btn-warning"
+        value="log out"
+        (click)="logout()"
+      />
     </li>
   </ul>
 </nav>

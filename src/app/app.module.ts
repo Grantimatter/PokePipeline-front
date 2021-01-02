@@ -10,15 +10,18 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TempNavBarComponent } from './components/temp-nav-bar/temp-nav-bar.component';
 import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.module';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
 
+import { AccountComponent } from './modules/useraccount/account/account.component';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    TestComponent, 
+    AppComponent,
+    TestComponent,
     TempNavBarComponent,
+    AccountComponent,
   ],
   imports: [
     FormsModule,
