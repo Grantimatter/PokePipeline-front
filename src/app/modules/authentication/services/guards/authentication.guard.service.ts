@@ -31,11 +31,9 @@ export class AuthenticationGuardService implements CanActivate {
     this.httpAuthService.provideService().subscribe(
       (authSuccess) => {
         serviceListener.next(authSuccess);
-        this.loggedOutGuardService.provideService(!authSuccess);
       },
       (err) => {
         //logged out service
-        this.loggedOutGuardService.provideService(true); //
       }
     );
 

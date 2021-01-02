@@ -4,14 +4,21 @@ import { TestComponent } from './components/test/test.component';
 import { LoginComponent } from './modules/loginregister/components/login/login.component';
 import { RegisterComponent } from './modules/loginregister/components/register/register.component';
 import { LoginModule } from './modules/loginregister/login.module';
-import { AccountComponent } from './modules/useraccount/account/account.component';
 import { AuthenticationGuardService } from './modules/authentication/services/guards/authentication.guard.service';
 import { LoggedOutGuardService } from './modules/authentication/services/guards/logged.out.guard.service';
+import { UserComponent } from './modules/user/component/user/user.component';
+import { DefaultpathresolverComponent } from './modules/defaultpathresolver/defaultpathresolver.component';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full',
+    canActivate: [LoggedOutGuardService],
+  },
+  {
     path: 'account',
-    component: AccountComponent,
+    component: UserComponent,
     canActivate: [AuthenticationGuardService],
     pathMatch: 'full',
   },
@@ -27,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LoginComponent,
+    component: DefaultpathresolverComponent,
     pathMatch: 'full',
   },
   { path: '**', redirectTo: '' },
