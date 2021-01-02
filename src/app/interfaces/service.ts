@@ -9,8 +9,8 @@
  *
  */
 interface Service<T, O> {
-  validateServiceArgument(arg: T): boolean;
-  provideService(arg: T): O;
+  validateServiceArgument?: (arg: T) => boolean;
+  provideService: (arg: T) => O;
 }
 
 export { Service };

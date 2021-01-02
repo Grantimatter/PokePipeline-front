@@ -10,9 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TempNavBarComponent } from './components/temp-nav-bar/temp-nav-bar.component';
 import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.module';
+import { AccountComponent } from './modules/useraccount/account/account.component';
 
 @NgModule({
-  declarations: [AppComponent, TestComponent, TempNavBarComponent],
+  declarations: [
+    AppComponent,
+    TestComponent,
+    TempNavBarComponent,
+    AccountComponent,
+  ],
   imports: [
     FormsModule,
     HttpClientModule,
