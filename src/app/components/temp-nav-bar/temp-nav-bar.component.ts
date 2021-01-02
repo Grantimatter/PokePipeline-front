@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { TrainerHubComponent } from './../../modules/trainer-hub/components/trainer-hub/trainer-hub.component';
+
 import { LogoutService } from 'src/app/modules/authentication/services/logout/logout.service';
-import { LoggedOutGuardService } from 'src/app/modules/authentication/services/guards/logged.out.guard.service';
 
 @Component({
   selector: 'app-temp-nav-bar',
