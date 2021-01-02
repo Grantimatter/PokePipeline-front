@@ -10,31 +10,13 @@ import { LoggedOutGuardService } from 'src/app/modules/authentication/services/g
 })
 export class TempNavBarComponent implements OnInit {
   private logoutService: LogoutService;
-  private loggedOutAuthGuardService: LoggedOutGuardService;
-  constructor(
-    private injectedLogoutService: LogoutService,
-    private injectedLoggedOutAuthGuardServide: LoggedOutGuardService
-  ) {
-    this.loggedOutAuthGuardService = injectedLoggedOutAuthGuardServide;
+  constructor(private injectedLogoutService: LogoutService) {
     this.logoutService = injectedLogoutService;
   }
 
   ngOnInit(): void {}
 
   public logout(): void {
-    this.logoutService.provideService().subscribe(
-      (response) => {
-        if (response.status == 200) {
-          alert('success');
-        } else {
-          alert('fail');
-        }
-        this.loggedOutAuthGuardService.provideService(true);
-      },
-      (err) => {
-        alert('error server');
-        this.loggedOutAuthGuardService.provideService(true);
-      }
-    );
+    this.logoutService.provideService().subscribe();
   }
 }

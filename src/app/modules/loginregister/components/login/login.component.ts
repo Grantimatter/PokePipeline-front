@@ -86,7 +86,7 @@ export class LoginComponent {
 
           if (httpResponse.status == 200) {
             this.clearLogInForm();
-            alert('Login success');
+            this.router.navigate(['']);
           } //we get a 401 because of invalid credentials.
           else {
             this.userMessage = LoginComponent.INCORRECT_CREDENTIALS_MESSAGE;

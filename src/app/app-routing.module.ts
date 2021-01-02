@@ -6,10 +6,10 @@ import { RegisterComponent } from './modules/loginregister/components/register/r
 import { LoginModule } from './modules/loginregister/login.module';
 import { PartySelectionComponent } from './modules/trainer-hub/components/party-selection/party-selection.component';
 import { TrainerHubComponent } from './modules/trainer-hub/components/trainer-hub/trainer-hub.component';
-
-import { AccountComponent } from './modules/useraccount/account/account.component';
 import { AuthenticationGuardService } from './modules/authentication/services/guards/authentication.guard.service';
 import { LoggedOutGuardService } from './modules/authentication/services/guards/logged.out.guard.service';
+import { UserComponent } from './modules/user/component/user/user.component';
+import { DefaultpathresolverComponent } from './modules/defaultpathresolver/defaultpathresolver.component';
 
 const routes: Routes = [
   {
@@ -19,9 +19,16 @@ const routes: Routes = [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
     ],
   },
+
+  {
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full',
+    canActivate: [LoggedOutGuardService],
+  },
   {
     path: 'account',
-    component: AccountComponent,
+    component: UserComponent,
     canActivate: [AuthenticationGuardService],
     pathMatch: 'full',
   },
@@ -37,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LoginComponent,
+    component: DefaultpathresolverComponent,
     pathMatch: 'full',
   },
 ];
