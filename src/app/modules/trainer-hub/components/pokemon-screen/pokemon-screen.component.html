@@ -12,8 +12,6 @@
         <td id="pokemonType" 
         colspan="2">{{pokemon.types[0] |titlecase}}
         <span *ngIf="hasTwoTypes"> / {{pokemon.types[1] | titlecase}}</span></td>
-        <!-- <td>{{pokemon.types[0] |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
-          {{pokemon.types[1] | titlecase}}</span></td> -->
       </tr>
       <tr id="borderBelow">
         <td>Health</td>
