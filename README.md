@@ -1,27 +1,45 @@
 # PokePipeline
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+## Description
 
-## Development server
+PokePipeline will allow the user to choose a Pokémeon and battle their way through an endless wave of AI opponents. Users can register for a free account and login to choose their starter Pokémeon. The user levels up with turn-based combat against Pokémeon AI. The game ends when the Pokémeon's health is reduced to zero. The goal is to gain points by winning battles. Game state will be saved automatically. Users returning to the applicaiton will return to the latest save.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+* Login
+* Registration
+* Logout
+* Update profile
+* Choose starter Pokémon
+* Battle Pokémon AI
+* Receive a final score when game ends
+* Store and save current state of game
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+* HTML
+* CSS
+* TypeScript
+* Angular - version 11.0.5
+* NodeJS - version 14.15.3
+* Bootstrap - version 4.1.1
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Getting Started
 
-## Running unit tests
+1. Properly setup the backend at:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+> https://github.com/Grantimatter/PokePipeline-back
 
-## Running end-to-end tests
+2. Copy the repository https url by pressing the green clone button, or copy the url and add .git to the end.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+3. Clone the repository by opening Git Bash at the desired location and running the clone command:
 
-## Further help
+> git clone (name-of-url).git
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Open Git Bash in the cloned folder and run:
+
+> ng serve -o
+
+## Usage
+
+User must register for a new account, then login with that same account. User can then choose a starter Pokémeon and battle AI until their Pokémeon runs out of heath. At any time, the user can change and update their account (name, password, description, etc.). 
