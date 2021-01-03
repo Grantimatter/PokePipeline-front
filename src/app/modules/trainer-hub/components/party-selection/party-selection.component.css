@@ -1,4 +1,9 @@
 
+img {
+  height: 190px;
+  width: 190px;
+}
+
 a:hover {
   padding-left: 50px;
   padding-right: 50px;
@@ -8,8 +13,12 @@ a:hover > #pokemonImage {
   background:rgb(196, 196, 196);
 }
 
+.pokemonChoice:hover {
+  background:rgba(255, 255, 255, 0.5);
+}
+
 .pokemonChoice {
-  background:rgba(240, 240, 240, 0.5);
+  background:rgba(241, 241, 241, 0.5);
   border: 2px solid black;
   position: relative;
   left: 50%;
