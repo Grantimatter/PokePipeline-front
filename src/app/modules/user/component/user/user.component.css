@@ -1,0 +1,8 @@
+.user-container {
+  background-image: url("../../../../../assets/Images/Backgrounds/accountBg.png");
+  background-size: cover;
+}
+
+.row-user-view-header {
+  height: 50px;
+}

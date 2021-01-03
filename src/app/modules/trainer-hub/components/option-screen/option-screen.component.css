@@ -1,4 +1,4 @@
-#main { 
+#main {
   background: rgb(201, 201, 201);
   height: 100%;
   width: 100%;
@@ -34,7 +34,7 @@
 }
 
 .btn-3 {
-  background-color: #5A5B5E;
+  background-color: #5a5b5e;
 }
 .btn-3 .round {
   background-color: #737478;
@@ -103,4 +103,8 @@
 }
 .animation:hover .round i {
   left: 12%;
+}
+
+.btn-custom-height {
+  height: 40px;
 }

@@ -1,1 +1,50 @@
+<div
+  class="jumbotron vertical-center text-center shadow fill h-100 user-container container-fluid"
+>
+  <div
+    class="row row-user-view-header align-items-center border-bottom border-secondary"
+  >
+    <div class="col-2 h-100">
+      <!--<fa-icon size="xs"></fa-icon> -->
+    </div>
 
+    <div class="col-8 h-100 align-items-center">
+      <h3>User Profile Page</h3>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="row h-100">
+    <div class="col-12">Picture</div>
+    <div
+      class="col-8 d-flex flex-column justify-content-around align-items-start py-4"
+    >
+      <section class="d-flex">
+        <div>
+          <h4>Username</h4>
+          <p>{{ this.userAccount.username }}</p>
+        </div>
+        <div class="ml-auto">
+          <h4>E-mail</h4>
+          <p>{{ this.userAccount.email }}</p>
+        </div>
+      </section>
+      <section
+        class="d-flex flex-column align-items-start justify-content-start"
+      >
+        <h4>About Me</h4>
+        <p>{{ this.userAccount.description }}</p>
+      </section>
+
+      <section>
+        <input type="button" class="btn btn-info" value="Change password" />
+
+        <input
+          type="button"
+          class="mx-3 btn btn-warning"
+          value="Update Profile"
+        />
+      </section>
+    </div>
+  </div>
+</div>

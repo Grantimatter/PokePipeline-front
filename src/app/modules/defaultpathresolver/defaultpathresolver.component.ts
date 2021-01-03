@@ -49,6 +49,6 @@ export class DefaultpathresolverComponent implements OnChanges, OnInit {
 
   private navigateToAppropriateView(): void {
     if (!this.isAuthenticated) this.router.navigate(['login']);
-    else this.router.navigate(['account']);
+    else this.router.navigate(['trainerhub']);
   }
 }

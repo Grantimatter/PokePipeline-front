@@ -17,6 +17,7 @@ const routes: Routes = [
     component: TrainerHubComponent,
     children: [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
+      { path: 'account', component: UserComponent, outlet: 'main' },
     ],
   },
 
