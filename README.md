@@ -43,3 +43,14 @@ PokePipeline will allow the user to choose a Pokémeon and battle their way thro
 ## Usage
 
 User must register for a new account, then login with that same account. User can then choose a starter Pokémeon and battle AI until their Pokémeon runs out of heath. At any time, the user can change and update their account (name, password, description, etc.). 
+
+## Contributors
+
+* Christopher Yun
+> https://github.com/topheryun
+* Grant Wiswell
+> https://github.com/Grantimatter
+* Berin Hadziabdic
+> https://github.com/Berin-Hadziabdic
+* Jason Schroeder
+> https://github.com/jasonSchroeder89
