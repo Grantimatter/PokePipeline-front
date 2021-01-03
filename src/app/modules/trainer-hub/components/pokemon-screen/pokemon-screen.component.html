@@ -2,21 +2,21 @@
   <table id="pokemonTable" class="table table-sm table-bordered table-dark fill">
     <tr>
       <td id="pokemonImage" rowspan="2" colspan="2">
-        <span><fa-icon *ngIf="selectingStarter" [icon]="faSpinner" [spin]="true"></fa-icon></span>
-        <img *ngIf="!selectingStarter" src="{{pokemon.sprites.official_artwork}}">
+        <span></span>
+        <img *ngIf="pokemon.sprites" src="{{pokemon.sprites.official_artwork}}">
       </td>
       <td id="pokemonName" colspan="2">{{pokemon.name | titlecase}}</td>
     </tr>
     <tr>
-      <td (click)="consolePoke()" id="pokemonType" 
+      <td id="pokemonType" 
       colspan="2">{{pokemon.types[0] |titlecase}}
-      <span> / {{pokemon.types[1] | titlecase}}</span></td>
+      <span *ngIf="hasTwoTypes"> / {{pokemon.types[1] | titlecase}}</span></td>
       <!-- <td>{{pokemon.types[0] |titlecase}}<span *ngIf="pokemon.types.length > 1"> /
         {{pokemon.types[1] | titlecase}}</span></td> -->
     </tr>
     <tr id="borderBelow">
       <td>Health</td>
-      <td id="pokemonCurrentHealth">{{pokemon.currentHP}}/{{pokemon.currentHP}}</td>
+      <td id="pokemonCurrentHealth">{{pokemon.currentHP}}/{{pokemon.stats.hp}}</td>
       <td>Level</td>
       <td id="pokemonLevel">{{pokemon.getLevel()}}</td> 
     </tr>
