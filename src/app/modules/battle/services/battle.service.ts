@@ -14,11 +14,7 @@ export class BattleService {
   performAttacks(trainer: Pokemon, opponent: Pokemon, attackNum: number) {
     let trainerMove:Move = trainer.moves[attackNum];
 
-    console.log(trainerMove.name + " was chosen.");
-
     let opponentMove:Move = opponent.moves[this.util.getRandomInt(1,4)];
-
-    console.log(opponentMove.name + " was chosen.");
 
     let isTrainerFirst:boolean = this.setAttackOrder(trainer, opponent);
 
@@ -26,7 +22,12 @@ export class BattleService {
       let trainerDamage:number = this.calculateDamage(
         trainer, opponent, trainerMove);
 
-      console.log(trainerMove.name + " does " + trainerDamage + " damage.");
+      if (trainerMove.recoil != 0.0) {
+        trainer.currentHP += 
+          Math.ceil((trainerMove.recoil / 100) * trainerDamage);
+          console.log(trainerMove.name + " did " + Math.ceil((trainerMove.recoil / 100) * trainerDamage)
+          + " in recoil/drain damage");
+      }
       
       if ((opponent.currentHP - trainerDamage) <= 0) {
         opponent.currentHP = 0;
@@ -40,7 +41,12 @@ export class BattleService {
         let opponentDamage = this.calculateDamage(
           opponent, trainer, opponentMove);
 
-        console.log(opponentMove.name + " does " + opponentDamage + " damage.");
+        if (opponentMove.recoil != 0.0) {
+          opponent.currentHP += 
+            Math.ceil((opponentMove.recoil / 100) * opponentDamage);
+            console.log(opponentMove.name + " did " + Math.ceil((opponentMove.recoil / 100) * opponentDamage)
+          + " in recoil/drain damage");
+        }
 
         if ((trainer.currentHP - opponentDamage) <= 0) {
           trainer.currentHP = 0;
@@ -60,7 +66,12 @@ export class BattleService {
       let opponentDamage = this.calculateDamage(
         opponent, trainer, opponentMove);
 
-        console.log(opponentMove.name + " does " + opponentDamage + " damage.");
+      if (opponentMove.recoil != 0.0) {
+        opponent.currentHP += 
+          Math.ceil((opponentMove.recoil / 100) * opponentDamage);
+          console.log(opponentMove.name + " did " + Math.ceil((opponentMove.recoil / 100) * opponentDamage)
+          + " in recoil/drain damage");
+      }
 
       if ((trainer.currentHP - opponentDamage) <= 0) {
         trainer.currentHP = 0;
@@ -74,7 +85,12 @@ export class BattleService {
         let trainerDamage:number = this.calculateDamage(
           trainer, opponent, trainerMove);
 
-          console.log(trainerMove.name + " does " + trainerDamage + " damage.");
+        if (trainerMove.recoil != 0.0) {
+          trainer.currentHP += 
+            Math.ceil((trainerMove.recoil / 100) * trainerDamage);
+            console.log(trainerMove.name + " did " + Math.ceil((trainerMove.recoil / 100) * trainerDamage)
+          + " in recoil/drain damage");
+        }
         
         if ((opponent.currentHP - trainerDamage) <= 0) {
           opponent.currentHP = 0;
