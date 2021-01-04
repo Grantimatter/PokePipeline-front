@@ -12,9 +12,11 @@ import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
+import { TempBattleInterfaceComponent } from './components/temp-battle-interface/temp-battle-interface.component';
+import { BattleInterfaceComponent } from './components/battle-interface/battle-interface.component';
 
 @NgModule({
-  declarations: [AppComponent, TestComponent, TempNavBarComponent],
+  declarations: [AppComponent, TestComponent, TempNavBarComponent, TempBattleInterfaceComponent, BattleInterfaceComponent],
   imports: [
     FormsModule,
     BrowserModule,
