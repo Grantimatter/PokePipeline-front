@@ -25,6 +25,8 @@ export class BattleService {
     if (isTrainerFirst) {
       let trainerDamage:number = this.calculateDamage(
         trainer, opponent, trainerMove);
+
+      console.log(trainerMove.name + " does " + trainerDamage + " damage.");
       
       if ((opponent.currentHP - trainerDamage) <= 0) {
         opponent.currentHP = 0;
@@ -37,6 +39,8 @@ export class BattleService {
       if (opponent.currentHP > 0) {
         let opponentDamage = this.calculateDamage(
           opponent, trainer, opponentMove);
+
+        console.log(opponentMove.name + " does " + opponentDamage + " damage.");
 
         if ((trainer.currentHP - opponentDamage) <= 0) {
           trainer.currentHP = 0;
@@ -56,6 +60,8 @@ export class BattleService {
       let opponentDamage = this.calculateDamage(
         opponent, trainer, opponentMove);
 
+        console.log(opponentMove.name + " does " + opponentDamage + " damage.");
+
       if ((trainer.currentHP - opponentDamage) <= 0) {
         trainer.currentHP = 0;
       }
@@ -67,6 +73,8 @@ export class BattleService {
       if (trainer.currentHP > 0) {
         let trainerDamage:number = this.calculateDamage(
           trainer, opponent, trainerMove);
+
+          console.log(trainerMove.name + " does " + trainerDamage + " damage.");
         
         if ((opponent.currentHP - trainerDamage) <= 0) {
           opponent.currentHP = 0;
