@@ -123,11 +123,7 @@ export class PokemonService {
    * @return {boolean} Returns true if the id is a valid Pokémon
    */
   isValidPokemonId(id: number): boolean {
-<<<<<<< HEAD
-    if (id == 132 || (id >= 772 && id <= 774) || id < 1 || id > 807) {
-=======
     if (id < 1 || id == 132 || id >= environment.pokemonRange) {
->>>>>>> dev
       console.log("Invalid Pokemon ID! Try another one!");
       return false;
     }
