@@ -4,6 +4,7 @@ import { Move } from 'src/app/models/move/move';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { PokemonUtilityModule } from '../../pokemon-utility.module';
+import { environment } from 'src/environments/environment';
 
 /**
  * @classdesc Service used to handle various Pokémon related validation
@@ -41,8 +42,9 @@ export class PokemonService {
     // Apply all moves if there aren't more than 4
     if (moveCount <= 4) {
       for (let i = 0; i < moveCount; i++) {
-        if (this.isValidMove(detailedMovesJSON[i])) {
-          moves.push(new Move(detailedMovesJSON[i]))
+        let move: Move = new Move(detailedMovesJSON[i]);
+        if (!this.doesMoveExist(move, moves) && this.isValidMove(detailedMovesJSON[i])) {
+          moves.push(move)
         }
       }
     }
@@ -54,7 +56,7 @@ export class PokemonService {
         let x = this.utilityService.getRandomInt(0, moveCount - 1);
         let move: Move = new Move(detailedMovesJSON[x]);
         //console.dir(`Selected Move # ${x} and it is...`, move);
-        if (!moves.includes(move) && this.isValidMove(detailedMovesJSON[x])) {
+        if (!this.doesMoveExist(move, moves) && this.isValidMove(detailedMovesJSON[x])) {
           moves.push(move);
         }
       } while (moves.length < 2)
@@ -65,7 +67,7 @@ export class PokemonService {
       do {
         let x = this.utilityService.getRandomInt(0, moveCount - 1);
         let move: Move = new Move(detailedMovesJSON[x]);
-        if (!moves.includes(move) && this.isValidMove(detailedMovesJSON[x], pokemonTypes[0])) {
+        if (!this.doesMoveExist(move, moves) && this.isValidMove(detailedMovesJSON[x], pokemonTypes[0])) {
           moves.push(move);
         }
       } while (moves.length < 4)
@@ -76,7 +78,7 @@ export class PokemonService {
         do {
           let x = this.utilityService.getRandomInt(0, moveCount - 1);
           let move: Move = new Move(detailedMovesJSON[x]);
-          if (!moves.includes(move) && this.isValidMove(detailedMovesJSON[x], pokemonTypes[i])) {
+          if (!this.doesMoveExist(move, moves) && this.isValidMove(detailedMovesJSON[x], pokemonTypes[i])) {
             moves.push(move);
           }
         } while (moves.length < 3 + i)
@@ -84,6 +86,15 @@ export class PokemonService {
     }
 
     return moves;
+  }
+
+  doesMoveExist(move:Move, moves:Move[]): boolean {
+    for(let m of moves){
+      if(m.id == move.id){
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -112,7 +123,7 @@ export class PokemonService {
    * @return {boolean} Returns true if the id is a valid Pokémon
    */
   isValidPokemonId(id: number): boolean {
-    if (id == 132 || id == 772 || id < 1 || id > 807) {
+    if (id < 1 || id == 132 || id >= environment.pokemonRange) {
       console.log("Invalid Pokemon ID! Try another one!");
       return false;
     }

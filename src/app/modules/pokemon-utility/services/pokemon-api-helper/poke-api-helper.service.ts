@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UtilityService } from 'src/app/services/utility/utility.service';
+import { environment } from 'src/environments/environment';
 import { PokemonUtilityModule } from '../../pokemon-utility.module';
 import { GetPokemonAPIService } from '../get-pokemon-api/get-pokemon-api.service';
 import { PokemonService } from '../pokemon/pokemon.service';
@@ -38,7 +39,7 @@ export class PokeApiHelperService {
    * @param {Function} onSuccess - The method to invoke when a starter Pokémon is retrieved.
    */
   getValidStarterPokemon(onSuccess: (pokemon:JSON) => void): void {
-    let id = this.utilityService.getRandomInt(1, 806);
+    let id = this.utilityService.getRandomInt(1, environment.pokemonRange);
     if (this.pokemonService.isValidPokemonId(id)) {
       this.getPokemonService.getPokemonWithSpeciesAndMovesFromAPI(id).subscribe(
         (resp) => {
@@ -61,7 +62,7 @@ export class PokeApiHelperService {
    * @param {Function} onSuccess - The method to invoke when a starter Pokémon is retrieved.
    */
   getRandomValidPokemon(onSuccess: (pokemon:JSON) => void): void {
-    let id = this.utilityService.getRandomInt(1, 806);
+    let id = this.utilityService.getRandomInt(1, environment.pokemonRange);
     if (this.pokemonService.isValidPokemonId(id)) {
       this.getPokemonService.getPokemonWithAllMovesAPI(id).subscribe(
         (resp) => {
