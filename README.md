@@ -53,8 +53,4 @@ User must register for a new account, then login with that same account. User ca
 * Berin Hadziabdic
 > https://github.com/Berin-Hadziabdic
 * Jason Schroeder
-<<<<<<< HEAD
 > https://github.com/jasonSchroeder89
-=======
-> https://github.com/jasonSchroeder89
->>>>>>> dev
