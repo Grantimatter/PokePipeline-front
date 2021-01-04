@@ -136,6 +136,7 @@ export class BattleService {
     let power:number = move.power;
     let attack:number = 0;
     let defense:number = 0;
+    let criticalHit:number = this.util.getRandomInt(1,100);
     
     if (move.damage_class == "physical") {
       attack = attacker.stats.attack;
@@ -160,6 +161,10 @@ export class BattleService {
     }
 
     else {
+      if (criticalHit < 16) {
+        return Math.ceil(levelDamage * 1.5) * move.min_hits;
+      }
+      
       return levelDamage * move.min_hits;
     }
   }
