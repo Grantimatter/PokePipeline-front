@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PartyService } from '../../services/party/party.service';
@@ -13,7 +12,6 @@ export class PokemonScreenComponent implements OnInit {
 
   pokemon:Pokemon;
   selectingStarter:boolean = false;
-  faSpinner = faSpinner;
   hasTwoTypes:boolean = false;
   private _subscription_user_name: any;
 
@@ -23,18 +21,18 @@ export class PokemonScreenComponent implements OnInit {
     ) {
       this._subscription_user_name = this.partyService.pokemon1.subscribe((value) => {
         this.pokemon = value;
-        if(this.pokemon.types.length > 1) this.hasTwoTypes = true;
+        if(this.pokemon.types[1]) this.hasTwoTypes = true;
         else this.hasTwoTypes = false;
-        console.log(this.pokemon);
+        this.pokemon.currentHP = this.pokemon.stats.hp;
       })
     }
 
   ngOnInit(): void {
-    // this.data.selectedPokemon.subscribe(transferedPokemon => this.pokemon = transferedPokemon)
+   this.getPokemonFromService();
   }
 
-  consolePoke() {
-    console.log(this.pokemon);
+  getPokemonFromService() {
+    this.pokemon = this.partyService.getPokemon1();
   }
 
 }
