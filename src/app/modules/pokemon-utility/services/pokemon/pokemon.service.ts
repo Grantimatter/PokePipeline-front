@@ -112,7 +112,7 @@ export class PokemonService {
    * @return {boolean} Returns true if the id is a valid Pokémon
    */
   isValidPokemonId(id: number): boolean {
-    if (id == 132 || id == 772 || id < 1 || id > 807) {
+    if (id == 132 || (id >= 772 && id <= 774) || id < 1 || id > 807) {
       console.log("Invalid Pokemon ID! Try another one!");
       return false;
     }
@@ -130,7 +130,7 @@ export class PokemonService {
       console.log("Pokemon is invalid due to not having any moves");
       return false;
     }
-    if (!pokemon.sprites || !pokemon.sprites.other["official-artwork"] || !pokemon.sprites.other["official-artwork"].front_default || !pokemon.sprites.front_default || !pokemon.sprites.back_default) return false;
+    if (!pokemon.sprites || !pokemon.sprites.other["official-artwork"] || !pokemon.sprites.other["official-artwork"].front_default || !pokemon.sprites.front_default || !pokemon.sprites.back_default || !pokemon.sprites.front_shiny || !pokemon.sprites.back_shiny) return false;
 
     return true;
   }
