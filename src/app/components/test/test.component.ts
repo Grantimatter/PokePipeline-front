@@ -26,6 +26,7 @@ export class TestComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.selectStarterPokemon();
   }
 
   selectRandomPokemon(){
