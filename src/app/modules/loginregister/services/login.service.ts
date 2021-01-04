@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Service } from '../../../interfaces/service';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { UserModel } from 'src/app/models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService implements Service<UserModel, Observable<Object>> {
@@ -36,7 +37,7 @@ export class LoginService implements Service<UserModel, Observable<Object>> {
 
   provideService(loginToken: UserModel): Observable<Object> {
     return this.httpService.post(
-      'http://localhost:8080/PokePipeline/login',
+      `${environment.ec2Url}/login`,
       loginToken,
       {
         headers: this.httpHeaders,

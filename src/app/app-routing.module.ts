@@ -6,6 +6,7 @@ import { RegisterComponent } from './modules/loginregister/components/register/r
 import { LoginModule } from './modules/loginregister/login.module';
 import { PartySelectionComponent } from './modules/trainer-hub/components/party-selection/party-selection.component';
 import { TrainerHubComponent } from './modules/trainer-hub/components/trainer-hub/trainer-hub.component';
+import { BattleScreenComponent } from './modules/battle/components/battle-screen/battle-screen.component';
 import { AuthenticationGuardService } from './modules/authentication/services/guards/authentication.guard.service';
 import { LoggedOutGuardService } from './modules/authentication/services/guards/logged.out.guard.service';
 import { UserComponent } from './modules/user/component/user/user.component';
@@ -17,7 +18,9 @@ const routes: Routes = [
     component: TrainerHubComponent,
     children: [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
-    ],
+      { path: 'battle', component: BattleScreenComponent, outlet: 'main'}
+    ]
+    ,
   },
 
   {
