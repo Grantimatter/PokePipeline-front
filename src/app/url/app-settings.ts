@@ -1,3 +1,5 @@
+import { environment } from "src/environments/environment";
+
 export class AppSettings {
-  public static URL = "http://localhost:8080/PokePipeline/";
+  public static URL = environment.ec2Url;
 }

@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Service } from 'src/app/interfaces/service';
 import { LoggedOutGuardService } from '../guards/logged.out.guard.service';
+import { environment } from 'src/environments/environment';
 
 /** This service pings the back end and icnludes the users JSESSIONID cookie in the request.
  * Doing so, the server can verify whether or not the user is valid user.
@@ -30,7 +31,7 @@ export class AuthenticationService {
     let serviceListener: Subject<boolean> = new Subject<boolean>();
 
     this.httpService
-      .get('http://localhost:8080/PokePipeline/auth', {
+      .get(`${environment.ec2Url}/auth`, {
         observe: 'response',
         withCredentials: true,
         responseType: 'text',
