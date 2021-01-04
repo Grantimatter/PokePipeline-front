@@ -1,24 +1,24 @@
 <div id="battleScreen">
     <span id="opponentSpan">    
-        <img id="opponentSprite" style="float: right" src="{opponent.sprites.front_default}}">
-        <progress id="opponentHealth" style="float:right" value="100" max="100"></progress>
+        <img id="opponentSprite" style="float: right" src="{{opponent.sprites.front_default}}">
+        <progress id="opponentHealth" style="float:right" value="{{opponent.currentHP}}" max="{{opponentMaxHealth}}"></progress>
     </span>
     <br>
     <br>
-    <span id="opponentSpan">    
-        <img id="trainerSprite" src="/home/jason/data/repos/revature/project2/PokePipeline-front/src/favicon.ico">
-        <progress id="trainerHealth" value="100" max="100"></progress>            
+    <span id="trainerSpan">    
+        <img id="trainerSprite" src="{{trainer.sprites.back_default}}">
+        <progress id="trainerHealth" value="{{trainer.currentHP}}" max="{{trainerMaxHealth}}"></progress>            
     </span>
     <br>
     <br>
     <table id="moveTable" style="margin: auto;">
         <tr>
-            <td><button id="move1">Move 1</button></td>
-            <td><button id="move2">Move 2</button></td>
+            <td><button id="move1" (click)="attack(0)">{{trainer.moves[0].name}}</button></td>
+            <td><button id="move2" (click)="attack(1)">{{trainer.moves[1].name}}</button></td>
         </tr>
         <tr>
-            <td><button id="move3">Move 3</button></td>
-            <td><button id="move4">Move 4</button></td>
+            <td><button id="move3" (click)="attack(2)">{{trainer.moves[2].name}}</button></td>
+            <td><button id="move4" (click)="attack(3)">{{trainer.moves[3].name}}</button></td>
         </tr>
     </table>
 </div>

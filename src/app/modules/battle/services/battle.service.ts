@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Move } from 'src/app/models/move/move';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { PokeApiHelperService } from '../../pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
@@ -9,6 +10,78 @@ import { PartyService } from '../../trainer-hub/services/party/party.service';
   providedIn: 'root'
 })
 export class BattleService {
+  
+  performAttacks(trainer: Pokemon, opponent: Pokemon, attackNum: number) {
+    let trainerMove:Move = trainer.moves[attackNum];
+
+    console.log(trainerMove.name + " was chosen.");
+
+    let opponentMove:Move = opponent.moves[this.util.getRandomInt(1,4)];
+
+    console.log(opponentMove.name + " was chosen.");
+
+    let isTrainerFirst:boolean = this.setAttackOrder(trainer, opponent);
+
+    if (isTrainerFirst) {
+      let trainerDamage:number = this.calculateDamage(
+        trainer, opponent, trainerMove);
+      
+      if ((opponent.currentHP - trainerDamage) <= 0) {
+        opponent.currentHP = 0;
+      }
+
+      else {
+        opponent.currentHP -= trainerDamage;
+      }
+
+      if (opponent.currentHP > 0) {
+        let opponentDamage = this.calculateDamage(
+          opponent, trainer, opponentMove);
+
+        if ((trainer.currentHP - opponentDamage) <= 0) {
+          trainer.currentHP = 0;
+        }
+  
+        else {
+          trainer.currentHP -= opponentDamage;
+        }
+      }
+
+      else {
+        return;
+      }
+    }
+
+    else {
+      let opponentDamage = this.calculateDamage(
+        opponent, trainer, opponentMove);
+
+      if ((trainer.currentHP - opponentDamage) <= 0) {
+        trainer.currentHP = 0;
+      }
+
+      else {
+        trainer.currentHP -= opponentDamage;
+      }
+
+      if (trainer.currentHP > 0) {
+        let trainerDamage:number = this.calculateDamage(
+          trainer, opponent, trainerMove);
+        
+        if ((opponent.currentHP - trainerDamage) <= 0) {
+          opponent.currentHP = 0;
+        }
+  
+        else {
+          opponent.currentHP -= trainerDamage;
+        }
+      }
+
+      else {
+        return;
+      }
+    }
+  }
 
   constructor(private pokeHelper:PokeApiHelperService, 
     private pokeService:PokemonService,
@@ -16,40 +89,8 @@ export class BattleService {
     private util:UtilityService) { 
     
   }
-
-  public setTrainerPokemon() : Pokemon[] {
-        
-    let pokemon:Pokemon[] = new Array(6);
-    
-    /* TODO: Implement getting trainer pokemon properly
-        *  this.trainer = this.partyService.getPokemon1();
-        */
-        
-    //Generate Psyduck as trainer pokemon for testing puposes
-    this.pokeHelper.getPokemonWithAllMovesAPI(54, (x:JSON)=> {
-      pokemon[0] = this.pokeService.createNewPokemonWithRandomMoves(x);
-      }, ()=>{return false;});
-
-    return pokemon;
-  }
-
-  public setOpponentPokemon() : Pokemon {
-    let pokemon:Pokemon;
-    
-    // this.pokeHelper.getPokemonWithAllMovesAPI(this.util.getRandomInt(1, 807), 
-    //         (x:JSON)=> {
-    //         pokemon = this.pokeService.createNewPokemonWithRandomMoves(x);
-    //         }, ()=>{return false;});
-
-    this.pokeHelper.getPokemonWithAllMovesAPI(54, 
-    (x:JSON)=> {
-    pokemon = this.pokeService.createNewPokemonWithRandomMoves(x);
-    }, ()=>{return false;});
-
-    return pokemon;
-  }
   
-  setFirstAttacker(trainer:Pokemon, opponent:Pokemon): boolean {
+  setAttackOrder(trainer:Pokemon, opponent:Pokemon): boolean {
         
     if (trainer.stats.speed > opponent.stats.speed) {
       
@@ -71,6 +112,39 @@ export class BattleService {
 
     else {
       return false;
+    }
+  }
+
+  calculateDamage(attacker:Pokemon, defender: Pokemon, move:Move) : number {
+    let level:number = attacker.getLevel();
+    let power:number = move.power;
+    let attack:number = 0;
+    let defense:number = 0;
+    
+    if (move.damage_class == "physical") {
+      attack = attacker.stats.attack;
+      defense = defender.stats.defense;
+    }
+    
+    if (move.damage_class == "special") {
+      attack = attacker.stats.specialAttack;
+      defense = defender.stats.specialDefense;
+    }
+
+    let levelDamage = Math.floor((2 * level) / 5) + 2;
+
+    levelDamage *= power;
+
+    levelDamage *= Math.floor(attack/defense);
+
+    levelDamage = Math.floor(levelDamage / 50) + 2;
+
+    if (levelDamage == 0) {
+      return 1;
+    }
+
+    else {
+      return levelDamage;
     }
   }
 }
