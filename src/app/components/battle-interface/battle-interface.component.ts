@@ -14,9 +14,9 @@ export class BattleInterfaceComponent implements OnInit {
 
   trainer:Pokemon;
   opponent:Pokemon;
-  damageClass:string;
+  power:number;
   damageType:Type;
-  classText:string;
+  powerText:string;
   typeText:string;
 
   constructor(  
@@ -30,11 +30,28 @@ export class BattleInterfaceComponent implements OnInit {
     this.generateTrainer(this.utilityService.getRandomInt(1,606));
   }
 
+  undoInfo(num:number) {
+    let moveButton = document.getElementById(`move${num}`);
+    moveButton.style.boxShadow = "none";
+    moveButton.style.background = "none";
+    moveButton.style.border = "none";
+  }
+
+  changeColorOnHover(num:number) {
+    let moveType = this.trainer.moves[num].type;
+    let typeColor = this.utilityService.getTypeColor(moveType);
+    let moveButton = document.getElementById(`move${num}`);
+    moveButton.style.boxShadow = `0 0 20px ${typeColor}`;
+    moveButton.style.background = `${typeColor}`;
+    moveButton.style.border = "2px solid #00000070";
+  }
+
   displayMoveInfo(num:number) {
-    this.classText = "Class:";
+    this.powerText = "Power:";
     this.typeText = "Type:";
-    this.damageClass = this.trainer.moves[num].damage_class;
+    this.power = this.trainer.moves[num].power;
     this.damageType = this.trainer.moves[num].type;
+    this.changeColorOnHover(num);
   }
 
   generateOpponent(id:number) {
