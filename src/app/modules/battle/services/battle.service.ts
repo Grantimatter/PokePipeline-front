@@ -14,7 +14,7 @@ export class BattleService {
   performAttacks(trainer: Pokemon, opponent: Pokemon, attackNum: number) {
     let trainerMove:Move = trainer.moves[attackNum];
 
-    let opponentMove:Move = opponent.moves[this.util.getRandomInt(1,4)];
+    let opponentMove:Move = opponent.moves[this.util.getRandomInt(0,3)];
 
     let isTrainerFirst:boolean = this.setAttackOrder(trainer, opponent);
 
