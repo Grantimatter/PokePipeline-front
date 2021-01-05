@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Type } from 'src/app/models/enums/type.enum';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
@@ -39,6 +40,7 @@ export class BattleScreenComponent implements OnInit {
     private partyService:PartyService, 
     public battleService:BattleService,
     private utilityService:UtilityService,
+    private router: Router,
     ) { 
        
     this.getTrainerPokemon();
@@ -52,18 +54,19 @@ export class BattleScreenComponent implements OnInit {
 
   attack(attackNum : number) {
     this.battleService.performAttacks(this.trainer, this.opponent, attackNum);
-    if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) {    // check if battle ends
+    if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) { // check if battle ends
       if (this.opponent.currentHP == 0) {
         // user ++exp --JASON
         // 50% total hp heal
       }
       if (this.trainer.currentHP == 0) {
-        // re-enable choosing pokemon --CHRIS
-        this.trainer == null; // update partyService --CHRIS
+        // re-enable choosing pokemon --CHRIS done
+        this.trainer = null;
+        this.partyService.pokemonChange(this.trainer); // update partyService --CHRIS done
         // exp == score
         // display exp in final score screen
       }
-      // go to trainerhub
+      this.router.navigate(['/trainerhub']);
     }
   }
 

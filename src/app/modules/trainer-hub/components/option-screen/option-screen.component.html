@@ -8,6 +8,7 @@
     <div>
       <a 
       routerLinkActive="active" 
+      (click)="resetChoosePokemon()"
       [routerLink]="[{ outlets: { main: ['battle'] } }]"
       class="btn btn-3 animation">
         <span class="txt">Start Battle</span>

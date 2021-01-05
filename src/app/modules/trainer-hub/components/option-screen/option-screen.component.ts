@@ -10,8 +10,9 @@ import { PartyService } from '../../services/party/party.service';
 })
 export class OptionScreenComponent implements OnInit {
 
-  hasParty:boolean = false;
   isDisabledChoosePokemon:boolean = true;
+  private _subscription_user_name:any;
+  pokemon:Pokemon;
 
   trainer:UserModel = {
     "username": "Trainer",
@@ -21,7 +22,11 @@ export class OptionScreenComponent implements OnInit {
     "profilePicture": null
   };
 
-  constructor(private partyService:PartyService,) { }
+  constructor(private partyService:PartyService,) { 
+    this._subscription_user_name = this.partyService.pokemon1.subscribe((value) => {
+      this.pokemon = value;
+    })
+  }
 
   ngOnInit(): void {
     this.getPokemonFromService();
@@ -29,6 +34,10 @@ export class OptionScreenComponent implements OnInit {
 
   setDisabled() {
     this.isDisabledChoosePokemon = true;
+  }
+
+  resetChoosePokemon() {
+    this.isDisabledChoosePokemon = false;
   }
 
   getPokemonFromService() {
