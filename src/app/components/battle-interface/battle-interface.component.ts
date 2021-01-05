@@ -3,6 +3,7 @@ import { Type } from 'src/app/models/enums/type.enum';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
+import { UtilityService } from 'src/app/services/utility/utility.service';
 
 @Component({
   selector: 'app-battle-interface',
@@ -15,24 +16,29 @@ export class BattleInterfaceComponent implements OnInit {
   opponent:Pokemon;
   damageClass:string;
   damageType:Type;
+  classText:string;
+  typeText:string;
 
   constructor(  
     private pokeApiHelperService:PokeApiHelperService,
     private pokemonService:PokemonService,
+    private utilityService:UtilityService,
     ) { }
 
   ngOnInit(): void {
-    this.generateOpponent();
-    this.generateTrainer();
+    this.generateOpponent(this.utilityService.getRandomInt(1,606));
+    this.generateTrainer(this.utilityService.getRandomInt(1,606));
   }
 
   displayMoveInfo(num:number) {
+    this.classText = "Class:";
+    this.typeText = "Type:";
     this.damageClass = this.trainer.moves[num].damage_class;
     this.damageType = this.trainer.moves[num].type;
   }
 
-  generateOpponent() {
-    this.pokeApiHelperService.getPokemonWithAllMovesAPI(150, (x:JSON)=>{
+  generateOpponent(id:number) {
+    this.pokeApiHelperService.getPokemonWithAllMovesAPI(id, (x:JSON)=>{
       console.log("Selected Pokemon, getting moves");
       this.opponent = this.pokemonService.createNewPokemonWithRandomMoves(x);
     }, ()=>{
@@ -40,8 +46,8 @@ export class BattleInterfaceComponent implements OnInit {
     });
   }
 
-  generateTrainer() {
-    this.pokeApiHelperService.getPokemonWithAllMovesAPI(1, (x:JSON)=>{
+  generateTrainer(id:number) {
+    this.pokeApiHelperService.getPokemonWithAllMovesAPI(id, (x:JSON)=>{
       console.log("Selected Pokemon, getting moves");
       this.trainer = this.pokemonService.createNewPokemonWithRandomMoves(x);
     }, ()=>{

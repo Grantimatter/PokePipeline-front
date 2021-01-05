@@ -1,7 +1,7 @@
 <div class="fill">
   <div id="row1">
     <div id="opponentNamePlate" class="namePlate">
-      <table class="table table-dark table-bordered">
+      <table class="table table-dark">
         <tr>
           <td class="name" colspan="2">{{opponent.name | uppercase}}</td>
           <td class="centerText">Lv: {{opponent.getLevel()}}</td>
@@ -14,10 +14,11 @@
     </div>
     <div id="opponentSprite" class="spriteLocation"><img src="{{opponent.sprites.front_default}}"></div>
   </div>
+  
   <div id="row2">
     <div id="trainerSprite" class="spriteLocation"><img src="{{trainer.sprites.back_default}}"></div>
     <div id="trainerNamePlate" class="namePlate">
-      <table class="table table-dark table-bordered">
+      <table class="table table-dark">
         <tr>
           <td class="name" colspan="2">{{trainer.name | uppercase}}</td>
           <td class="centerText">Lv: {{trainer.getLevel()}}</td>
@@ -29,19 +30,26 @@
       </table>
     </div>
   </div>
+
   <div id="row3">
-    <table class="botTable table table-sm table-bordered table-dark">
+    <table class="moveTable botTable">
       <tr>
         <td (mouseover)="displayMoveInfo(0)" id="move1" class="move">{{trainer.moves[0].name | uppercase}}</td>
         <td (mouseover)="displayMoveInfo(1)" id="move2" class="move">{{trainer.moves[1].name | uppercase}}</td>
-        <td class="notMove">Class</td>
-        <td id="damageClass">{{damageClass | uppercase}}</td> <!--change to on hover-->
       </tr>
       <tr>
         <td (mouseover)="displayMoveInfo(2)" id="move3" class="move">{{trainer.moves[2].name | uppercase}}</td>
         <td (mouseover)="displayMoveInfo(3)" id="move4" class="move">{{trainer.moves[3].name | uppercase}}</td>
-        <td>Type</td>
-        <td id="damageType">{{damageType}}</td> <!--change to on hover-->
+      </tr>
+    </table>
+    <table class="infoTable botTable">
+      <tr>
+        <td class="notMove">{{classText}}</td>
+        <td id="damageClass">{{damageClass | uppercase}}</td>
+      </tr>
+      <tr>
+        <td>{{typeText}}</td>
+        <td id="damageType">{{damageType}}</td>
       </tr>
     </table>
   </div>
