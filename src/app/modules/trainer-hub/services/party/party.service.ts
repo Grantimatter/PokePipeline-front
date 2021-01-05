@@ -13,10 +13,21 @@ export class PartyService {
   pokemon1: Subject<Pokemon> = new Subject<Pokemon>();
   pokemonVar: Pokemon;
 
+  battleCountSubject: Subject<number> = new Subject<number>();
+  battleCount:number = 0;
+
   constructor() { }
 
   getPokemon1() {
     return this.pokemonVar;
+  }
+
+  getBattleCount() : number {
+    return this.battleCount;
+  }
+
+  addVictory() {
+    this.battleCount++;
   }
 
   /**
