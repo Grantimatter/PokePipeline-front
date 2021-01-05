@@ -17,7 +17,7 @@ export class PokemonDatabaseService {
    * @param pokemon The pokemon to be added into the database
    */
   addPokemonToParty(pokemon:Pokemon) {
-    
+
   }
 
 }

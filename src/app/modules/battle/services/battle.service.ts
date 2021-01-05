@@ -22,11 +22,11 @@ export class BattleService {
       let trainerDamage:number = this.calculateDamage(
         trainer, opponent, trainerMove);
 
+        console.log("Trainer: " + trainerDamage + " damage done");
+
       if (trainerMove.recoil != 0.0) {
         trainer.currentHP += 
           Math.ceil((trainerMove.recoil / 100) * trainerDamage);
-          console.log(trainerMove.name + " did " + Math.ceil((trainerMove.recoil / 100) * trainerDamage)
-          + " in recoil/drain damage");
       }
       
       if ((opponent.currentHP - trainerDamage) <= 0) {
@@ -41,11 +41,11 @@ export class BattleService {
         let opponentDamage = this.calculateDamage(
           opponent, trainer, opponentMove);
 
+          console.log("Opponent: " + opponentDamage + " damage done");
+
         if (opponentMove.recoil != 0.0) {
           opponent.currentHP += 
             Math.ceil((opponentMove.recoil / 100) * opponentDamage);
-            console.log(opponentMove.name + " did " + Math.ceil((opponentMove.recoil / 100) * opponentDamage)
-          + " in recoil/drain damage");
         }
 
         if ((trainer.currentHP - opponentDamage) <= 0) {
@@ -66,11 +66,11 @@ export class BattleService {
       let opponentDamage = this.calculateDamage(
         opponent, trainer, opponentMove);
 
+        console.log("Opponent: " + opponentDamage + " damage done");
+
       if (opponentMove.recoil != 0.0) {
         opponent.currentHP += 
           Math.ceil((opponentMove.recoil / 100) * opponentDamage);
-          console.log(opponentMove.name + " did " + Math.ceil((opponentMove.recoil / 100) * opponentDamage)
-          + " in recoil/drain damage");
       }
 
       if ((trainer.currentHP - opponentDamage) <= 0) {
@@ -84,12 +84,12 @@ export class BattleService {
       if (trainer.currentHP > 0) {
         let trainerDamage:number = this.calculateDamage(
           trainer, opponent, trainerMove);
+          
+          console.log("Trainer: " + trainerDamage + " damage done");
 
         if (trainerMove.recoil != 0.0) {
           trainer.currentHP += 
             Math.ceil((trainerMove.recoil / 100) * trainerDamage);
-            console.log(trainerMove.name + " did " + Math.ceil((trainerMove.recoil / 100) * trainerDamage)
-          + " in recoil/drain damage");
         }
         
         if ((opponent.currentHP - trainerDamage) <= 0) {
@@ -144,6 +144,7 @@ export class BattleService {
     let power:number = move.power;
     let attack:number = 0;
     let defense:number = 0;
+    let criticalHit:number = this.util.getRandomInt(1,100);
     
     if (move.damage_class == "physical") {
       attack = attacker.stats.attack;
@@ -168,6 +169,14 @@ export class BattleService {
     }
 
     else {
+      if (criticalHit < 16) {
+        levelDamage = Math.ceil(levelDamage * 1.5);
+      }
+
+      if (move.min_hits >= 2) {
+        levelDamage *= move.min_hits;
+      }
+
       return levelDamage;
     }
   }

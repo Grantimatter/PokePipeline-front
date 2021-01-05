@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { UserModel } from 'src/app/models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +43,7 @@ export class RegisterService implements Service<UserModel, Observable<Object>> {
     headers.append('Content-Type', 'application/json');
 
     return this.httpClient.post(
-      'http://localhost:8080/PokePipeline/register',
+      `${environment.ec2Url}/register`,
       userToRegister,
       {
         headers: headers,
