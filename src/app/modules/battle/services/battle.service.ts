@@ -13,24 +13,19 @@ export class BattleService {
   
   performAttacks(trainer: Pokemon, opponent: Pokemon, attackNum: number) {
     let trainerMove:Move = trainer.moves[attackNum];
-
     let opponentMove:Move = opponent.moves[this.util.getRandomInt(0,3)];
-
     let isTrainerFirst:boolean = this.setAttackOrder(trainer, opponent);
 
     if (isTrainerFirst) {
       let trainerDamage:number = this.calculateDamage(
         trainer, opponent, trainerMove);
-
       if (trainerMove.recoil != 0.0) {
         trainer.currentHP += 
           Math.ceil((trainerMove.recoil / 100) * trainerDamage);
-      }
-      
+      }   
       if ((opponent.currentHP - trainerDamage) <= 0) {
         opponent.currentHP = 0;
       }
-
       else {
         opponent.currentHP -= trainerDamage;
       }
