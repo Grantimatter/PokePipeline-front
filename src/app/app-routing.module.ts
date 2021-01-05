@@ -8,8 +8,9 @@ import { PartySelectionComponent } from './modules/trainer-hub/components/party-
 import { TrainerHubComponent } from './modules/trainer-hub/components/trainer-hub/trainer-hub.component';
 import { AuthenticationGuardService } from './modules/authentication/services/guards/authentication.guard.service';
 import { LoggedOutGuardService } from './modules/authentication/services/guards/logged.out.guard.service';
-import { UserComponent } from './modules/user/component/user/user.component';
+
 import { DefaultpathresolverComponent } from './modules/defaultpathresolver/defaultpathresolver.component';
+import { UserComponent } from './modules/trainer-hub/components/user/user.component';
 
 const routes: Routes = [
   {

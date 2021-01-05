@@ -7,26 +7,23 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PartySelectionComponent } from './components/party-selection/party-selection.component';
 import { RouterModule } from '@angular/router';
 import { PartyService } from './services/party/party.service';
-
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
-    TrainerHubComponent, 
-    OptionScreenComponent, 
-    PokemonScreenComponent, 
+    TrainerHubComponent,
+    OptionScreenComponent,
+    PokemonScreenComponent,
     PartySelectionComponent,
+    UserComponent,
   ],
   exports: [
     TrainerHubComponent,
-    OptionScreenComponent, 
-    PokemonScreenComponent, 
+    OptionScreenComponent,
+    PokemonScreenComponent,
     PartySelectionComponent,
   ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    RouterModule,
-  ],
-  providers: [PartyService]
+  imports: [CommonModule, FontAwesomeModule, RouterModule],
+  providers: [PartyService],
 })
-export class TrainerHubModule { }
+export class TrainerHubModule {}

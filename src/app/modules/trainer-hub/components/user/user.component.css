@@ -6,3 +6,16 @@
 .row-user-view-header {
   height: 50px;
 }
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+}
+
+.profile-column {
+  min-height: 150px;
+}
+
+.about-me-text {
+  height: 150px;
+}
