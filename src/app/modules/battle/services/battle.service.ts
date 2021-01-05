@@ -22,8 +22,6 @@ export class BattleService {
       let trainerDamage:number = this.calculateDamage(
         trainer, opponent, trainerMove);
 
-        console.log("Trainer: " + trainerDamage + " damage done");
-
       if (trainerMove.recoil != 0.0) {
         trainer.currentHP += 
           Math.ceil((trainerMove.recoil / 100) * trainerDamage);
@@ -40,8 +38,6 @@ export class BattleService {
       if (opponent.currentHP > 0) {
         let opponentDamage = this.calculateDamage(
           opponent, trainer, opponentMove);
-
-          console.log("Opponent: " + opponentDamage + " damage done");
 
         if (opponentMove.recoil != 0.0) {
           opponent.currentHP += 
@@ -66,8 +62,6 @@ export class BattleService {
       let opponentDamage = this.calculateDamage(
         opponent, trainer, opponentMove);
 
-        console.log("Opponent: " + opponentDamage + " damage done");
-
       if (opponentMove.recoil != 0.0) {
         opponent.currentHP += 
           Math.ceil((opponentMove.recoil / 100) * opponentDamage);
@@ -84,8 +78,6 @@ export class BattleService {
       if (trainer.currentHP > 0) {
         let trainerDamage:number = this.calculateDamage(
           trainer, opponent, trainerMove);
-          
-          console.log("Trainer: " + trainerDamage + " damage done");
 
         if (trainerMove.recoil != 0.0) {
           trainer.currentHP += 
