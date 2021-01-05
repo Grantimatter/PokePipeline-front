@@ -24,10 +24,11 @@ export class BattleScreenComponent implements OnInit {
   public trainerMaxHealth:number;
   public opponentMaxHealth:number;
   
+  isTrainer:boolean = false;
+  isOpponent:boolean = false;
   power:number;
   damageClass:string;
   damageType:Type;
-
   powerText:string;
   classText:string;
   typeText:string;
@@ -57,7 +58,9 @@ export class BattleScreenComponent implements OnInit {
 
   private getTrainerPokemon() {
     this._subscription_user_name = this.partyService.pokemon1.subscribe((value) => {
-      this.trainer = value;})
+      this.trainer = value;
+      this.isTrainer = true;
+    })
     
     this.trainer = this.partyService.getPokemon1();
   }
@@ -66,7 +69,7 @@ export class BattleScreenComponent implements OnInit {
     this.pokeHelper.getRandomValidPokemon(
       (x:JSON) => {
         this.opponent = this.pokeService.createNewPokemonWithRandomMoves(x);
-
+        this.isOpponent = true;
         this.opponentMaxHealth = this.opponent.currentHP;
 
         this.showMoveButtons = true;
