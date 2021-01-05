@@ -38,21 +38,25 @@
       <tr>
         <td 
         (mouseover)="displayMoveInfo(0)" 
-        (mouseout)="undoInfo(0)" id="move0" 
+        (mouseout)="undoInfo(0)" id="move0"
+        (click) = "attack(0)"
         class="move">{{trainer.moves[0].name.toUpperCase()}}</td>
         <td 
         (mouseover)="displayMoveInfo(1)" 
-        (mouseout)="undoInfo(1)" id="move1" 
+        (mouseout)="undoInfo(1)" id="move1"
+        (click) = "attack(1)" 
         class="move">{{trainer.moves[1].name.toUpperCase()}}</td>
       </tr>
       <tr>
         <td 
         (mouseover)="displayMoveInfo(2)" 
-        (mouseout)="undoInfo(2)" id="move2" 
+        (mouseout)="undoInfo(2)" id="move2"
+        (click) = "attack(2)"
         class="move">{{trainer.moves[2].name.toUpperCase()}}</td>
         <td 
         (mouseover)="displayMoveInfo(3)" 
-        (mouseout)="undoInfo(3)" id="move3" 
+        (mouseout)="undoInfo(3)" id="move3"
+        (click) = "attack(3)"
         class="move">{{trainer.moves[3].name.toUpperCase()}}</td>
       </tr>
     </table>
