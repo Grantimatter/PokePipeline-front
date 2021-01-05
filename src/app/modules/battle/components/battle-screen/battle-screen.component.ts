@@ -57,7 +57,15 @@ export class BattleScreenComponent implements OnInit {
     if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) { // check if battle ends
       if (this.opponent.currentHP == 0) {
         // user ++exp --JASON
+        this.partyService.addVictory();
         // 50% total hp heal
+        if (this.trainer.currentHP / this.trainerMaxHealth <= 0.5) {
+          this.trainer.currentHP += Math.ceil(this.trainerMaxHealth * .5);
+        }
+
+        else {
+          this.trainer.currentHP = this.trainerMaxHealth;
+        }
       }
       if (this.trainer.currentHP == 0) {
         // re-enable choosing pokemon --CHRIS done
