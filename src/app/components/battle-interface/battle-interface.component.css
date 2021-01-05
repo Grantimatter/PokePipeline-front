@@ -35,14 +35,18 @@
   border: 5px double black;
   border-radius: 10px;
 }
-.botTable tr { height: 8vh; }
-.botTable td { 
-  vertical-align: middle; 
-  text-align: center; 
-}
+
+.botTable td {  vertical-align: middle; text-align: center;  }
 .moveTable { width: 70%; float: left; margin-left: 1vh; cursor: pointer; }
+.moveTable tr { height: 8vh; }
 .moveTable td:hover { border-radius: 5px; }
-.infoTable { width: 28%; float: right; margin-right: 1vh; }
+.infoTable { 
+  height: 19vh;
+  width: 28%; 
+  float: right; 
+  margin-right: 1vh; 
+  font-size: 20px;
+}
 
 #row1 { position: relative; top: 1vh; }
 #row3 {
