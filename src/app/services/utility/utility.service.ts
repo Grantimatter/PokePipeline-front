@@ -48,4 +48,8 @@ export class UtilityService {
     }
   }
 
+  // toUppercase(text:string):string {
+  //   return text.toUpperCase();
+  // }
+
 }

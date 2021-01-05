@@ -1,24 +1,83 @@
-<div id="battleScreen">
-    <span id="opponentSpan">    
-        <img id="opponentSprite" style="float: right" src="{{opponent.sprites.front_default}}">
-        <progress id="opponentHealth" style="float:right" value="{{opponent.currentHP}}" max="{{opponentMaxHealth}}"></progress>
-    </span>
-    <br>
-    <br>
-    <span id="trainerSpan">    
-        <img id="trainerSprite" src="{{trainer.sprites.back_default}}">
-        <progress id="trainerHealth" value="{{trainer.currentHP}}" max="{{trainerMaxHealth}}"></progress>            
-    </span>
-    <br>
-    <br>
-    <table id="moveTable" style="margin: auto;">
-        <tr>
-            <td><button id="move1" (click)="attack(0)">{{trainer.moves[0].name}}</button></td>
-            <td><button id="move2" (click)="attack(1)">{{trainer.moves[1].name}}</button></td>
+
+<div  class="fill">
+  <div id="row1">
+    <div id="opponentNamePlate" class="namePlate">
+      <table class="namePlateTable">
+        <tr class="topRow">
+          <td class="name" colspan="2">{{opponent.name.toUpperCase()}}</td>
+          <td class="centerText">Lv: {{opponent.getLevel()}}</td>
         </tr>
-        <tr>
-            <td><button id="move3" (click)="attack(2)">{{trainer.moves[2].name}}</button></td>
-            <td><button id="move4" (click)="attack(3)">{{trainer.moves[3].name}}</button></td>
+        <tr class="botRow">
+          <td class="centerText">HP</td>
+          <td colspan="2"><progress id="opponentHealth" style="float:right" value="{{opponent.currentHP}}" max="{{opponentMaxHealth}}"></progress>
+          </td> <!--hp progress bar?-->
         </tr>
+      </table>
+    </div>
+    <div id="opponentSprite" class="spriteLocation"><img src="{{opponent.sprites.front_default}}"></div>
+  </div>
+
+  <div id="row2">
+    <div id="trainerSprite" class="spriteLocation"><img src="{{trainer.sprites.back_default}}"></div>
+    <div id="trainerNamePlate" class="namePlate">
+      <table id="botNamePlate" class="namePlateTable">
+        <tr class="topRow">
+          <td class="name" colspan="2">{{trainer.name.toUpperCase()}}</td>
+          <td class="centerText">Lv: {{trainer.getLevel()}}</td>
+        </tr>
+        <tr class="botRow">
+          <td class="centerText">HP</td>
+          <td colspan="2"><progress id="trainerHealth" value="{{trainer.currentHP}}" max="{{trainerMaxHealth}}"></progress></td> <!--hp progress bar?-->
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="row3">
+    <table class="moveTable botTable">
+      <tr>
+        <td 
+        (mouseover)="displayMoveInfo(0)" 
+        (mouseout)="undoInfo(0)" id="move0" 
+        class="move">{{trainer.moves[0].name.toUpperCase()}}</td>
+        <td 
+        (mouseover)="displayMoveInfo(1)" 
+        (mouseout)="undoInfo(1)" id="move1" 
+        class="move">{{trainer.moves[1].name.toUpperCase()}}</td>
+      </tr>
+      <tr>
+        <td 
+        (mouseover)="displayMoveInfo(2)" 
+        (mouseout)="undoInfo(2)" id="move2" 
+        class="move">{{trainer.moves[2].name.toUpperCase()}}</td>
+        <td 
+        (mouseover)="displayMoveInfo(3)" 
+        (mouseout)="undoInfo(3)" id="move3" 
+        class="move">{{trainer.moves[3].name.toUpperCase()}}</td>
+      </tr>
     </table>
+    <table class="infoTable botTable">
+      <tr>
+        <td class="notMove">{{powerText}}</td>
+        <td id="damageClass">{{power}}</td>
+      </tr>
+      <tr>
+        <td>{{classText}}</td>
+        <td id="damageType">{{damageClass.toUpperCase()}}</td>
+      </tr>
+      <tr>
+        <td>{{typeText}}</td>
+        <td id="damageType">{{damageType.toUpperCase()}}</td>
+      </tr>
+    </table>
+  </div>
 </div>
+
+<!-- <div id="loadingPikachu" *ngIf="!trainer">
+  <img src="/assets/Images/Icons/pikachu.gif">
+</div> -->
+
+
+
+
+

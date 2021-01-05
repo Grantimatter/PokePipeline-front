@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Type } from 'src/app/models/enums/type.enum';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
 import { TrainerHubComponent } from 'src/app/modules/trainer-hub/components/trainer-hub/trainer-hub.component';
 import { PartyService } from 'src/app/modules/trainer-hub/services/party/party.service';
+import { UtilityService } from 'src/app/services/utility/utility.service';
 import { BattleService } from '../../services/battle.service';
 
 @Component({
@@ -21,10 +23,22 @@ export class BattleScreenComponent implements OnInit {
   public opponent:Pokemon;
   public trainerMaxHealth:number;
   public opponentMaxHealth:number;
+  
+  power:number;
+  damageClass:string;
+  damageType:Type;
 
-  constructor(private pokeHelper:PokeApiHelperService, 
-    private pokeService:PokemonService, private partyService:PartyService, 
-    public battleService:BattleService) { 
+  powerText:string;
+  classText:string;
+  typeText:string;
+
+  constructor(
+    private pokeHelper:PokeApiHelperService, 
+    private pokeService:PokemonService, 
+    private partyService:PartyService, 
+    public battleService:BattleService,
+    private utilityService:UtilityService,
+    ) { 
        
     this.getTrainerPokemon();
 
@@ -58,5 +72,31 @@ export class BattleScreenComponent implements OnInit {
         this.showMoveButtons = true;
       }
       );    
+  }
+
+  undoInfo(num:number) {
+    let moveButton = document.getElementById(`move${num}`);
+    moveButton.style.boxShadow = "none";
+    moveButton.style.background = "none";
+    moveButton.style.border = "none";
+  }
+
+  changeColorOnHover(num:number) {
+    let moveType = this.trainer.moves[num].type;
+    let typeColor = this.utilityService.getTypeColor(moveType);
+    let moveButton = document.getElementById(`move${num}`);
+    moveButton.style.boxShadow = `0 0 20px ${typeColor}`;
+    moveButton.style.background = `${typeColor}`;
+    moveButton.style.border = "2px solid #00000070";
+  }
+
+  displayMoveInfo(num:number) {
+    this.powerText = "Power:";
+    this.classText = "Class:";
+    this.typeText = "Type:";
+    this.power = this.trainer.moves[num].power;
+    this.damageClass = this.trainer.moves[num].damage_class;
+    this.damageType = this.trainer.moves[num].type;
+    this.changeColorOnHover(num);
   }
 }
