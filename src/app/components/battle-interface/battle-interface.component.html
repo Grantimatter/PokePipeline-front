@@ -1,12 +1,12 @@
-<div class="fill">
+<div *ngIf="trainer && opponent" class="fill">
   <div id="row1">
     <div id="opponentNamePlate" class="namePlate">
       <table class="namePlateTable">
-        <tr>
+        <tr class="topRow">
           <td class="name" colspan="2">{{opponent.name | uppercase}}</td>
           <td class="centerText">Lv: {{opponent.getLevel()}}</td>
         </tr>
-        <tr>
+        <tr class="botRow">
           <td class="centerText">HP</td>
           <td colspan="2">[==================]</td> <!--hp progress bar?-->
         </tr>
@@ -18,12 +18,12 @@
   <div id="row2">
     <div id="trainerSprite" class="spriteLocation"><img src="{{trainer.sprites.back_default}}"></div>
     <div id="trainerNamePlate" class="namePlate">
-      <table class="namePlateTable">
-        <tr>
+      <table id="botNamePlate" class="namePlateTable">
+        <tr class="topRow">
           <td class="name" colspan="2">{{trainer.name | uppercase}}</td>
           <td class="centerText">Lv: {{trainer.getLevel()}}</td>
         </tr>
-        <tr>
+        <tr class="botRow">
           <td class="centerText">HP</td>
           <td colspan="2">[==================]</td> <!--hp progress bar?-->
         </tr>
@@ -69,4 +69,8 @@
       </tr>
     </table>
   </div>
+</div>
+
+<div id="loadingPikachu" *ngIf="!trainer">
+  <img src="/assets/Images/Icons/pikachu.gif">
 </div>

@@ -1,13 +1,38 @@
 
+
+.namePlateTable {
+  background:#f7f8d6;
+  border: 5px solid black;
+  border-collapse:separate;
+  border-radius: 15px 2px 15px 2px;
+}
+.topRow td {
+  padding-top: 10px;
+}
+
+.botRow td {
+  padding-bottom: 10px;
+}
+
 .name, .move { padding-left: 3vh; }
-#trainerSprite { left: 10vh; }
-#opponentSprite { right: 10vh; }
-#trainerNamePlate { margin-top:5vh; right: 2vh; }
+#trainerSprite { left: 7vh; top: 5vh; }
+#opponentSprite { right: 7vh; top: 1vh;}
+#trainerNamePlate { margin-top:5vh; position: relative; }
 #opponentNamePlate { left: 2vh; }
 #opponentSprite, #trainerNamePlate { float: right; }
 #opponentNamePlate, #trainerSprite { float: left; }
+#botNamePlate { position: absolute; bottom: 0; }
+
+#loadingPikachu {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 40%;
+  transform: translate(0,-50%);
+}
 
 .namePlate {
+  table-layout: fixed;
   position: relative;
   width: 60vh;
   height: 20vh;
@@ -27,7 +52,7 @@
 }
 
 .botTable { 
-  background:rgba(240, 240, 240);
+  background:#f7f8d6;
   border-collapse:separate;
   top: 50%; 
   transform: translate(0,-50%); 
@@ -65,7 +90,9 @@ table { table-layout: fixed; }
 
 .fill {
   margin: 0;
-  background:rgba(240, 240, 240, 0.75);
+  background: url('./../../../assets/Images/Backgrounds/battlegrass.png'), #e3f7d1;
+  background-repeat: no-repeat;
+  background-size: 100% 71%;
   position: relative;
   left: 50%;
   top: 50%;

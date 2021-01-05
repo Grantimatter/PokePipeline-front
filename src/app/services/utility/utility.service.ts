@@ -21,8 +21,8 @@ export class UtilityService {
 
   /**
    * Get the appropriate color of the Type.
-   * @returns - returns a hexadecimal color in a string.
-   * @param type - Type enum.
+   * @returns returns a hexadecimal color in a string.
+   * @param type Type enum.
    */
   getTypeColor(type:Type):string {
     switch(type) {
@@ -43,7 +43,7 @@ export class UtilityService {
       case 'PSYCHIC': return "#f85888";
       case 'ROCK': return "#b8a038";
       case 'STEEL': return "#b8b8d0";
-      case 'WATER': return "#b8b8d0";
+      case 'WATER': return "#6890f0";
       default: return "#fff";
     }
   }
