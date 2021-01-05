@@ -54,12 +54,12 @@ export class BattleScreenComponent implements OnInit {
     this.battleService.performAttacks(this.trainer, this.opponent, attackNum);
     if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) {    // check if battle ends
       if (this.opponent.currentHP == 0) {
-        // user ++exp
+        // user ++exp --JASON
         // 50% total hp heal
       }
       if (this.trainer.currentHP == 0) {
-        // re-enable choosing pokemon
-        this.trainer == null; // update partyService
+        // re-enable choosing pokemon --CHRIS
+        this.trainer == null; // update partyService --CHRIS
         // exp == score
         // display exp in final score screen
       }
