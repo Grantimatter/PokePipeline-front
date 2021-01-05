@@ -1,0 +1,63 @@
+
+.name, .move { padding-left: 3vh; }
+#trainerSprite { left: 10vh; }
+#opponentSprite { right: 10vh; }
+#trainerNamePlate { margin-top:5vh; right: 2vh; }
+#opponentNamePlate { left: 2vh; }
+#opponentSprite, #trainerNamePlate { float: right; }
+#opponentNamePlate, #trainerSprite { float: left; }
+
+.namePlate {
+  position: relative;
+  width: 60vh;
+  height: 20vh;
+}
+
+.spriteLocation {
+  position: relative;
+  width: 28vh;
+  height: 28vh;
+  margin: 0;
+  padding: 0;
+}
+
+.spriteLocation img {
+  width: 100%;
+  height: 100%;
+}
+
+.botTable tr { height: 10vh; }
+.botTable td { vertical-align: middle; }
+.botTable td:nth-child(1), td:nth-child(2) { width: 35%; }
+.botTable td:nth-child(n+3) { width: 15%; text-align: center; }
+
+#row1 { position: relative; top: 1vh; }
+#row3 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 98%;
+  bottom: 0;
+}
+
+table { table-layout: fixed; }
+.centerText { text-align: center; }
+
+.fill {
+  margin: 0;
+  background:rgba(240, 240, 240, 0.75);
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#row1:after {
+  content: "";
+  display: table;
+  clear: both;
+}
