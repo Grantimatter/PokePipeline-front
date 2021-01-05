@@ -1,0 +1,110 @@
+
+
+.namePlateTable {
+  background:#f7f8d6;
+  border: 5px solid black;
+  border-collapse:separate;
+  border-radius: 15px 2px 15px 2px;
+}
+.topRow td {
+  padding-top: 10px;
+}
+
+.botRow td {
+  padding-bottom: 10px;
+}
+
+.name, .move { padding-left: 3vh; }
+#trainerSprite { left: 7vh; top: 5vh; }
+#opponentSprite { right: 7vh; top: 1vh;}
+#trainerNamePlate { margin-top:5vh; position: relative; }
+#opponentNamePlate { left: 2vh; }
+#opponentSprite, #trainerNamePlate { float: right; }
+#opponentNamePlate, #trainerSprite { float: left; }
+#botNamePlate { position: absolute; bottom: 0; }
+
+#loadingPikachu {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 40%;
+  transform: translate(0,-50%);
+}
+
+.namePlate {
+  table-layout: fixed;
+  position: relative;
+  width: 60vh;
+  height: 20vh;
+}
+
+.spriteLocation {
+  position: relative;
+  width: 28vh;
+  height: 28vh;
+  margin: 0;
+  padding: 0;
+}
+
+.spriteLocation img {
+  width: 100%;
+  height: 100%;
+}
+
+.botTable { 
+  background:#f7f8d6;
+  border-collapse:separate;
+  top: 50%; 
+  transform: translate(0,-50%); 
+  position: relative; 
+  border: 5px double black;
+  border-radius: 10px;
+}
+
+.botTable td {  vertical-align: middle; text-align: center;  }
+.moveTable { width: 70%; float: left; margin-left: 1vh; cursor: pointer; }
+.moveTable tr { height: 8vh; }
+.moveTable td:hover { border-radius: 5px; }
+.infoTable { 
+  height: 19vh;
+  width: 28%; 
+  float: right; 
+  margin-right: 1vh; 
+  font-size: 20px;
+}
+
+#row1 { position: relative; top: 1vh; }
+#row3 {
+  background:rgb(90, 90, 90);
+  position: relative;
+  float:none;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 98%;
+  height: 25%;
+  bottom: 0;
+}
+
+table { table-layout: fixed; }
+.centerText { text-align: center; }
+
+.fill {
+  margin: 0;
+  background: url('./../../../assets/Images/Backgrounds/battlegrass.png'), #e3f7d1;
+  background-repeat: no-repeat;
+  background-size: 100% 71%;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#row1:after, #row2:after {
+  content: "";
+  display: table;
+  clear: both;
+}

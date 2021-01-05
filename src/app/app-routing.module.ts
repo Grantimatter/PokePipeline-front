@@ -11,6 +11,7 @@ import { AuthenticationGuardService } from './modules/authentication/services/gu
 import { LoggedOutGuardService } from './modules/authentication/services/guards/logged.out.guard.service';
 import { UserComponent } from './modules/user/component/user/user.component';
 import { DefaultpathresolverComponent } from './modules/defaultpathresolver/defaultpathresolver.component';
+import { BattleInterfaceComponent } from './components/battle-interface/battle-interface.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
     component: TrainerHubComponent,
     children: [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
-      { path: 'battle', component: BattleScreenComponent, outlet: 'main'}
+      { path: 'battle', component: BattleScreenComponent, outlet: 'main'},
+      { path: 'tempbattle', component: BattleInterfaceComponent, outlet: 'main'}
     ]
     ,
   },
