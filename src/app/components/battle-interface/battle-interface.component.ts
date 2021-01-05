@@ -15,9 +15,9 @@ export class BattleInterfaceComponent implements OnInit {
   trainer:Pokemon;
   opponent:Pokemon;
   power:number;
-  damageType:Type;
+  damageClass:string;
   powerText:string;
-  typeText:string;
+  classText:string;
 
   constructor(  
     private pokeApiHelperService:PokeApiHelperService,
@@ -48,9 +48,9 @@ export class BattleInterfaceComponent implements OnInit {
 
   displayMoveInfo(num:number) {
     this.powerText = "Power:";
-    this.typeText = "Type:";
+    this.classText = "Class:";
     this.power = this.trainer.moves[num].power;
-    this.damageType = this.trainer.moves[num].type;
+    this.damageClass = this.trainer.moves[num].damage_class;
     this.changeColorOnHover(num);
   }
 
