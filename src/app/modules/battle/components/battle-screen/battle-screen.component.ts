@@ -65,6 +65,7 @@ export class BattleScreenComponent implements OnInit {
 
         else {
           this.trainer.currentHP = this.trainerMaxHealth;
+          this.trainer.setLevel(this.trainer.getLevel() + 1);
         }
 
         this.router.navigate(['/trainerhub/']);
@@ -94,9 +95,16 @@ export class BattleScreenComponent implements OnInit {
   private getOpponentPokemon() {
     this.pokeHelper.getRandomValidPokemon(
       (x:JSON) => {
+        console.log(x);
         this.opponent = this.pokeService.createNewPokemonWithRandomMoves(x);
         this.isOpponent = true;
         this.opponentMaxHealth = this.opponent.currentHP;
+
+        // if (this.trainer.getLevel() > 1) {
+        //   this.opponent.setLevel(
+        //     this.battleService.setOpponentLevel(this.trainer.getLevel(),
+        //       isLegendary:boolean = [x["species"].]))
+        // }
 
         this.showMoveButtons = true;
       }

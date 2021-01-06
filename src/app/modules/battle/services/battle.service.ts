@@ -100,6 +100,48 @@ export class BattleService {
     private util:UtilityService) { 
     
   }
+
+  setOpponentLevel(trainerLevel:number, isLegendary:boolean) : number {
+    if (trainerLevel == 2) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(1,2);
+      }
+
+      else {
+        return 1;
+      }
+    }
+
+    if (trainerLevel > 2 && trainerLevel <= 5) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(trainerLevel - 1, trainerLevel + 1);
+      }
+
+      else {
+        return this.util.getRandomInt(trainerLevel - 1, trainerLevel);
+      }
+    }
+
+    if (trainerLevel > 5 && trainerLevel <= 10) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(trainerLevel - 2, trainerLevel + 2);
+      }
+
+      else {
+        return this.util.getRandomInt(trainerLevel - 2, trainerLevel);
+      }
+    }
+
+    if (trainerLevel > 10) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(trainerLevel - 2, trainerLevel + 5);
+      }
+
+      else {
+        return this.util.getRandomInt(trainerLevel - 4, trainerLevel);
+      }
+    }
+  }
   
   setAttackOrder(trainer:Pokemon, opponent:Pokemon): boolean {
         
