@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Type } from 'src/app/models/enums/type.enum';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
@@ -8,6 +8,7 @@ import { TrainerHubComponent } from 'src/app/modules/trainer-hub/components/trai
 import { PartyService } from 'src/app/modules/trainer-hub/services/party/party.service';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { BattleService } from '../../services/battle.service';
+
 
 @Component({
   selector: 'app-battle-screen',
@@ -41,6 +42,7 @@ export class BattleScreenComponent implements OnInit {
     public battleService:BattleService,
     private utilityService:UtilityService,
     private router: Router,
+    private route: ActivatedRoute,
     ) { 
        
     this.getTrainerPokemon();
@@ -72,8 +74,15 @@ export class BattleScreenComponent implements OnInit {
       if (this.trainer.currentHP == 0) {
         this.trainer = null;
         this.partyService.resetPokemon();
-        this.router.navigate(['/gameover']);
+        this.router.navigate([{outlets:{main:['gameover']}}],{relativeTo: this.route.parent})
+        // this.router.navigate([{outlets: {main: ['gameover']}}], {relativeTo: this.route});
+        // this.router.navigate([{outlets: {primary:'trainerhub',main:'gameover'}}])
+        // this.router.navigate([{outlets: {main: ['trainerhub','gameover']}}]);
+        // this.router.navigate(['trainerhub','gameover'], {relativeTo: this.route});
+        // this.router.navigate([{outlets: {main: 'gameover'}}]), {relativeTo: this.route};
+        // this.router.navigate(['gameover', {outlets: 'main'}]); //, {relativeTo: this.route };
       }
+      
       
     }
   }
