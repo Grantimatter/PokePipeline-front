@@ -44,3 +44,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+dist/PokePipeline/main.43f6d7bf0ff0e1430bf9.js
+dist/PokePipeline/404.html
