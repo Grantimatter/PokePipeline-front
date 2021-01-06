@@ -7,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PartySelectionComponent } from './components/party-selection/party-selection.component';
 import { RouterModule } from '@angular/router';
 import { PartyService } from './services/party/party.service';
-import { UserComponent } from './components/user/user.component';
+import { TrainerComponent } from './components/trainer/trainer.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     OptionScreenComponent,
     PokemonScreenComponent,
     PartySelectionComponent,
-    UserComponent,
+    TrainerComponent,
   ],
   exports: [
     TrainerHubComponent,

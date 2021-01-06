@@ -10,7 +10,7 @@ import { AuthenticationGuardService } from './modules/authentication/services/gu
 import { LoggedOutGuardService } from './modules/authentication/services/guards/logged.out.guard.service';
 
 import { DefaultpathresolverComponent } from './modules/defaultpathresolver/defaultpathresolver.component';
-import { UserComponent } from './modules/trainer-hub/components/user/user.component';
+import { TrainerComponent } from './modules/trainer-hub/components/trainer/trainer.component';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
     component: TrainerHubComponent,
     children: [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
-      { path: 'account', component: UserComponent, outlet: 'main' },
+      { path: 'account', component: TrainerComponent, outlet: 'main' },
     ],
   },
 

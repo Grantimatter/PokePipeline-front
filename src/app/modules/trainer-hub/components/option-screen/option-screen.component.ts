@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
-import { UserModel } from 'src/app/models/user';
+import { TrainerModel } from 'src/app/models/trainer';
 
 @Component({
   selector: 'app-option-screen',
@@ -9,11 +9,11 @@ import { UserModel } from 'src/app/models/user';
 })
 export class OptionScreenComponent implements OnInit {
   hasParty: boolean = false;
-  // set this to true when the pokemon dies, or user resets game
+  // set this to true when the pokemon dies, or trainer resets game
   isDisabled: boolean = false;
 
   trainer: any = {
-    username: 'Trainer',
+    trainerName: 'Trainer',
     password: 'pass',
     email: 'trainer@gmail.com',
     description: 'Pokemon Master (in training)',

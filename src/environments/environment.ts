@@ -5,20 +5,22 @@
 export const environment = {
   production: false,
   apiUrl: 'https://pokeapi.co/api/v2',
-  ec2Url: 'http://3.137.201.253:8085/PokePipeline',
+  ec2Url: 'http://ec2-54-215-135-86.us-west-1.compute.amazonaws.com:8085/PokePipeline'
 };
 
-const host = 'http://localhost:8080';
-const apiroot = host + '/PokePipeline';
-const user = apiroot + '/user';
-const getUser = user + '/getprofile';
-const updateUser = user + '/updateprofile';
-const updatePassword = user + '/updatepassword';
+const trainer = environment.ec2Url + '/trainer';
+
+// const host = 'http://localhost:8080';
+// const apiroot = host + '/PokePipeline';
+// const trainer = apiroot + '/trainer';
+//const getUser = user + '/getprofile';
+//const updateUser = user + '/updateprofile';
+//const updatePassword = user + '/updatepassword';
 
 export const API = {
-  getUserEndpoint: getUser,
-  updateUserEndpoint: updateUser,
-  updatePasswordEndpoint: updatePassword,
+  getUserEndpoint: trainer,
+  updateUserEndpoint: trainer,
+  updatePasswordEndpoint: trainer,
 };
 
 /*

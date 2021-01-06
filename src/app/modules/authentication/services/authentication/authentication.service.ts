@@ -4,8 +4,8 @@ import { Observable, Subject } from 'rxjs';
 import { Service } from 'src/app/interfaces/service';
 import { LoggedOutGuardService } from '../guards/logged.out.guard.service';
 
-/** This service pings the back end and icnludes the users JSESSIONID cookie in the request.
- * Doing so, the server can verify whether or not the user is valid user.
+/** This service pings the back end and icnludes the trainers JSESSIONID cookie in the request.
+ * Doing so, the server can verify whether or not the trainer is valid trainer.
  */
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,7 @@ export class AuthenticationService {
 
   /** This function pings the servers auth filter. The response will be delivered by the observable.
    * @returns Observable<HttpResponse<Object>> an observable which will deliver the servers response to the authentication
-   * request. A 200 status code means the user may pass, anything else indicates the usermay not pass.
+   * request. A 200 status code means the trainer may pass, anything else indicates the trainermay not pass.
    */
   public provideService(): Observable<boolean> {
     let serviceListener: Subject<boolean> = new Subject<boolean>();

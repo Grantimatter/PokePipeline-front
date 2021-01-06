@@ -20,7 +20,7 @@
           class="form-control form-control-md"
           type="text"
           placeholder="trainer"
-          [(ngModel)]="this.userModel.username"
+          [(ngModel)]="this.trainerModel.trainerName"
         />
         <span class="text-dark">Enter your trainer id to log in.</span>
       </div>
@@ -32,11 +32,11 @@
           class="form-control form-control-md"
           type="password"
           placeholder="password"
-          [(ngModel)]="this.userModel.password"
+          [(ngModel)]="this.trainerModel.password"
         />
         <span class="text-dark">Enter your trainer Poke-Pass to log in.</span>
       </div>
-      <small class="text-danger font-weight-bold">{{ this.userMessage }}</small>
+      <small class="text-danger font-weight-bold">{{ this.trainerMessage }}</small>
       <div class="form-group">
         <input
           type="button"

@@ -1,5 +1,5 @@
 <div
-  class="jumbotron vertical-center text-center shadow fill h-100 user-container container-fluid"
+  class="jumbotron vertical-center text-center shadow fill h-100 trainer-container container-fluid"
 >
   <!--USER PROFILE-->
   <section
@@ -7,7 +7,7 @@
     *ngIf="this.templateToRender == this.RenderTemplate.ProfileView"
   >
     <div
-      class="row row-user-view-header align-items-center border-bottom border-secondary"
+      class="row row-trainer-view-header align-items-center border-bottom border-secondary"
     >
       <div class="col-12 h-100 justify-items-center align-items-center">
         <h3 class="mr-auto justify-self-start">
@@ -27,14 +27,14 @@
 
       <div class="align-self-end col-md-4 d-flex flex-column profile-column">
         <h4 class="font-bold">Username</h4>
-        <p>{{ this.userAccount.username }}</p>
+        <p>{{ this.trainerAccount.tranerName }}</p>
         <h4 class="font-bold">E-mail</h4>
-        <p>{{ this.userAccount.email }}</p>
+        <p>{{ this.trainerAccount.email }}</p>
       </div>
 
       <div class="align-self-end col-md-4 d-flex flex-column profile-column">
         <h4 class="font-bold">About Me</h4>
-        <p class="mb-auto">{{ this.userAccount.description }}</p>
+        <p class="mb-auto">{{ this.trainerAccount.description }}</p>
       </div>
       <section
         class="d-flex flex-row col-12 mt-auto profile-column align-items-end"
@@ -133,7 +133,7 @@
                 class="form-control"
                 placeholder="new email address"
                 id="new-email"
-                [(ngModel)]="this.userAccount.email"
+                [(ngModel)]="this.trainerAccount.email"
               />
             </div>
           </div>
@@ -150,7 +150,7 @@
               <label for="about-me"> About me </label>
               <textarea
                 class="form-control about-me-text"
-                [(ngModel)]="this.userAccount.description"
+                [(ngModel)]="this.trainerAccount.description"
               ></textarea>
             </div>
           </div>

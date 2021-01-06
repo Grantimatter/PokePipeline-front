@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Service } from 'src/app/interfaces/service';
-import { UserModel } from 'src/app/models/user';
+import { TrainerModel } from 'src/app/models/trainer';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { Observable, Subject } from 'rxjs';
-import { API } from '../../../../../environments/environment';
+import { API } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService implements Service<UserModel, Observable<boolean>> {
+export class TrainerService implements Service<TrainerModel, Observable<boolean>> {
   private http: HttpClient;
   private validationService: BasicValidationService;
   private serviceAPI: any = API;
@@ -20,15 +20,15 @@ export class UserService implements Service<UserModel, Observable<boolean>> {
     this.http = injectedClient;
     this.validationService = injectedValidationService;
   }
-  public provideService(userToUpdate: UserModel): Observable<boolean> {
+  public provideService(trainerToUpdate: TrainerModel): Observable<boolean> {
     let listener: Subject<boolean> = new Subject<boolean>();
-    let usersProfileUpdate: UserModel = new UserModel();
+    let trainersProfileUpdate: TrainerModel = new TrainerModel();
 
-    usersProfileUpdate.readProfile(userToUpdate);
+    trainersProfileUpdate.readProfile(trainerToUpdate);
 
-    if (this.validateServiceArgument(usersProfileUpdate)) {
+    if (this.validateServiceArgument(trainersProfileUpdate)) {
       this.http
-        .post(this.serviceAPI.updateUserEndpoint, userToUpdate, {
+        .post(this.serviceAPI.updateTrainerEndpoint, trainerToUpdate, {
           observe: 'response',
           responseType: 'json',
           withCredentials: true,
@@ -47,18 +47,18 @@ export class UserService implements Service<UserModel, Observable<boolean>> {
     return listener.asObservable();
   }
 
-  public validateServiceArgument(arg: UserModel) {
+  public validateServiceArgument(arg: TrainerModel) {
     return (
       this.validationService.isTruthyObject(arg) &&
-      this.validationService.isTruthyString(arg.username)
+      this.validationService.isTruthyString(arg.trainerName)
     );
   }
 
-  public getUserProfile(): Observable<UserModel> {
-    let userProfile: Subject<UserModel> = new Subject<UserModel>();
+  public getTrainerProfile(): Observable<TrainerModel> {
+    let trainerProfile: Subject<TrainerModel> = new Subject<TrainerModel>();
 
     this.http
-      .post(this.serviceAPI.getUserEndpoint, null, {
+      .post(this.serviceAPI.getTrainerEndpoint, null, {
         observe: 'response',
         responseType: 'json',
         withCredentials: true,
@@ -66,23 +66,23 @@ export class UserService implements Service<UserModel, Observable<boolean>> {
       .subscribe(
         (response: HttpResponse<Object>) => {
           if (response.status == 200)
-            userProfile.next(response.body as UserModel);
-          else userProfile.error('User is not authorized.');
+            trainerProfile.next(response.body as TrainerModel);
+          else trainerProfile.error('Trainer is not authorized.');
         },
         (err) => {
-          userProfile.error('Server or cors error.');
+          trainerProfile.error('Server or cors error.');
         }
       );
 
-    return userProfile.asObservable();
+    return trainerProfile.asObservable();
   }
 
   public updatePassword(newPassword: string): Observable<boolean> {
     let returnObservable: Subject<boolean> = new Subject<boolean>();
-    let passwordToken: UserModel;
+    let passwordToken: TrainerModel;
 
     if (newPassword != null) {
-      passwordToken = new UserModel();
+      passwordToken = new TrainerModel();
       passwordToken.password = newPassword;
       this.http
         .put(this.serviceAPI.updatePasswordEndpoint, passwordToken, {
