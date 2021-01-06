@@ -4,6 +4,7 @@ import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/p
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-test',
@@ -29,7 +30,7 @@ export class TestComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectStarterPokemon();
-    this.http.post("http://localhost:8080/PokePipeline/auth", {"trainerName":"grantimatter","password":"password","email":"wiswellgrant@gmail.com"}, {withCredentials: true}).subscribe(
+    this.http.post(`${environment.ec2Url}/auth`, {"trainerName":"grantimatter","password":"password","email":"wiswellgrant@gmail.com"}, {withCredentials: true}).subscribe(
       (resp)=>{
         console.log(resp);
       },
