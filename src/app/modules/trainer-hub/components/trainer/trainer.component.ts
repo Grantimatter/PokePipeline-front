@@ -23,7 +23,7 @@ export class TrainerComponent implements OnInit {
     ' There was some trouble updating your profile. Please try again.';
   public CANNOT_UPDATE_PASSWORD =
     ' Cant upate password. Make sure its non empty, and that you corectly confirm your password.';
-  public userAccount: TrainerModel;
+  public trainerAccount: TrainerModel;
   public isLoading: boolean;
   public templateToRender: TrainerTemplateToRender;
   public faTrainer: any;
@@ -42,10 +42,10 @@ export class TrainerComponent implements OnInit {
   ) {
     this.logoutService = logOutService;
     this.trainerService = injectedTrainerService;
-    this.userAccount = null;
+    this.trainerAccount = null;
     this.isLoading = true;
     this.faTrainer = faUser;
-    this.userAccount = null;
+    this.trainerAccount = null;
 
     this.newPass = '';
     this.confirmNewPass = '';
@@ -58,7 +58,7 @@ export class TrainerComponent implements OnInit {
         let profileOnlyData: TrainerModel = new TrainerModel();
         profileOnlyData.readProfile(profileData);
 
-        this.userAccount = profileOnlyData;
+        this.trainerAccount = profileOnlyData;
         this.renderProfile();
       },
       (err) => {
@@ -75,13 +75,9 @@ export class TrainerComponent implements OnInit {
   }
 
   public updateTrainerProfile(): void {
-    this.trainerService.provideService(this.userAccount).subscribe(
+    this.trainerService.provideService(this.trainerAccount).subscribe(
       (success) => {
-        if (success) {
-          this.loadProfileFromDataBase();
-        } else {
-          this.message = this.CANNOT_UPDATE_FIELDS;
-        }
+        this.loadProfileFromDataBase();
       },
       (err) => {
         this.message = this.CANNOT_UPDATE_FIELDS;
@@ -91,13 +87,10 @@ export class TrainerComponent implements OnInit {
 
   public updatePassword(): void {
     if (this.newPass != '' && this.newPass === this.confirmNewPass) {
-      this.trainerService.updatePassword(this.newPass).subscribe(
+      this.trainerAccount.password = this.newPass;
+      this.trainerService.provideService(this.trainerAccount).subscribe(
         (success) => {
-          if (success) {
-            this.loadProfileFromDataBase();
-          } else {
-            this.message = this.CANNOT_UPDATE_PASSWORD;
-          }
+          this.loadProfileFromDataBase();
         },
         (err) => {
           this.message = this.CANNOT_UPDATE_PASSWORD;

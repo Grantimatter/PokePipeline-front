@@ -50,7 +50,9 @@ export class RegisterComponent implements OnInit {
     let registerRequestTemplate: Observable<Object>;
 
     if (
-      this.injectedRegisterService.validateServiceArgument(this.trainerToRegister)
+      this.injectedRegisterService.validateServiceArgument(
+        this.trainerToRegister
+      )
     ) {
       registerRequestTemplate = this.registerService.provideService(
         this.trainerToRegister
@@ -75,17 +77,7 @@ export class RegisterComponent implements OnInit {
   ): void {
     httpRequestTemplate.subscribe(
       (response) => {
-        //cast to httpreponse for intellisense
-        let resp: HttpResponse<Object> = response as HttpResponse<Object>;
-
-        if (resp.status == 200) {
-          this.resetFormState();
-          alert(
-            'Trainer succesfully registered. Redirect once auth guard in place.'
-          );
-        } else {
-          this.warningMessage = RegisterComponent.INVALID_REGISTRATION_FIELDS;
-        }
+        this.resetFormState();
       },
       (err) => {
         this.warningMessage = RegisterComponent.SERVER_ERROR;

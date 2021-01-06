@@ -5,23 +5,12 @@
 export const environment = {
   production: false,
   apiUrl: 'https://pokeapi.co/api/v2',
-  ec2Url: 'http://ec2-54-215-135-86.us-west-1.compute.amazonaws.com:8085/PokePipeline'
+  ec2Url:
+    'http://ec2-54-215-135-86.us-west-1.compute.amazonaws.com:8085/PokePipeline',
 };
 
-const trainer = environment.ec2Url + '/trainer';
-
-// const host = 'http://localhost:8080';
-// const apiroot = host + '/PokePipeline';
-// const trainer = apiroot + '/trainer';
-//const getUser = user + '/getprofile';
-//const updateUser = user + '/updateprofile';
-//const updatePassword = user + '/updatepassword';
-
-export const API = {
-  getUserEndpoint: trainer,
-  updateUserEndpoint: trainer,
-  updatePasswordEndpoint: trainer,
-};
+export const trainerAPIendpoint = environment.ec2Url + '/trainer';
+export const authAPIendpoint = environment.ec2Url + '/auth';
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -63,7 +63,9 @@ export class LoginComponent {
     );
 
     if (this.validUsrPassCombo) {
-      loginRequestTemplate = this.logInService.provideService(this.trainerModel);
+      loginRequestTemplate = this.logInService.provideService(
+        this.trainerModel
+      );
       this.subscribeToLoginObservable(loginRequestTemplate);
     } else {
       this.trainerMessage = LoginComponent.INVALID_CREDENTIALS_MESSAGE;
@@ -82,15 +84,8 @@ export class LoginComponent {
       // define next, error, and completion callbacks for the observable subscription
       loginRequestTemplate.subscribe(
         (response) => {
-          let httpResponse: HttpResponse<Object> = response as HttpResponse<Object>;
-
-          if (httpResponse.status == 200) {
-            this.clearLogInForm();
-            this.router.navigate(['']);
-          } //we get a 401 because of invalid credentials.
-          else {
-            this.trainerMessage = LoginComponent.INCORRECT_CREDENTIALS_MESSAGE;
-          }
+          this.clearLogInForm();
+          this.router.navigate(['']);
         },
         (error) => {
           // this is called in case of internal server error. A generic message

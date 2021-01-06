@@ -4,17 +4,21 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { TrainerModel } from 'src/app/models/trainer';
+import { trainerAPIendpoint } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RegisterService implements Service<TrainerModel, Observable<Object>> {
+export class RegisterService
+  implements Service<TrainerModel, Observable<Object>> {
   private validationService: BasicValidationService;
   private httpClient: HttpClient;
+  private trainerEndpoint;
   constructor(
     private injectedValidationService: BasicValidationService,
     private injectedHttpService: HttpClient
   ) {
+    this.trainerEndpoint = trainerAPIendpoint;
     this.validationService = injectedValidationService;
     this.httpClient = injectedHttpService;
   }
@@ -41,14 +45,10 @@ export class RegisterService implements Service<TrainerModel, Observable<Object>
     let headers: HttpHeaders = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    return this.httpClient.post(
-      'http://localhost:8080/PokePipeline/register',
-      trainerToRegister,
-      {
-        headers: headers,
-        responseType: 'json',
-        observe: 'response',
-      }
-    );
+    return this.httpClient.post(trainerAPIendpoint, trainerToRegister, {
+      headers: headers,
+      responseType: 'json',
+      observe: 'response',
+    });
   }
 }
