@@ -70,11 +70,8 @@ export class BattleScreenComponent implements OnInit {
         this.router.navigate(['/trainerhub/']);
       }
       if (this.trainer.currentHP == 0) {
-        console.log("Trainer lost");
         this.trainer = null;
-        this.partyService.pokemonChange(this.trainer); // update partyService --CHRIS done
-        
-        this.router.navigate(['/gameover']);
+        this.partyService.resetPokemon(); // update partyService --CHRIS done
         // exp == score
         // display exp in final score screen
       }

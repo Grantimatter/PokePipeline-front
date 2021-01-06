@@ -23,9 +23,9 @@ export class PartySelectionComponent implements OnInit {
     private pokemonService:PokemonService,
     private pokemonDatabaseService:PokemonDatabaseService,
     ) { 
-      this._subscription_user_name = this.partyService.pokemon1.subscribe((value) => {
-        this.pokemon = value;
-      })
+      // this._subscription_user_name = this.partyService.pokemon1.subscribe((value) => {
+      //   this.pokemon = value;
+      // })
     }
 
   ngOnInit(): void {

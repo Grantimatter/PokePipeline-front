@@ -10,6 +10,7 @@ import { Pokemon } from 'src/app/models/pokemon/pokemon';
 })
 export class PartyService {
 
+  reset: Subject<any> = new Subject<any>();
   pokemon1: Subject<Pokemon> = new Subject<Pokemon>();
   pokemonVar: Pokemon;
 
@@ -17,6 +18,13 @@ export class PartyService {
   battleCount:number = 0;
 
   constructor() { }
+
+  resetPokemon() {
+    this.pokemon1 = new Subject<Pokemon>();
+    this.pokemonVar = null;
+    // this.pokemon1.next(null);
+    this.reset.next();
+  }
 
   getPokemon1() {
     return this.pokemonVar;
@@ -43,13 +51,5 @@ export class PartyService {
     this.pokemon1.next(data);
     this.pokemonVar = data;
   }
-
-  /**
-   * Receives a pokemon from a component and holds it as a BehaviorSubject.
-   * @param transferedPokemon This is the pokemon that is being recieved.
-   */
-  // changePokemon(transferedPokemon:any) {
-  //   this.pokemon.next(transferedPokemon);
-  // }
 
 }
