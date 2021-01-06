@@ -11,6 +11,7 @@ import { PartyService } from '../../services/party/party.service';
 export class OptionScreenComponent implements OnInit {
 
   isDisabledChoosePokemon:boolean = true;
+  isDisabledBattleButton:boolean = true;
   private _subscription_user_name:any;
   pokemon:Pokemon;
 
@@ -33,6 +34,7 @@ export class OptionScreenComponent implements OnInit {
   }
 
   setDisabled() {
+    this.isDisabledBattleButton = false;
     this.isDisabledChoosePokemon = true;
   }
 
@@ -41,8 +43,8 @@ export class OptionScreenComponent implements OnInit {
   }
 
   getPokemonFromService() {
-    let pokemon = this.partyService.getPokemon1();
-    if (pokemon == null) this.isDisabledChoosePokemon = false;
+    this.pokemon = this.partyService.getPokemon1();
+    if (this.pokemon == null) this.isDisabledChoosePokemon = false;
     else this.isDisabledChoosePokemon = true;
   }
 

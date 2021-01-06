@@ -70,7 +70,7 @@ export class BattleScreenComponent implements OnInit {
       if (this.trainer.currentHP == 0) {
         // re-enable choosing pokemon --CHRIS done
         this.trainer = null;
-        this.partyService.pokemonChange(this.trainer); // update partyService --CHRIS done
+        this.partyService.resetPokemon(); // update partyService --CHRIS done
         // exp == score
         // display exp in final score screen
       }

@@ -7,10 +7,18 @@
   <div id="battleButton" class="type-1 centerBlock">
     <div>
       <a 
+      *ngIf="!isDisabledBattleButton"
       routerLinkActive="active" 
       (click)="resetChoosePokemon()"
       [routerLink]="[{ outlets: { main: ['battle'] } }]"
       class="btn btn-3 animation">
+        <span class="txt">Start Battle</span>
+        <span class="round"><i class="icon-bolt"></i></span>
+      </a>
+      <a
+      *ngIf="isDisabledBattleButton"
+      class="btn btn-3 nav-link"
+      style="cursor: not-allowed;">
         <span class="txt">Start Battle</span>
         <span class="round"><i class="icon-bolt"></i></span>
       </a>
