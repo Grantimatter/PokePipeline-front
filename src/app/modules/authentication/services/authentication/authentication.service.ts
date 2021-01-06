@@ -34,7 +34,6 @@ export class AuthenticationService {
       .get(`${environment.ec2Url}/auth`, {
         observe: 'response',
         withCredentials: true,
-        responseType: 'text',
       })
       .subscribe(
         (resp) => {

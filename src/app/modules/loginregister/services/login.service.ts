@@ -17,9 +17,6 @@ export class LoginService implements Service<UserModel, Observable<Object>> {
   ) {
     this.httpService = injectedHttpClient;
     this.validationService = validationService;
-
-    this.httpHeaders = new HttpHeaders();
-    this.httpHeaders.append('Content-Type', 'Application/Json');
   }
 
   validateServiceArgument(arg: UserModel): boolean {
@@ -40,9 +37,6 @@ export class LoginService implements Service<UserModel, Observable<Object>> {
       `${environment.ec2Url}/login`,
       loginToken,
       {
-        headers: this.httpHeaders,
-        observe: 'response',
-        responseType: 'json',
         withCredentials: true,
       }
     );

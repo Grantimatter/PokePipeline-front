@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Service } from 'src/app/interfaces/service';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Service } from "src/app/interfaces/service";
 import { Observable, Subject } from 'rxjs';
 import { LoggedOutGuardService } from '../guards/logged.out.guard.service';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,7 @@ export class LogoutService implements Service<void, Observable<null>> {
     this.httpClient
       .put(`${environment.ec2Url}/logout`, null, {
         observe: 'response',
-        withCredentials: true,
+        withCredentials: true
       })
       .subscribe(
         (resp) => {
