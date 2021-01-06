@@ -1,0 +1,74 @@
+.overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    align-content: center;
+  }
+  
+  .login-overlay-map {
+    background-size: contain;
+    background-image: url("../../../../../assets/Images/Backgrounds/pokebg.png");
+    z-index: -3;
+    background-size: auto;
+    animation-name: moving-bg;
+    animation-direction: normal;
+    animation-duration: 20s;
+  }
+  
+  .login-overlay-strip-container {
+    z-index: -2;
+  }
+  
+  .login-overlay-abstract-pattern {
+    z-index: -1;
+  }
+  
+  @keyframes cloud {
+    from {
+      top: 1000;
+    }
+    to {
+      top: -1000;
+    }
+  }
+  
+  .login-container {
+    height: 100vh;
+  }
+  
+  .login-card {
+    background-image: url("../../../../../assets/Images/Backgrounds/yellowstripe.png");
+  }
+
+  div {
+    width: 225px;
+    height: 200px;
+    background-color: #b3a12599;
+    border-style: dashed;
+    border-color: #3b4cca;
+    
+	
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+    margin: auto;
+    text-align: center;
+  }
+
+  h1 {
+    font-weight:bolder;
+    color: #ff0000;
+  }
+
+  h2 {
+    font-weight: bolder;  
+    color: #ffffff;
+  }
+
+  h3 {
+    font-weight: bolder;  
+    color: #3b4cca;
+  }

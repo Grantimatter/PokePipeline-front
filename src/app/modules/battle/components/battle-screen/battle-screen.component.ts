@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Type } from 'src/app/models/enums/type.enum';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
@@ -39,11 +40,12 @@ export class BattleScreenComponent implements OnInit {
     private partyService:PartyService, 
     public battleService:BattleService,
     private utilityService:UtilityService,
+    private router: Router,
     ) { 
        
     this.getTrainerPokemon();
 
-    this.trainerMaxHealth = this.trainer.currentHP;
+    this.trainerMaxHealth = this.trainer.stats.hp;
 
     this.getOpponentPokemon();
   }
@@ -52,18 +54,27 @@ export class BattleScreenComponent implements OnInit {
 
   attack(attackNum : number) {
     this.battleService.performAttacks(this.trainer, this.opponent, attackNum);
-    if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) {    // check if battle ends
+    if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) { // check if battle ends
       if (this.opponent.currentHP == 0) {
-        // user ++exp --JASON
+        
+        this.partyService.addVictory();
         // 50% total hp heal
+        if (this.trainer.currentHP / this.trainerMaxHealth <= 0.5) {
+          this.trainer.currentHP += Math.ceil(this.trainerMaxHealth * .5);
+        }
+
+        else {
+          this.trainer.currentHP = this.trainerMaxHealth;
+        }
+
+        this.router.navigate(['/trainerhub/']);
       }
       if (this.trainer.currentHP == 0) {
-        // re-enable choosing pokemon --CHRIS
-        this.trainer == null; // update partyService --CHRIS
-        // exp == score
-        // display exp in final score screen
+        this.trainer = null;
+        this.partyService.resetPokemon();
+        this.router.navigate(['/gameover']);
       }
-      // go to trainerhub
+      
     }
   }
 

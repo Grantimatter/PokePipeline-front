@@ -2,8 +2,8 @@
   <h1>Select Your Pokémon!</h1>
   <div class="pokemonChoice" *ngIf="pokemon">
     <a routerLinkActive="active" 
-    routerLink="trainerhub"
     (click)="selectStarter()"
+    routerLink="/trainerhub"
     class="btn nav-link">
       <div id="pokemonImage">
         <img id="loadingPikachu" src="{{pokemon.sprites.official_artwork}}">
