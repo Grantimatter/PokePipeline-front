@@ -13,26 +13,19 @@ export class BattleService {
   
   performAttacks(trainer: Pokemon, opponent: Pokemon, attackNum: number) {
     let trainerMove:Move = trainer.moves[attackNum];
-
-    let opponentMove:Move = opponent.moves[this.util.getRandomInt(1,4)];
-
+    let opponentMove:Move = opponent.moves[this.util.getRandomInt(0,3)];
     let isTrainerFirst:boolean = this.setAttackOrder(trainer, opponent);
 
     if (isTrainerFirst) {
       let trainerDamage:number = this.calculateDamage(
         trainer, opponent, trainerMove);
-
-        console.log("Trainer: " + trainerDamage + " damage done");
-
       if (trainerMove.recoil != 0.0) {
         trainer.currentHP += 
           Math.ceil((trainerMove.recoil / 100) * trainerDamage);
-      }
-      
+      }   
       if ((opponent.currentHP - trainerDamage) <= 0) {
         opponent.currentHP = 0;
       }
-
       else {
         opponent.currentHP -= trainerDamage;
       }
@@ -40,8 +33,6 @@ export class BattleService {
       if (opponent.currentHP > 0) {
         let opponentDamage = this.calculateDamage(
           opponent, trainer, opponentMove);
-
-          console.log("Opponent: " + opponentDamage + " damage done");
 
         if (opponentMove.recoil != 0.0) {
           opponent.currentHP += 
@@ -66,8 +57,6 @@ export class BattleService {
       let opponentDamage = this.calculateDamage(
         opponent, trainer, opponentMove);
 
-        console.log("Opponent: " + opponentDamage + " damage done");
-
       if (opponentMove.recoil != 0.0) {
         opponent.currentHP += 
           Math.ceil((opponentMove.recoil / 100) * opponentDamage);
@@ -84,8 +73,6 @@ export class BattleService {
       if (trainer.currentHP > 0) {
         let trainerDamage:number = this.calculateDamage(
           trainer, opponent, trainerMove);
-          
-          console.log("Trainer: " + trainerDamage + " damage done");
 
         if (trainerMove.recoil != 0.0) {
           trainer.currentHP += 

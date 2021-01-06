@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { UserModel } from 'src/app/models/user';
 import { environment } from 'src/environments/environment';
+import { env } from 'process';
 
 @Injectable({
   providedIn: 'root',
@@ -40,13 +41,11 @@ export class RegisterService implements Service<UserModel, Observable<Object>> {
 
   provideService(userToRegister: UserModel): Observable<Object> {
     let headers: HttpHeaders = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
 
     return this.httpClient.post(
       `${environment.ec2Url}/register`,
       userToRegister,
       {
-        headers: headers,
         responseType: 'json',
         observe: 'response',
       }
