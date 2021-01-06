@@ -71,9 +71,8 @@ export class BattleScreenComponent implements OnInit {
       }
       if (this.trainer.currentHP == 0) {
         this.trainer = null;
-        this.partyService.resetPokemon(); // update partyService --CHRIS done
-        // exp == score
-        // display exp in final score screen
+        this.partyService.resetPokemon();
+        this.router.navigate(['/gameover']);
       }
       
     }
