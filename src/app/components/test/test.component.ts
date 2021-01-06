@@ -3,6 +3,7 @@ import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-test',
@@ -22,11 +23,20 @@ export class TestComponent implements OnInit {
 
   constructor(
     private pokeApiHelperService:PokeApiHelperService,
-    private pokemonService:PokemonService
+    private pokemonService:PokemonService,
+    private http:HttpClient
   ) { }
 
   ngOnInit(): void {
     this.selectStarterPokemon();
+    this.http.post("http://localhost:8080/PokePipeline/auth", {"trainerName":"grantimatter","password":"password","email":"wiswellgrant@gmail.com"}, {withCredentials: true}).subscribe(
+      (resp)=>{
+        console.log(resp);
+      },
+      (err)=>{
+        console.log(err);
+      }
+    );
   }
 
   selectRandomPokemon(){
