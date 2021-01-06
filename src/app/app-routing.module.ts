@@ -28,12 +28,7 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [LoggedOutGuardService],
   },
-  {
-    path: 'account',
-    component: UserComponent,
-    canActivate: [AuthenticationGuardService],
-    pathMatch: 'full',
-  },
+
   {
     path: 'register',
     component: RegisterComponent,

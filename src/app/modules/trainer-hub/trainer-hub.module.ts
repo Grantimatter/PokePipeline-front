@@ -8,6 +8,7 @@ import { PartySelectionComponent } from './components/party-selection/party-sele
 import { RouterModule } from '@angular/router';
 import { PartyService } from './services/party/party.service';
 import { UserComponent } from './components/user/user.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UserComponent } from './components/user/user.component';
     PokemonScreenComponent,
     PartySelectionComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, RouterModule],
+  imports: [CommonModule, FontAwesomeModule, RouterModule, FormsModule],
+
   providers: [PartyService],
 })
 export class TrainerHubModule {}

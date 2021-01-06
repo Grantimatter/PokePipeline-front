@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Service } from 'src/app/interfaces/service';
 import { UserModel } from 'src/app/models/user';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { Observable, Subject } from 'rxjs';
-
-/**
- * Holds the Trainer's party.
- */
+import { API } from '../../../../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService
-  implements Service<UserModel, Observable<boolean> {
+export class UserService implements Service<UserModel, Observable<boolean>> {
   private http: HttpClient;
   private validationService: BasicValidationService;
+  private serviceAPI: any = API;
 
   constructor(
     private injectedClient: HttpClient,
@@ -23,29 +20,85 @@ export class UserService
     this.http = injectedClient;
     this.validationService = injectedValidationService;
   }
-  public provideService(arg: UserModel): Subject<boolean>|boolean {
-    let listener: Subject<boolean> | boolean= new Subject<boolean>();
-    let reqTemplate: Observable<HttpResponse<Object>> = null;
+  public provideService(userToUpdate: UserModel): Observable<boolean> {
+    let listener: Subject<boolean> = new Subject<boolean>();
+    let usersProfileUpdate: UserModel = new UserModel();
 
-    if(this.provideService){
-      reqTemplate = this.http.patch("/user/update", arg, {withCredentials:true, responseType:'json',observe:"response"})
+    usersProfileUpdate.readProfile(userToUpdate);
+
+    if (this.validateServiceArgument(usersProfileUpdate)) {
+      this.http
+        .post(this.serviceAPI.updateUserEndpoint, userToUpdate, {
+          observe: 'response',
+          responseType: 'json',
+          withCredentials: true,
+        })
+        .subscribe(
+          (resp) => {
+            if (resp.status == 200) {
+              listener.next(true);
+            } else listener.next(false);
+          },
+          (err) => {
+            listener.next(false);
+          }
+        );
     }
-    return listener;
+    return listener.asObservable();
   }
 
   public validateServiceArgument(arg: UserModel) {
     return (
       this.validationService.isTruthyObject(arg) &&
-      this.validationService.isTruthyString(arg.username) &&
-      this.validationService.isTruthyString(arg.password)
+      this.validationService.isTruthyString(arg.username)
     );
   }
 
   public getUserProfile(): Observable<UserModel> {
-     this.http.get('/user/getprofile', {
-      observe: 'response',
-      responseType: 'json',
-      withCredentials: true,
-    });
+    let userProfile: Subject<UserModel> = new Subject<UserModel>();
+
+    this.http
+      .post(this.serviceAPI.getUserEndpoint, null, {
+        observe: 'response',
+        responseType: 'json',
+        withCredentials: true,
+      })
+      .subscribe(
+        (response: HttpResponse<Object>) => {
+          if (response.status == 200)
+            userProfile.next(response.body as UserModel);
+          else userProfile.error('User is not authorized.');
+        },
+        (err) => {
+          userProfile.error('Server or cors error.');
+        }
+      );
+
+    return userProfile.asObservable();
+  }
+
+  public updatePassword(newPassword: string): Observable<boolean> {
+    let returnObservable: Subject<boolean> = new Subject<boolean>();
+    let passwordToken: UserModel;
+
+    if (newPassword != null) {
+      passwordToken = new UserModel();
+      passwordToken.password = newPassword;
+      this.http
+        .put(this.serviceAPI.updatePasswordEndpoint, passwordToken, {
+          observe: 'response',
+          responseType: 'json',
+          withCredentials: true,
+        })
+        .subscribe(
+          (response) => {
+            if (response.status == 200) returnObservable.next(true);
+            else returnObservable.next(false);
+          },
+          (err) => returnObservable.next(false)
+        );
+    }
+
+    return returnObservable.asObservable();
   }
 }

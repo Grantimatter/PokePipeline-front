@@ -70,7 +70,12 @@
     <div class="col-12 d-flex flex-row justify-content-center">
       <div class="form-group w-50">
         <label for="new-password-input">Password Managment</label>
-        <input type="text" class="form-control" id="new-password-input" />
+        <input
+          type="text"
+          class="form-control"
+          id="new-password-input"
+          [(ngModel)]="this.newPass"
+        />
         <span class="form-text text-muted"
           >Your new password should be secure. Make sure not to use passwords
           you've used at other websites.</span
@@ -80,14 +85,24 @@
     <div class="col-12 d-flex flex-row justify-content-center">
       <div class="form-group w-50">
         <label for="new-password-input">Confirm Password</label>
-        <input type="text" class="form-control" id="confirm-password-input" />
+        <input
+          [(ngModel)]="this.confirmNewPass"
+          type="text"
+          class="form-control"
+          id="confirm-password-input"
+        />
         <span class="form-text text-muted">Retype your password here.</span>
       </div>
     </div>
-    <span>Warning text here</span>
+    <span class="col-12 font-smaller text-error">{{ this.message }}</span>
     <div class="col-12">
       <div>
-        <input type="button" class="btn btn-info" value="Update password" />
+        <input
+          type="button"
+          (click)="this.updatePassword()"
+          class="btn btn-info"
+          value="Update password"
+        />
 
         <input
           type="button"
@@ -118,6 +133,7 @@
                 class="form-control"
                 placeholder="new email address"
                 id="new-email"
+                [(ngModel)]="this.userAccount.email"
               />
             </div>
           </div>
@@ -132,7 +148,10 @@
           >
             <div class="form-group my-0 w-100">
               <label for="about-me"> About me </label>
-              <textarea class="form-control about-me-text"></textarea>
+              <textarea
+                class="form-control about-me-text"
+                [(ngModel)]="this.userAccount.description"
+              ></textarea>
             </div>
           </div>
           <div
@@ -144,6 +163,7 @@
               type="button"
               class="btn btn-info"
               value="Update My Profile"
+              (click)="this.updateUserProfile()"
             />
             <input
               type="button"
