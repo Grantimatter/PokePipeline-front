@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Move } from 'src/app/models/move/move';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
+import { TypeCalculationService } from 'src/app/services/type-calculation/type-calculation.service';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { PokeApiHelperService } from '../../pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from '../../pokemon-utility/services/pokemon/pokemon.service';
@@ -97,7 +98,9 @@ export class BattleService {
   constructor(private pokeHelper:PokeApiHelperService, 
     private pokeService:PokemonService,
     private partyService:PartyService,
-    private util:UtilityService) { 
+    private util:UtilityService,
+    private typeCalculation:TypeCalculationService,
+    ) { 
     
   }
   
@@ -150,6 +153,15 @@ export class BattleService {
     levelDamage *= Math.floor(attack/defense);
 
     levelDamage = Math.floor(levelDamage / 50) + 2;
+
+    if (defender.types[1]) {
+      levelDamage = this.typeCalculation.calculateTypeModifier(
+        levelDamage,
+        move.type,
+        defender.types[0],
+        defender.types[1]
+        );
+    }
 
     if (levelDamage == 0) {
       return 1;
