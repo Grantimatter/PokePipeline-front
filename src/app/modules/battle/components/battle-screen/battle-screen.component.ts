@@ -75,14 +75,7 @@ export class BattleScreenComponent implements OnInit {
         this.trainer = null;
         this.partyService.resetPokemon();
         this.router.navigate([{outlets:{main:['gameover']}}],{relativeTo: this.route.parent})
-        // this.router.navigate([{outlets: {main: ['gameover']}}], {relativeTo: this.route});
-        // this.router.navigate([{outlets: {primary:'trainerhub',main:'gameover'}}])
-        // this.router.navigate([{outlets: {main: ['trainerhub','gameover']}}]);
-        // this.router.navigate(['trainerhub','gameover'], {relativeTo: this.route});
-        // this.router.navigate([{outlets: {main: 'gameover'}}]), {relativeTo: this.route};
-        // this.router.navigate(['gameover', {outlets: 'main'}]); //, {relativeTo: this.route };
       }
-      
       
     }
   }
