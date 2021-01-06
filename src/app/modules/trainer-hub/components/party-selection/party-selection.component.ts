@@ -39,6 +39,7 @@ export class PartySelectionComponent implements OnInit {
   selectStarter() {
     this.partyService.pokemonChange(this.pokemon);
     this.pokemonDatabaseService.addPokemonToParty(this.pokemon);
+    this.partyService.resetBattleCount();
   }
 
   /**

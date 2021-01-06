@@ -22,6 +22,10 @@ export class PartyService {
     return this.pokemonVar;
   }
 
+  resetBattleCount() {
+    this.battleCount = 0;
+  }
+
   getBattleCount() : number {
     return this.battleCount;
   }

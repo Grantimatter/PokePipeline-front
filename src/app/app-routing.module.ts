@@ -12,6 +12,7 @@ import { LoggedOutGuardService } from './modules/authentication/services/guards/
 import { UserComponent } from './modules/user/component/user/user.component';
 import { DefaultpathresolverComponent } from './modules/defaultpathresolver/defaultpathresolver.component';
 import { BattleInterfaceComponent } from './components/battle-interface/battle-interface.component';
+import { GameoverComponent } from './modules/battle/components/gameover/gameover.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
     children: [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
       { path: 'battle', component: BattleScreenComponent, outlet: 'main'},
-      { path: 'tempbattle', component: BattleInterfaceComponent, outlet: 'main'}
+      { path: 'gameover', component: GameoverComponent, outlet: 'main'}
     ]
     ,
   },
@@ -52,6 +53,10 @@ const routes: Routes = [
     component: DefaultpathresolverComponent,
     pathMatch: 'full',
   },
+  {
+    path: 'gameover',
+    component: GameoverComponent
+  }
 ];
 
 @NgModule({

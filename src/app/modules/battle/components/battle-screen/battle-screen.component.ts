@@ -45,7 +45,7 @@ export class BattleScreenComponent implements OnInit {
        
     this.getTrainerPokemon();
 
-    this.trainerMaxHealth = this.trainer.currentHP;
+    this.trainerMaxHealth = this.trainer.stats.hp;
 
     this.getOpponentPokemon();
   }
@@ -56,7 +56,7 @@ export class BattleScreenComponent implements OnInit {
     this.battleService.performAttacks(this.trainer, this.opponent, attackNum);
     if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) { // check if battle ends
       if (this.opponent.currentHP == 0) {
-        // user ++exp --JASON
+        
         this.partyService.addVictory();
         // 50% total hp heal
         if (this.trainer.currentHP / this.trainerMaxHealth <= 0.5) {
@@ -66,15 +66,19 @@ export class BattleScreenComponent implements OnInit {
         else {
           this.trainer.currentHP = this.trainerMaxHealth;
         }
+
+        this.router.navigate(['/trainerhub/']);
       }
       if (this.trainer.currentHP == 0) {
-        // re-enable choosing pokemon --CHRIS done
+        console.log("Trainer lost");
         this.trainer = null;
         this.partyService.pokemonChange(this.trainer); // update partyService --CHRIS done
+        
+        this.router.navigate(['/gameover']);
         // exp == score
         // display exp in final score screen
       }
-      this.router.navigate(['/trainerhub']);
+      
     }
   }
 
