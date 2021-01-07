@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Type } from 'src/app/models/enums/type.enum';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
+import { PokeDatabaseService } from 'src/app/modules/pokemon-utility/services/poke-database/poke-database.service';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
 import { TrainerHubComponent } from 'src/app/modules/trainer-hub/components/trainer-hub/trainer-hub.component';
@@ -43,6 +44,7 @@ export class BattleScreenComponent implements OnInit {
     private partyService:PartyService, 
     public battleService:BattleService,
     private utilityService:UtilityService,
+    private pokeDatabaseService:PokeDatabaseService,
     private router: Router,
     private route: ActivatedRoute,
     ) { 
@@ -83,9 +85,15 @@ export class BattleScreenComponent implements OnInit {
         }
         
         this.trainer.setLevel(this.trainer.getLevel() + 1);
+
+        this.pokeDatabaseService.updatePokemon(this.trainer, ()=>console.log("Pokemon updated: ", this.trainer));
+
         this.router.navigate(['/trainerhub/']);
       }
       if (this.trainer.currentHP == 0) {
+
+        this.pokeDatabaseService.killPokemon(this.trainer, ()=>console.debug("Pokemon successfully died"));
+
         this.trainer = null;
         this.partyService.resetPokemon();
         this.router.navigate([{outlets:{main:['gameover']}}],{relativeTo: this.route.parent})

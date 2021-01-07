@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Move } from 'src/app/models/move/move';
+import { Pokemon } from 'src/app/models/pokemon/pokemon';
+import { PartyService } from 'src/app/modules/trainer-hub/services/party/party.service';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { environment } from 'src/environments/environment';
 import { PokemonUtilityModule } from '../../pokemon-utility.module';
@@ -13,7 +16,8 @@ export class PokeApiHelperService {
   constructor(
     private pokemonService:PokemonService,
     private getPokemonService:GetPokemonAPIService,
-    private utilityService:UtilityService
+    private utilityService:UtilityService,
+    private partyService:PartyService
     ) { }
     
   /**
@@ -66,6 +70,42 @@ export class PokeApiHelperService {
     if (this.pokemonService.isValidPokemonId(id)) {
       this.getPokemonWithAllMovesAPI(id, onSuccess, ()=>console.warn("Failed to retrieve random valid pokemon with detailed JSON"));
     }
+  }
+
+  /**
+   * Used to get a trainer's pokemon from the database and set it as the current selected pokemon
+   * @param pokemonJSON Pokemon JSON received from database
+   */
+  getTrainerPokemonWithSpecificMoves(pokemonJSON: JSON): void {
+    this.getPokemonWithAllMovesAPI(pokemonJSON["pokemonAPI"] as number, (resp)=>{
+
+      let pokemon:Pokemon = new Pokemon(resp);
+      pokemon.moves = this.getSpecificMoves(resp["moves"],[
+      pokemonJSON["move1API"],
+      pokemonJSON["move2API"],
+      pokemonJSON["move3API"],
+      pokemonJSON["move4API"]
+      ]);
+
+      pokemon.currentHP = pokemonJSON["currentHP"];
+      pokemon.setLevel(pokemonJSON["experience"]);
+
+      this.partyService.pokemonChange(pokemon);
+    }, ()=>console.log("Failed to get trainer's pokemon"));
+  }
+
+  /**
+   * Gets specific moves from a list of detailed moves
+   * @param movesJSON The detailed moves JSON from the PokeAPI
+   * @param moveIDs
+   */
+  private getSpecificMoves(movesJSON: JSON, moveIDs: number[]): Move[] {
+    let moves: Move[] = [];
+    moves.push(movesJSON[moveIDs[0]]);
+    moves.push(movesJSON[moveIDs[1]]);
+    moves.push(movesJSON[moveIDs[2]]);
+    moves.push(movesJSON[moveIDs[3]]);
+    return moves;
   }
 
   /**

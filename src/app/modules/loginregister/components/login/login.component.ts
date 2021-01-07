@@ -6,6 +6,11 @@ import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { AuthenticationGuardService } from 'src/app/modules/authentication/services/guards/authentication.guard.service';
 import { Router } from '@angular/router';
+import { PartyService } from 'src/app/modules/trainer-hub/services/party/party.service';
+import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
+import { Pokemon } from 'src/app/models/pokemon/pokemon';
+import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
+import { GetPokemonAPIService } from 'src/app/modules/pokemon-utility/services/get-pokemon-api/get-pokemon-api.service';
 
 /** This component is responsible for providing login View functionality. */
 @Component({
@@ -34,6 +39,7 @@ export class LoginComponent {
     private injectedLoginService: LoginService,
     injectedAuthenticationGuard: AuthenticationGuardService,
     private injectedGlobalValidationService: BasicValidationService,
+    private apiHelperService: PokeApiHelperService,
     private router: Router
   ) {
     injectedAuthenticationGuard.canActivate(null, null).subscribe((resp) => {
@@ -77,7 +83,7 @@ export class LoginComponent {
 
   private subscribeToLoginObservable(
     loginRequestTemplate: Observable<Object>
-  ): void {
+): void {
     if (this.validationService.isTruthyObject(loginRequestTemplate)) {
       // define next, error, and completion callbacks for the observable subscription
       loginRequestTemplate.subscribe(
@@ -85,6 +91,9 @@ export class LoginComponent {
           let httpResponse: HttpResponse<Object> = response as HttpResponse<Object>;
 
           if (httpResponse.status == 200) {
+
+            this.apiHelperService.getTrainerPokemonWithSpecificMoves(response["pokemonList"][0]);
+            
             this.clearLogInForm();
             this.router.navigate(['']);
           } //we get a 401 because of invalid credentials.
