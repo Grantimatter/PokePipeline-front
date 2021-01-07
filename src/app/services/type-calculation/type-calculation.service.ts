@@ -60,10 +60,10 @@ export class TypeCalculationService {
    */
   addSTAB(power:number, moveType:Type, type1:Type, type2:Type):number {
     if (moveType == type1) {
-      return power *= .2;
+      return power = power * .2 + power;
     } else if (type2) {
       if (moveType == type2) {
-        return power *= .2;
+        return power = power * .2 + power;
       }
     }
   }
