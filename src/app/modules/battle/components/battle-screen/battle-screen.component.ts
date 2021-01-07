@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Type } from 'src/app/models/enums/type.enum';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
@@ -41,6 +41,7 @@ export class BattleScreenComponent implements OnInit {
     public battleService:BattleService,
     private utilityService:UtilityService,
     private router: Router,
+    private route: ActivatedRoute,
     ) { 
        
     this.getTrainerPokemon();
@@ -64,15 +65,16 @@ export class BattleScreenComponent implements OnInit {
         }
 
         else {
-          this.trainer.currentHP = this.trainerMaxHealth;
+          this.trainer.currentHP = this.trainerMaxHealth;          
         }
-
+        
+        this.trainer.setLevel(this.trainer.getLevel() + 1);
         this.router.navigate(['/trainerhub/']);
       }
       if (this.trainer.currentHP == 0) {
         this.trainer = null;
         this.partyService.resetPokemon();
-        this.router.navigate(['/gameover']);
+        this.router.navigate([{outlets:{main:['gameover']}}],{relativeTo: this.route.parent})
       }
       
     }
@@ -94,9 +96,21 @@ export class BattleScreenComponent implements OnInit {
   private getOpponentPokemon() {
     this.pokeHelper.getRandomValidPokemon(
       (x:JSON) => {
+        let pokemon = JSON.parse(JSON.stringify(x));
+
+        let isLegend:boolean = (pokemon.species.is_legendary == "true" 
+          || pokemon.species.is_mythical == "true");
+        
         this.opponent = this.pokeService.createNewPokemonWithRandomMoves(x);
         this.isOpponent = true;
         this.opponentMaxHealth = this.opponent.currentHP;
+
+        if (this.trainer.getLevel() > 1) {
+          this.opponent.setLevel(
+            this.battleService.setOpponentLevel(
+              this.trainer.getLevel(), isLegend));
+              
+        }
 
         this.showMoveButtons = true;
       }

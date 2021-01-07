@@ -1,27 +1,27 @@
 .overlay {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
+    position: relative;
+    width: 100%;
+    height: 100%;
     align-content: center;
   }
   
   .login-overlay-map {
     background-size: contain;
-    background-image: url("../../../../../assets/Images/Backgrounds/pokebg.png");
-    z-index: -3;
+    background: url("/src/assets/Images/Backgrounds/pokebg.png");
+    /* z-index: -3; */
     background-size: auto;
     animation-name: moving-bg;
     animation-direction: normal;
     animation-duration: 20s;
   }
   
-  .login-overlay-strip-container {
+  /* .login-overlay-strip-container {
     z-index: -2;
   }
   
   .login-overlay-abstract-pattern {
     z-index: -1;
-  }
+  } */
   
   @keyframes cloud {
     from {
@@ -35,10 +35,10 @@
   .login-container {
     height: 100vh;
   }
-  
+/*   
   .login-card {
     background-image: url("../../../../../assets/Images/Backgrounds/yellowstripe.png");
-  }
+  } */
 
   div {
     width: 225px;

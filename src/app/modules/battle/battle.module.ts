@@ -13,6 +13,7 @@ import { GameoverComponent } from './components/gameover/gameover.component';
     RouterModule,
     BrowserModule
   ],
+  exports: [GameoverComponent, BattleScreenComponent],
   providers:[PartyService]
 })
 export class BattleModule { }

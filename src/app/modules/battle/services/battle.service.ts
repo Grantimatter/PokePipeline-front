@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Move } from 'src/app/models/move/move';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
+import { TypeCalculationService } from 'src/app/services/type-calculation/type-calculation.service';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { PokeApiHelperService } from '../../pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from '../../pokemon-utility/services/pokemon/pokemon.service';
+import { TrainerHubComponent } from '../../trainer-hub/components/trainer-hub/trainer-hub.component';
 import { PartyService } from '../../trainer-hub/services/party/party.service';
 
 @Injectable({
@@ -97,8 +99,52 @@ export class BattleService {
   constructor(private pokeHelper:PokeApiHelperService, 
     private pokeService:PokemonService,
     private partyService:PartyService,
-    private util:UtilityService) { 
+    private util:UtilityService,
+    private typeCalculation:TypeCalculationService,
+    ) { 
     
+  }
+
+  setOpponentLevel(trainerLevel:number, isLegendary:boolean) : number {
+    if (trainerLevel == 2) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(1,2);
+      }
+
+      else {
+        return 1;
+      }
+    }
+
+    if (trainerLevel > 2 && trainerLevel <= 5) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(trainerLevel - 1, trainerLevel + 1);
+      }
+
+      else {
+        return this.util.getRandomInt(trainerLevel - 1, trainerLevel);
+      }
+    }
+
+    if (trainerLevel > 5 && trainerLevel <= 10) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(trainerLevel - 2, trainerLevel + 2);
+      }
+
+      else {
+        return this.util.getRandomInt(trainerLevel - 2, trainerLevel);
+      }
+    }
+
+    if (trainerLevel > 10) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(trainerLevel - 2, trainerLevel + 5);
+      }
+
+      else {
+        return this.util.getRandomInt(trainerLevel - 4, trainerLevel);
+      }
+    }
   }
   
   setAttackOrder(trainer:Pokemon, opponent:Pokemon): boolean {
@@ -151,20 +197,42 @@ export class BattleService {
 
     levelDamage = Math.floor(levelDamage / 50) + 2;
 
-    if (levelDamage == 0) {
-      return 1;
-    }
-
-    else {
-      if (criticalHit < 16) {
+    if (attacker.types.length == 1) {
+      if (move.type == attacker.types[0]) {
         levelDamage = Math.ceil(levelDamage * 1.5);
       }
-
-      if (move.min_hits >= 2) {
-        levelDamage *= move.min_hits;
-      }
-
-      return levelDamage;
     }
+
+    if (attacker.types.length == 2) {
+      if (move.type == attacker.types[0] || move.type == attacker.types[1]) {
+        levelDamage = Math.ceil(levelDamage * 1.5);
+      }
+    }
+
+    // levelDamage = Math.ceil(this.typeCalculation.addSTAB(
+    //   levelDamage, 
+    //   move.type,
+    //   attacker.types[0], 
+    //   attacker.types[1] ? attacker.types[1] : null
+    // ));
+
+    levelDamage = Math.ceil(this.typeCalculation.calculateTypeModifier(
+      levelDamage,
+      move.type,
+      defender.types[0],
+      defender.types[1] ? defender.types[1] : null
+    ));
+
+    console.log(levelDamage);
+
+    if (criticalHit < 16) {
+      levelDamage = Math.ceil(levelDamage * 1.5);
+    }
+
+    if (move.min_hits >= 2) {
+      levelDamage *= move.min_hits;
+    }
+
+    return levelDamage;
   }
 }
