@@ -4,7 +4,10 @@ import { Service } from 'src/app/interfaces/service';
 import { TrainerModel } from 'src/app/models/trainer';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { Observable, Subject } from 'rxjs';
-import { trainerAPIendpoint } from 'src/environments/environment';
+import {
+  authAPIendpoint,
+  trainerAPIendpoint,
+} from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,6 +15,7 @@ export class TrainerService
   implements Service<TrainerModel, Observable<boolean>> {
   private http: HttpClient;
   private validationService: BasicValidationService;
+  private authEndpoint: any = authAPIendpoint;
   private trainerEndpoint: any = trainerAPIendpoint;
 
   constructor(
@@ -26,7 +30,7 @@ export class TrainerService
 
     if (this.validateServiceArgument(trainerToUpdate)) {
       this.http
-        .post(this.trainerEndpoint, trainerToUpdate, {
+        .put(this.trainerEndpoint, trainerToUpdate, {
           observe: 'response',
           responseType: 'json',
           withCredentials: true,
@@ -53,7 +57,7 @@ export class TrainerService
     let trainerProfile: Subject<TrainerModel> = new Subject<TrainerModel>();
 
     this.http
-      .get(this.trainerEndpoint, {
+      .get(this.authEndpoint, {
         observe: 'response',
         responseType: 'json',
         withCredentials: true,

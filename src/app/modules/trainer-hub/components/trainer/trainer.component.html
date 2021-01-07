@@ -1,6 +1,16 @@
 <div
-  class="jumbotron vertical-center text-center shadow fill h-100 trainer-container container-fluid"
+  class="jumbotron vertical-center text-center shadow fill h-100 user-container container-fluid"
 >
+  <section
+    class="h-100 loading-screen row"
+    *ngIf="this.templateToRender == this.RenderTemplate.LoadingView"
+  >
+    <h3 class="col-12">loading...</h3>
+
+    <div class="col-12">
+      <fa-icon class="fa-3x" [spin]="true" [icon]="faSpinner"></fa-icon>
+    </div>
+  </section>
   <!--USER PROFILE-->
   <section
     class="h-100"
@@ -27,7 +37,7 @@
 
       <div class="align-self-end col-md-4 d-flex flex-column profile-column">
         <h4 class="font-bold">Username</h4>
-        <p>{{ this.trainerAccount.tranerName }}</p>
+        <p>{{ this.trainerAccount.trainerName }}</p>
         <h4 class="font-bold">E-mail</h4>
         <p>{{ this.trainerAccount.email }}</p>
       </div>
@@ -125,8 +135,8 @@
           <div class="col-12">
             <h3>Update Profile</h3>
           </div>
-          <div class="col-6">
-            <div class="form-group">
+          <div class="col-12 d-flex flex-row justify-content-center">
+            <div class="form-group w-50">
               <label for="new-email">New Email</label>
               <input
                 type="text"
@@ -135,35 +145,32 @@
                 id="new-email"
                 [(ngModel)]="this.trainerAccount.email"
               />
+              <span class="text-muted"> Update your email here. </span>
             </div>
           </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label for="profile-picture">Upload profile picture</label>
-              <input type="file" class="form-control" />
-            </div>
-          </div>
+
           <div
-            class="col-6 d-flex flex-row align-items-end justify-content-center"
+            class="col-12 d-flex flex-row align-items-end justify-content-center"
           >
-            <div class="form-group my-0 w-100">
+            <div class="form-group my-0 w-50">
               <label for="about-me"> About me </label>
               <textarea
                 class="form-control about-me-text"
                 [(ngModel)]="this.trainerAccount.description"
               ></textarea>
+              <span class="text-muted">
+                Tell the world a little about yourself.
+              </span>
             </div>
           </div>
           <div
-            class="col-6 d-flex flex-row align-items-end justify-content-around my-0"
+            class="col-12 d-flex flex-row align-items-end justify-content-center my-0"
           >
-            <fa-icon [icon]="faSpinner"></fa-icon>
-
             <input
               type="button"
-              class="btn btn-info"
+              class="btn btn-info mx-1"
               value="Update My Profile"
-              (click)="this.updateUserProfile()"
+              (click)="this.updateTrainerProfile()"
             />
             <input
               type="button"

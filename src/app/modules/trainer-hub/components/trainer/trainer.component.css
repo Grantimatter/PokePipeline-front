@@ -17,5 +17,14 @@
 }
 
 .about-me-text {
-  height: 150px;
+  height: 100px;
+}
+
+.trainer-screen {
+  background: url("/src/assets/Images/Icons/pikachu.gif");
+}
+
+.account-spinner {
+  width: 200px;
+  height: 200px;
 }

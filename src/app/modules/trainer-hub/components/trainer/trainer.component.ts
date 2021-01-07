@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerModel } from 'src/app/models/trainer';
-import { faUser, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { TrainerService } from '../../services/party/trainer.service';
 import { LogoutService } from 'src/app/modules/authentication/services/logout/logout.service';
 
@@ -8,6 +8,7 @@ enum TrainerTemplateToRender {
   ProfileView,
   UpdateProfile,
   ChangePassword,
+  LoadingView,
 }
 
 @Component({
@@ -26,7 +27,7 @@ export class TrainerComponent implements OnInit {
   public trainerAccount: TrainerModel;
   public isLoading: boolean;
   public templateToRender: TrainerTemplateToRender;
-  public faTrainer: any;
+  public faSpinner: any;
 
   public newPass: string;
   public confirmNewPass: string;
@@ -42,11 +43,9 @@ export class TrainerComponent implements OnInit {
   ) {
     this.logoutService = logOutService;
     this.trainerService = injectedTrainerService;
-    this.trainerAccount = null;
     this.isLoading = true;
-    this.faTrainer = faUser;
-    this.trainerAccount = null;
-
+    this.faSpinner = faSpinner;
+    this.trainerAccount = new TrainerModel();
     this.newPass = '';
     this.confirmNewPass = '';
   }
@@ -54,12 +53,8 @@ export class TrainerComponent implements OnInit {
   private loadProfileFromDataBase(): void {
     this.trainerService.getTrainerProfile().subscribe(
       (profileData: TrainerModel) => {
-        //what's returned from the database comes with a lot of data not needed for profile viewing, so I strip it here.
-        let profileOnlyData: TrainerModel = new TrainerModel();
-        profileOnlyData.readProfile(profileData);
-
-        this.trainerAccount = profileOnlyData;
-        this.renderProfile();
+        this.trainerAccount = profileData;
+        this.templateToRender = this.RenderTemplate.ProfileView;
       },
       (err) => {
         //log the user out in case of server error.
@@ -71,7 +66,7 @@ export class TrainerComponent implements OnInit {
   ngOnInit(): void {
     //attempt to get user profile
     this.loadProfileFromDataBase();
-    this.templateToRender = this.RenderTemplate.ProfileView;
+    this.templateToRender = this.RenderTemplate.LoadingView;
   }
 
   public updateTrainerProfile(): void {
@@ -101,16 +96,24 @@ export class TrainerComponent implements OnInit {
     }
   }
 
+  public triggerRerender(): any {
+    let newProfileObject = Object.assign(this.trainerAccount, {});
+    return newProfileObject;
+  }
   public renderUpdatePassword(): void {
     this.templateToRender = this.RenderTemplate.ChangePassword;
   }
 
   public renderProfile(): void {
-    this.message = '';
-    this.templateToRender = this.RenderTemplate.ProfileView;
+    this.templateToRender = this.RenderTemplate.LoadingView;
+    this.loadProfileFromDataBase();
   }
 
   public renderUpdateAccount(): void {
     this.templateToRender = this.RenderTemplate.UpdateProfile;
+  }
+
+  private renderLoadingView() {
+    this.templateToRender = this.RenderTemplate.LoadingView;
   }
 }
