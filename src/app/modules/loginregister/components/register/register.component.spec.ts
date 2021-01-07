@@ -24,8 +24,8 @@ describe('RegisterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be truthy registerUser model', () =>
-    expect(component.registerUser).toBeTruthy());
+  it('should be truthy registerTrainer model', () =>
+    expect(component.registerTrainer).toBeTruthy());
   it('should be falsy warning message', () =>
     expect(component.warningMessage).toBeFalsy());
 });

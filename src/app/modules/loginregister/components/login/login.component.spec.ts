@@ -25,17 +25,17 @@ describe('LoginComponent', () => {
   });
 
   it('should be falsy', () => {
-    expect(component.userModel.description).toBeFalsy();
+    expect(component.trainerModel.description).toBeFalsy();
   });
 
   it('should be falsy', () => {
-    expect(component.userModel.password).toBeFalsy();
+    expect(component.trainerModel.password).toBeFalsy();
   });
 
   it('should be falsy', () => {
-    expect(component.userModel.username).toBeFalsy();
+    expect(component.trainerModel.trainerName).toBeFalsy();
   });
   it('should be falsy', () => {
-    expect(component.userModel.email).toBeFalsy();
+    expect(component.trainerModel.email).toBeFalsy();
   });
 });

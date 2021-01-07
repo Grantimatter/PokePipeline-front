@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainerModel } from 'src/app/models/user';
+import { TrainerModel } from 'src/app/models/trainer';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { TrainerService } from '../../services/trainer.service';
 import { LogoutService } from 'src/app/modules/authentication/services/logout/logout.service';

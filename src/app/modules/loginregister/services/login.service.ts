@@ -3,13 +3,14 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Service } from '../../../interfaces/service';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
-import { UserModel } from 'src/app/models/user';
-import { environment } from 'src/environments/environment';
+import { TrainerModel } from 'src/app/models/trainer';
+import { authAPIendpoint } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
-export class LoginService implements Service<UserModel, Observable<Object>> {
+export class LoginService implements Service<TrainerModel, Observable<Object>> {
   private httpService: HttpClient;
   private httpHeaders: HttpHeaders;
+  private authEndpoint: string = authAPIendpoint;
 
   constructor(
     private injectedHttpClient: HttpClient,
@@ -17,28 +18,30 @@ export class LoginService implements Service<UserModel, Observable<Object>> {
   ) {
     this.httpService = injectedHttpClient;
     this.validationService = validationService;
+
+    this.httpHeaders = new HttpHeaders();
+    this.httpHeaders.append('Content-Type', 'Application/Json');
   }
 
-  validateServiceArgument(arg: UserModel): boolean {
+  validateServiceArgument(arg: TrainerModel): boolean {
     let validArgObject: boolean = this.validationService.isTruthyObject(arg);
-    let validUsername: boolean = false;
+    let validTrainername: boolean = false;
     let validPassword: boolean = false;
 
     if (validArgObject) {
-      validUsername = this.validationService.isTruthyString(arg.username);
+      validTrainername = this.validationService.isTruthyString(arg.trainerName);
       validPassword = this.validationService.isTruthyString(arg.password);
     }
 
-    return validArgObject && validUsername && validPassword;
+    return validArgObject && validTrainername && validPassword;
   }
 
-  provideService(loginToken: UserModel): Observable<Object> {
-    return this.httpService.post(
-      `${environment.ec2Url}/login`,
-      loginToken,
-      {
-        withCredentials: true,
-      }
-    );
+  provideService(loginToken: TrainerModel): Observable<Object> {
+    return this.httpService.post(authAPIendpoint, loginToken, {
+      headers: this.httpHeaders,
+      observe: 'response',
+      responseType: 'json',
+      withCredentials: true,
+    });
   }
 }
