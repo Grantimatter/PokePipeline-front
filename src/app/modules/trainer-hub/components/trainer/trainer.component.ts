@@ -70,7 +70,11 @@ export class TrainerComponent implements OnInit {
   }
 
   public updateTrainerProfile(): void {
-    this.trainerService.provideService(this.trainerAccount).subscribe(
+    let updateJson: any = {
+      email: this.trainerAccount.email,
+      description: this.trainerAccount.description,
+    };
+    this.trainerService.updateProfile(updateJson).subscribe(
       (success) => {
         this.loadProfileFromDataBase();
       },
@@ -81,10 +85,14 @@ export class TrainerComponent implements OnInit {
   }
 
   public updatePassword(): void {
+    let passwordObj: any = null;
     if (this.newPass != '' && this.newPass === this.confirmNewPass) {
+      passwordObj = { password: this.newPass };
       this.trainerAccount.password = this.newPass;
-      this.trainerService.provideService(this.trainerAccount).subscribe(
+      this.trainerService.updateProfile(passwordObj).subscribe(
         (success) => {
+          this.newPass = '';
+          this.confirmNewPass = '';
           this.loadProfileFromDataBase();
         },
         (err) => {
