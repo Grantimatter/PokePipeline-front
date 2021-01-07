@@ -20,10 +20,9 @@ const routes: Routes = [
     component: TrainerHubComponent,
     children: [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
-      { path: 'battle', component: BattleScreenComponent, outlet: 'main'},
-      { path: 'gameover', component: GameoverComponent, outlet: 'main'}
-    ]
-    ,
+      { path: 'battle', component: BattleScreenComponent, outlet: 'main' },
+      { path: 'gameover', component: GameoverComponent, outlet: 'main' },
+    ],
   },
 
   {
@@ -31,12 +30,6 @@ const routes: Routes = [
     component: LoginComponent,
     pathMatch: 'full',
     canActivate: [LoggedOutGuardService],
-  },
-  {
-    path: 'account',
-    component: UserComponent,
-    canActivate: [AuthenticationGuardService],
-    pathMatch: 'full',
   },
   {
     path: 'register',
@@ -55,8 +48,8 @@ const routes: Routes = [
   },
   {
     path: 'gameover',
-    component: GameoverComponent
-  }
+    component: GameoverComponent,
+  },
 ];
 
 @NgModule({
