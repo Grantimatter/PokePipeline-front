@@ -68,7 +68,15 @@ export class PokeApiHelperService {
   getRandomValidPokemon(onSuccess: (pokemon:JSON) => void): void {
     let id = this.utilityService.getRandomInt(1, environment.pokemonRange);
     if (this.pokemonService.isValidPokemonId(id)) {
-      this.getPokemonWithAllMovesAPI(id, onSuccess, ()=>console.warn("Failed to retrieve random valid pokemon with detailed JSON"));
+      this.getPokemonService.getPokemonWithAllMovesAPI(id).subscribe(
+        (resp) => {
+          if (this.pokemonService.isValidPokemon(resp)) {
+              onSuccess(resp);
+          } else {
+            this.getRandomValidPokemon(onSuccess);
+          }
+        }
+      );
     }
   }
 
