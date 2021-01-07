@@ -14,6 +14,7 @@
   padding-bottom: 10px;
 }
 
+
 .name, .move { padding-left: 3vh; }
 #trainerSprite { left: 7vh; top: 5vh; }
 #opponentSprite { right: 7vh; top: 1vh;}
@@ -107,4 +108,16 @@ table { table-layout: fixed; }
   content: "";
   display: table;
   clear: both;
+}
+
+#enemyInfo {
+  display:none;
+  background:#f7f8d6;
+  border-collapse:separate;
+  top: 10%;
+  transform: translate(0,-50%); 
+  position: absolute; 
+  border: 5px solid black;
+  border-radius: 10px;
+  padding: 0 8px;
 }

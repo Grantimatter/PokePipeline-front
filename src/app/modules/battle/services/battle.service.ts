@@ -13,7 +13,7 @@ import { PartyService } from '../../trainer-hub/services/party/party.service';
 })
 export class BattleService {
   
-  performAttacks(trainer: Pokemon, opponent: Pokemon, attackNum: number) {
+  performAttacks(trainer: Pokemon, opponent: Pokemon, attackNum: number) : String {
     let trainerMove:Move = trainer.moves[attackNum];
     let opponentMove:Move = opponent.moves[this.util.getRandomInt(0,3)];
     let isTrainerFirst:boolean = this.setAttackOrder(trainer, opponent);
@@ -48,10 +48,12 @@ export class BattleService {
         else {
           trainer.currentHP -= opponentDamage;
         }
+
+        return opponentMove.name.toUpperCase();
       }
 
       else {
-        return;
+        return null;
       }
     }
 
@@ -88,10 +90,12 @@ export class BattleService {
         else {
           opponent.currentHP -= trainerDamage;
         }
+
+        return opponentMove.name.toUpperCase();
       }
 
       else {
-        return;
+        return null;
       }
     }
   }
