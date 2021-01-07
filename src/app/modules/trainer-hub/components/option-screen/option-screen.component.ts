@@ -9,44 +9,26 @@ import { PartyService } from '../../services/party/party.service';
   styleUrls: ['./option-screen.component.css'],
 })
 export class OptionScreenComponent implements OnInit {
-  public isDisabled: boolean = true;
-  isDisabledChoosePokemon: boolean = true;
-  isDisabledBattleButton: boolean = true;
-  private _subscription_user_name: any;
-  pokemon: Pokemon;
 
-  trainer: TrainerModel = {
-    trainerName: 'Trainer',
-    password: 'pass',
-    email: 'trainer@gmail.com',
-    description: 'Pokemon Master (in training)',
-    profilePicture: null,
-  };
+  pokemon: Pokemon;
+  isHidden:boolean = false;
 
   constructor(private partyService: PartyService) {
-    this._subscription_user_name = this.partyService.pokemon1.subscribe(
-      (value) => {
-        this.pokemon = value;
-      }
-    );
   }
 
   ngOnInit(): void {
     this.getPokemonFromService();
   }
 
-  setDisabled() {
-    this.isDisabledBattleButton = false;
-    this.isDisabledChoosePokemon = true;
+  unHidePartyButton() {
+    this.isHidden = false;
   }
 
-  resetChoosePokemon() {
-    this.isDisabledChoosePokemon = false;
+  hidePartyButton() {
+    this.isHidden = true;
   }
 
   getPokemonFromService() {
     this.pokemon = this.partyService.getPokemon1();
-    if (this.pokemon == null) this.isDisabledChoosePokemon = false;
-    else this.isDisabledChoosePokemon = true;
   }
 }
