@@ -21,11 +21,14 @@ export class BattleScreenComponent implements OnInit {
   public showMoveButtons:boolean = false;
   
   private _subscription_user_name: any;
+  public opponentRow:HTMLElement;
+  public trainerRow:HTMLElement;
   public trainer:Pokemon;
   public opponent:Pokemon;
   public trainerMaxHealth:number;
   public opponentMaxHealth:number;
-  
+  public attackUsed:String;
+
   isTrainer:boolean = false;
   isOpponent:boolean = false;
   power:number;
@@ -51,12 +54,23 @@ export class BattleScreenComponent implements OnInit {
     this.trainerMaxHealth = this.trainer.stats.hp;
 
     this.getOpponentPokemon();
+
+    this.attackUsed = '';
   }
 
   // EXTRA: disable battle button if no pokemon selected
-
+  enemyInfoHide() {
+    document.getElementById("enemyInfo").style.display = "none";
+  }
+  
   attack(attackNum : number) {
-    this.battleService.performAttacks(this.trainer, this.opponent, attackNum);
+    document.getElementById("enemyInfo").style.display = "inline-block";
+
+    setTimeout(this.enemyInfoHide, 3000);
+    
+    this.attackUsed = this.battleService.performAttacks(this.trainer, this.opponent, attackNum);    
+    
+    console.log(this.attackUsed);
     if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) { // check if battle ends
       if (this.opponent.currentHP == 0) {
         
