@@ -4,6 +4,8 @@ import { BasicValidationService } from 'src/app/services/basicvalidation/basic-v
 import { Observable } from 'rxjs';
 import { TrainerModel } from 'src/app/models/trainer';
 import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 /** This components sends a registration request to the backend */
 @Component({
@@ -21,7 +23,8 @@ export class RegisterComponent implements OnInit {
 
   private registerService: RegisterService;
   private validationService: BasicValidationService;
-
+  private loginService: LoginService;
+  private router: Router;
   public validRegistratonFields: boolean;
   public warningMessage: string;
 
@@ -32,13 +35,15 @@ export class RegisterComponent implements OnInit {
   public trainerToRegister: TrainerModel;
   constructor(
     private injectedRegisterService: RegisterService,
-    private injectedValidationService: BasicValidationService
+    private injectedValidationService: BasicValidationService,
+    private injectedRouter: Router
   ) {
     this.registerService = injectedRegisterService;
     this.validationService = injectedValidationService;
     this.trainerToRegister = new TrainerModel();
     this.validRegistratonFields = false;
     this.warningMessage = '';
+    this.router = injectedRouter;
   }
 
   ngOnInit(): void {}
@@ -78,6 +83,7 @@ export class RegisterComponent implements OnInit {
     httpRequestTemplate.subscribe(
       (response) => {
         this.resetFormState();
+        this.router.navigate(['']);
       },
       (err) => {
         this.warningMessage = RegisterComponent.SERVER_ERROR;
