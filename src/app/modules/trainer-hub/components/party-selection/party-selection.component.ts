@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
+import { PokeDatabaseService } from 'src/app/modules/pokemon-utility/services/poke-database/poke-database.service';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
 import { PartyService } from '../../services/party/party.service';
-import { PokemonDatabaseService } from '../../services/pokemon-database/pokemon-database.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class PartySelectionComponent implements OnInit {
     private pokeApiHelperService:PokeApiHelperService,
     private partyService:PartyService,
     private pokemonService:PokemonService,
-    private pokemonDatabaseService:PokemonDatabaseService,
+    private pokemonDatabaseService:PokeDatabaseService,
     ) { }
 
   ngOnInit(): void {
