@@ -52,6 +52,23 @@ export class TypeCalculationService {
   }
 
   /**
+   * Adds STAB bonus if Pokemon's type matches the move's type.
+   * @param power The power of the move.
+   * @param moveType The type of the move.
+   * @param type1 Type of Pokemon.
+   * @param type2 Type of Pokemon.
+   */
+  addSTAB(power:number, moveType:Type, type1:Type, type2:Type):number {
+    if (moveType == type1) {
+      return power *= .2;
+    } else if (type2) {
+      if (moveType == type2) {
+        return power *= .2;
+      }
+    }
+  }
+
+  /**
    * Helper function that returns how effective an attack type is against the opponent's type 
    * inside the typeChart.
    */

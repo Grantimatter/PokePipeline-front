@@ -196,6 +196,13 @@ export class BattleService {
 
     levelDamage = Math.floor(levelDamage / 50) + 2;
 
+    levelDamage = this.typeCalculation.addSTAB(
+      levelDamage, 
+      move.type,
+      attacker.types[0], 
+      attacker.types[1] ? attacker.types[1] : null
+    );
+
     levelDamage = this.typeCalculation.calculateTypeModifier(
       levelDamage,
       move.type,
