@@ -55,7 +55,6 @@ export class TrainerComponent implements OnInit {
       (profileData: TrainerModel) => {
         this.trainerAccount = profileData;
         this.templateToRender = this.RenderTemplate.ProfileView;
-        this.trainerAccount.email = '';
       },
       (err) => {
         //log the user out in case of server error.

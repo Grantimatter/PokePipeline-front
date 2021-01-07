@@ -9,6 +9,7 @@ import { PartyService } from '../../services/party/party.service';
   styleUrls: ['./option-screen.component.css'],
 })
 export class OptionScreenComponent implements OnInit {
+  public isDisabled: boolean = true;
   isDisabledChoosePokemon: boolean = true;
   isDisabledBattleButton: boolean = true;
   private _subscription_user_name: any;

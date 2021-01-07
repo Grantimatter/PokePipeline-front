@@ -23,6 +23,7 @@ const routes: Routes = [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
       { path: 'battle', component: BattleScreenComponent, outlet: 'main' },
       { path: 'gameover', component: GameoverComponent, outlet: 'main' },
+      { path: 'account', component: TrainerComponent, outlet: 'main' },
     ],
   },
 
@@ -32,6 +33,7 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [LoggedOutGuardService],
   },
+
   {
     path: 'register',
     component: RegisterComponent,
