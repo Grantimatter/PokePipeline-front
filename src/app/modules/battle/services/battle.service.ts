@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Move } from 'src/app/models/move/move';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
+import { TypeCalculationService } from 'src/app/services/type-calculation/type-calculation.service';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { PokeApiHelperService } from '../../pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from '../../pokemon-utility/services/pokemon/pokemon.service';
@@ -97,8 +98,52 @@ export class BattleService {
   constructor(private pokeHelper:PokeApiHelperService, 
     private pokeService:PokemonService,
     private partyService:PartyService,
-    private util:UtilityService) { 
+    private util:UtilityService,
+    private typeCalculation:TypeCalculationService,
+    ) { 
     
+  }
+
+  setOpponentLevel(trainerLevel:number, isLegendary:boolean) : number {
+    if (trainerLevel == 2) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(1,2);
+      }
+
+      else {
+        return 1;
+      }
+    }
+
+    if (trainerLevel > 2 && trainerLevel <= 5) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(trainerLevel - 1, trainerLevel + 1);
+      }
+
+      else {
+        return this.util.getRandomInt(trainerLevel - 1, trainerLevel);
+      }
+    }
+
+    if (trainerLevel > 5 && trainerLevel <= 10) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(trainerLevel - 2, trainerLevel + 2);
+      }
+
+      else {
+        return this.util.getRandomInt(trainerLevel - 2, trainerLevel);
+      }
+    }
+
+    if (trainerLevel > 10) {
+      if (!isLegendary) {
+        return this.util.getRandomInt(trainerLevel - 2, trainerLevel + 5);
+      }
+
+      else {
+        return this.util.getRandomInt(trainerLevel - 4, trainerLevel);
+      }
+    }
   }
   
   setAttackOrder(trainer:Pokemon, opponent:Pokemon): boolean {
@@ -150,6 +195,13 @@ export class BattleService {
     levelDamage *= Math.floor(attack/defense);
 
     levelDamage = Math.floor(levelDamage / 50) + 2;
+
+    levelDamage = this.typeCalculation.calculateTypeModifier(
+      levelDamage,
+      move.type,
+      defender.types[0],
+      defender.types[1] ? defender.types[1] : null
+    );
 
     if (levelDamage == 0) {
       return 1;
