@@ -1,24 +1,28 @@
 <div class="container" id="main">
-
   <div id="welcome">
-    <span>Welcome<span> {{trainer.username}}</span>!</span>
+    <span
+      >Welcome<span> {{ trainer.trainerName }}</span
+      >!</span
+    >
   </div>
 
   <div id="battleButton" class="type-1 centerBlock">
     <div>
-      <a 
-      *ngIf="!isDisabledBattleButton"
-      routerLinkActive="active" 
-      (click)="resetChoosePokemon()"
-      [routerLink]="[{ outlets: { main: ['battle'] } }]"
-      class="btn btn-3 animation">
+      <a
+        *ngIf="!isDisabledBattleButton"
+        routerLinkActive="active"
+        (click)="resetChoosePokemon()"
+        [routerLink]="[{ outlets: { main: ['battle'] } }]"
+        class="btn btn-3 animation"
+      >
         <span class="txt">Start Battle</span>
         <span class="round"><i class="icon-bolt"></i></span>
       </a>
       <a
-      *ngIf="isDisabledBattleButton"
-      class="btn btn-3 nav-link"
-      style="cursor: not-allowed;">
+        *ngIf="isDisabledBattleButton"
+        class="btn btn-3 nav-link"
+        style="cursor: not-allowed"
+      >
         <span class="txt">Start Battle</span>
         <span class="round"><i class="icon-bolt"></i></span>
       </a>
@@ -28,18 +32,20 @@
   <div id="partyButton" class="type-1 centerBlock">
     <div>
       <a
-      *ngIf="!isDisabledChoosePokemon"
-      (click)="setDisabled()"
-      routerLinkActive="active" 
-      [routerLink]="[{ outlets: { main: ['party'] } }]"
-      class="btn btn-3 nav-link animation">
+        *ngIf="!isDisabledChoosePokemon"
+        (click)="setDisabled()"
+        routerLinkActive="active"
+        [routerLink]="[{ outlets: { main: ['party'] } }]"
+        class="btn btn-3 nav-link animation"
+      >
         <span class="txt">Choose Pokemon</span>
         <span class="round"><i class="icon-group"></i></span>
       </a>
       <a
-      *ngIf="isDisabledChoosePokemon"
-      class="btn btn-3 nav-link"
-      style="cursor: not-allowed;">
+        *ngIf="isDisabledChoosePokemon"
+        class="btn btn-3 nav-link"
+        style="cursor: not-allowed"
+      >
         <span class="txt">Choose Pokemon</span>
         <span class="round"><i class="icon-group"></i></span>
       </a>
@@ -48,14 +54,14 @@
 
   <div id="settingsButton" class="type-1 centerBlock">
     <div>
-      <a 
-      routerLinkActive="active" 
-      [routerLink]="[{ outlets: { main: ['tempbattle'] } }]"
-      class="btn btn-3 animation">
+      <a
+        routerLinkActive="active"
+        [routerLink]="[{ outlets: { main: ['tempbattle'] } }]"
+        class="btn btn-3 animation"
+      >
         <span class="txt">User Settings</span>
         <span class="round"><i class="icon-gear"></i></span>
       </a>
     </div>
   </div>
-
 </div>

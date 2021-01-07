@@ -21,15 +21,15 @@
       </div>
       <div class="form-group">
         <label for="trainer-log-in" class="text-danger font-weight-bold">
-          <h4>Username</h4></label
+          <h4>Trainer name</h4></label
         >
         <input
           class="form-control form-control-sm"
           type="text"
           placeholder="trainer"
-          [(ngModel)]="this.userToRegister.username"
+          [(ngModel)]="this.trainerToRegister.trainerName"
         />
-        <span class="text-dark">Enter your trainer username.</span>
+        <span class="text-dark">Enter your trainer name.</span>
       </div>
       <div class="form-group">
         <label for="password-log-in" class="text-danger">
@@ -39,7 +39,7 @@
           class="form-control form-control-sm"
           type="password"
           placeholder="password"
-          [(ngModel)]="this.userToRegister.password"
+          [(ngModel)]="this.trainerToRegister.password"
         />
         <span class="text-dark">Enter your password.</span>
       </div>
@@ -52,7 +52,7 @@
           class="form-control form-control-sm"
           type="text"
           placeholder="@email"
-          [(ngModel)]="this.userToRegister.email"
+          [(ngModel)]="this.trainerToRegister.email"
         />
         <span class="text-dark">Enter your e-mail. </span>
       </div>
@@ -64,7 +64,7 @@
           type="button"
           class="btn btn-md btn-outline-primary"
           value="sign-up"
-          (click)="this.registerUser()"
+          (click)="this.registerTrainer()"
         />
       </div>
     </section>

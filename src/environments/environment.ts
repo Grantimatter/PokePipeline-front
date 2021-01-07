@@ -9,6 +9,8 @@ export const environment = {
   pokemonRange: 649
 };
 
+export const trainerAPIendpoint = environment.ec2Url + '/trainer';
+export const authAPIendpoint = environment.ec2Url + '/auth';
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

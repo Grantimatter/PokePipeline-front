@@ -1,0 +1,187 @@
+<div
+  class="jumbotron vertical-center text-center shadow fill h-100 user-container container-fluid"
+>
+  <section
+    class="h-100 loading-screen row"
+    *ngIf="this.templateToRender == this.RenderTemplate.LoadingView"
+  >
+    <h3 class="col-12">loading...</h3>
+
+    <div class="col-12">
+      <fa-icon class="fa-3x" [spin]="true" [icon]="faSpinner"></fa-icon>
+    </div>
+  </section>
+  <!--USER PROFILE-->
+  <section
+    class="h-100"
+    *ngIf="this.templateToRender == this.RenderTemplate.ProfileView"
+  >
+    <div
+      class="row row-trainer-view-header align-items-center border-bottom border-secondary"
+    >
+      <div class="col-12 h-100 justify-items-center align-items-center">
+        <h3 class="mr-auto justify-self-start">
+          <fa-icon class="mx-4 opacity-2" [icon]="faUser"></fa-icon>User Profile
+        </h3>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="row h-100 my-1 py-1 align-items-end">
+      <div class="col-12 col-md-3 align-self-end profile-column">
+        <img
+          class="profile-image align-self-end"
+          src="../../../../../assets/Images/Backgrounds/ashPicture.png"
+        />
+      </div>
+
+      <div class="align-self-end col-md-4 d-flex flex-column profile-column">
+        <h4 class="font-bold">Username</h4>
+        <p>{{ this.trainerAccount.trainerName }}</p>
+        <h4 class="font-bold">E-mail</h4>
+        <p>{{ this.trainerAccount.email }}</p>
+      </div>
+
+      <div class="align-self-end col-md-4 d-flex flex-column profile-column">
+        <h4 class="font-bold">About Me</h4>
+        <p class="mb-auto">{{ this.trainerAccount.description }}</p>
+      </div>
+      <section
+        class="d-flex flex-row col-12 mt-auto profile-column align-items-end"
+      >
+        <div>
+          <input
+            type="button"
+            class="btn btn-info"
+            value="Change password"
+            (click)="this.renderUpdatePassword()"
+          />
+
+          <input
+            type="button"
+            class="mx-3 btn btn-warning"
+            value="Update Profile"
+            (click)="this.renderUpdateAccount()"
+          />
+        </div>
+      </section>
+    </div>
+  </section>
+  <!--*****USERPROFILE END-->
+  <!--PASSWORD START-->
+  <div
+    class="row align-items-center h-100"
+    *ngIf="this.templateToRender == this.RenderTemplate.ChangePassword"
+  >
+    <div class="col-12 border-secondary border-bottom">
+      <h3>New Password</h3>
+    </div>
+
+    <div class="col-12 d-flex flex-row justify-content-center">
+      <div class="form-group w-50">
+        <label for="new-password-input">Password Managment</label>
+        <input
+          type="text"
+          class="form-control"
+          id="new-password-input"
+          [(ngModel)]="this.newPass"
+        />
+        <span class="form-text text-muted"
+          >Your new password should be secure. Make sure not to use passwords
+          you've used at other websites.</span
+        >
+      </div>
+    </div>
+    <div class="col-12 d-flex flex-row justify-content-center">
+      <div class="form-group w-50">
+        <label for="new-password-input">Confirm Password</label>
+        <input
+          [(ngModel)]="this.confirmNewPass"
+          type="text"
+          class="form-control"
+          id="confirm-password-input"
+        />
+        <span class="form-text text-muted">Retype your password here.</span>
+      </div>
+    </div>
+    <span class="col-12 font-smaller text-error">{{ this.message }}</span>
+    <div class="col-12">
+      <div>
+        <input
+          type="button"
+          (click)="this.updatePassword()"
+          class="btn btn-info"
+          value="Update password"
+        />
+
+        <input
+          type="button"
+          class="mx-3 btn btn-warning"
+          value="Back To Profile"
+          (click)="this.renderProfile()"
+        />
+      </div>
+    </div>
+  </div>
+  <!--PASSWORD END-->
+  <!-- UPDATE PROFILE START-->
+  <div
+    class="row align-items-center h-100"
+    *ngIf="this.templateToRender == this.RenderTemplate.UpdateProfile"
+  >
+    <div class="col-12 h-100">
+      <section class="container-fluid h-100">
+        <section class="row border-secondary border-top h-100">
+          <div class="col-12">
+            <h3>Update Profile</h3>
+          </div>
+          <div class="col-12 d-flex flex-row justify-content-center">
+            <div class="form-group w-50">
+              <label for="new-email">New Email</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="new email address"
+                id="new-email"
+                [(ngModel)]="this.trainerAccount.email"
+              />
+              <span class="text-muted"> Update your email here. </span>
+            </div>
+          </div>
+
+          <div
+            class="col-12 d-flex flex-row align-items-end justify-content-center"
+          >
+            <div class="form-group my-0 w-50">
+              <label for="about-me"> About me </label>
+              <textarea
+                class="form-control about-me-text"
+                [(ngModel)]="this.trainerAccount.description"
+              ></textarea>
+              <span class="text-muted">
+                Tell the world a little about yourself.
+              </span>
+            </div>
+          </div>
+          <div
+            class="col-12 d-flex flex-row align-items-end justify-content-center my-0"
+          >
+            <input
+              type="button"
+              class="btn btn-info mx-1"
+              value="Update My Profile"
+              (click)="this.updateTrainerProfile()"
+            />
+            <input
+              type="button"
+              class="btn btn-warning"
+              value="Back To Profile"
+              (click)="this.renderProfile()"
+            />
+          </div>
+        </section>
+      </section>
+    </div>
+  </div>
+  <!-- UPDATE PROFILE END-->
+</div>

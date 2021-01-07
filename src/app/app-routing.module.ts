@@ -9,21 +9,21 @@ import { TrainerHubComponent } from './modules/trainer-hub/components/trainer-hu
 import { BattleScreenComponent } from './modules/battle/components/battle-screen/battle-screen.component';
 import { AuthenticationGuardService } from './modules/authentication/services/guards/authentication.guard.service';
 import { LoggedOutGuardService } from './modules/authentication/services/guards/logged.out.guard.service';
-import { UserComponent } from './modules/user/component/user/user.component';
 import { DefaultpathresolverComponent } from './modules/defaultpathresolver/defaultpathresolver.component';
 import { BattleInterfaceComponent } from './components/battle-interface/battle-interface.component';
 import { GameoverComponent } from './modules/battle/components/gameover/gameover.component';
+import { TrainerComponent } from './modules/trainer-hub/components/trainer/trainer.component';
 
 const routes: Routes = [
   {
     path: 'trainerhub',
     component: TrainerHubComponent,
     children: [
+      { path: 'user', component: TrainerComponent },
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
-      { path: 'battle', component: BattleScreenComponent, outlet: 'main'},
-      { path: 'gameover', component: GameoverComponent, outlet: 'main'}
-    ]
-    ,
+      { path: 'battle', component: BattleScreenComponent, outlet: 'main' },
+      { path: 'gameover', component: GameoverComponent, outlet: 'main' },
+    ],
   },
 
   {
@@ -31,12 +31,6 @@ const routes: Routes = [
     component: LoginComponent,
     pathMatch: 'full',
     canActivate: [LoggedOutGuardService],
-  },
-  {
-    path: 'account',
-    component: UserComponent,
-    canActivate: [AuthenticationGuardService],
-    pathMatch: 'full',
   },
   {
     path: 'register',
@@ -55,8 +49,8 @@ const routes: Routes = [
   },
   {
     path: 'gameover',
-    component: GameoverComponent
-  }
+    component: GameoverComponent,
+  },
 ];
 
 @NgModule({

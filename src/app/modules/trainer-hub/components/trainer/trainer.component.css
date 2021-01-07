@@ -1,0 +1,30 @@
+.user-container {
+  /*background-image: url("../../../../../assets/Images/Backgrounds/accountBg.png");*/
+  background-size: cover;
+}
+
+.row-user-view-header {
+  height: 50px;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+}
+
+.profile-column {
+  min-height: 150px;
+}
+
+.about-me-text {
+  height: 100px;
+}
+
+.trainer-screen {
+  background: url("/src/assets/Images/Icons/pikachu.gif");
+}
+
+.account-spinner {
+  width: 200px;
+  height: 200px;
+}
