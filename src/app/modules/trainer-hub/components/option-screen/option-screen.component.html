@@ -5,17 +5,25 @@
 
   <div id="battleButton" class="type-1 centerBlock">
     <div>
-      <a routerLinkActive="active" [routerLink]="[{ outlets: { main: ['battle'] } }]" class="btn btn-3 animation">
+      <a 
+      (click)="unHidePartyButton()"
+      routerLinkActive="active" 
+      [routerLink]="[{ outlets: { main: ['battle'] } }]" 
+      class="btn btn-3 animation">
         <span class="txt">Start Battle</span>
         <span class="round"><i class="icon-bolt"></i></span>
       </a>
     </div>
   </div>
 
-  <div id="partyButton" class="type-1 centerBlock btn-custom-height">
+  <div *ngIf="!isHidden"
+  id="partyButton" class="type-1 centerBlock btn-custom-height">
     <div>
-      <a routerLinkActive="active" [routerLink]="[{ outlets: { main: ['party'] } }]"
-        class="btn btn-3 nav-link animation">
+      <a 
+      (click)="hidePartyButton()"
+      routerLinkActive="active" 
+      [routerLink]="[{ outlets: { main: ['party'] } }]"
+      class="btn btn-3 nav-link animation">
         <span class="txt">Choose Pokemon</span>
         <span class="round"><i class="icon-group"></i></span>
       </a>
