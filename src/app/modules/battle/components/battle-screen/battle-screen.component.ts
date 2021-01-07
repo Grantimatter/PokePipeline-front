@@ -75,7 +75,9 @@ export class BattleScreenComponent implements OnInit {
       if (this.opponent.currentHP == 0) {
         
         this.partyService.addVictory();
-        // 50% total hp heal
+        
+        this.trainer.setLevel(this.trainer.getLevel() + 1);
+
         if (this.trainer.currentHP / this.trainerMaxHealth <= 0.5) {
           this.trainer.currentHP += Math.ceil(this.trainerMaxHealth * .5);
         }
@@ -83,8 +85,6 @@ export class BattleScreenComponent implements OnInit {
         else {
           this.trainer.currentHP = this.trainerMaxHealth;          
         }
-        
-        this.trainer.setLevel(this.trainer.getLevel() + 1);
 
         this.pokeDatabaseService.updatePokemon(this.trainer, ()=>console.log("Pokemon updated: ", this.trainer));
 
