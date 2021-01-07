@@ -55,14 +55,14 @@ export class TypeCalculationService {
    * Helper function that returns how effective an attack type is against the opponent's type 
    * inside the typeChart.
    */
-  getEffectiveness(attack:Type, defense:Type):number {
+  private getEffectiveness(attack:Type, defense:Type):number {
     return this.typeChart[this.getIndex(attack)][(this.getIndex(defense))];
   }
   
   /**
    * Helper function that returns the index of a type.
    */
-  getIndex(type:Type):number {
+  private getIndex(type:Type):number {
     switch(type) {
       case 'BUG': return 11;
       case 'DARK': return 15;

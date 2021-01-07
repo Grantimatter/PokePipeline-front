@@ -196,14 +196,12 @@ export class BattleService {
 
     levelDamage = Math.floor(levelDamage / 50) + 2;
 
-    if (defender.types[1]) {
-      levelDamage = this.typeCalculation.calculateTypeModifier(
-        levelDamage,
-        move.type,
-        defender.types[0],
-        defender.types[1]
-        );
-    }
+    levelDamage = this.typeCalculation.calculateTypeModifier(
+      levelDamage,
+      move.type,
+      defender.types[0],
+      defender.types[1] ? defender.types[1] : null
+    );
 
     if (levelDamage == 0) {
       return 1;
