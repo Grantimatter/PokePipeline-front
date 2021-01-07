@@ -216,29 +216,23 @@ export class BattleService {
     //   attacker.types[1] ? attacker.types[1] : null
     // ));
 
-    levelDamage = this.typeCalculation.calculateTypeModifier(
+    levelDamage = Math.ceil(this.typeCalculation.calculateTypeModifier(
       levelDamage,
       move.type,
       defender.types[0],
       defender.types[1] ? defender.types[1] : null
-    );
+    ));
 
-    if (levelDamage == 0) {
-      return 1;
+    console.log(levelDamage);
+
+    if (criticalHit < 16) {
+      levelDamage = Math.ceil(levelDamage * 1.5);
     }
 
-    else {
-      if (criticalHit < 16) {
-        levelDamage = Math.ceil(levelDamage * 1.5);
-      }
-
-      if (move.min_hits >= 2) {
-        levelDamage *= move.min_hits;
-      }
-
-      console.log(levelDamage);
-
-      return levelDamage;
+    if (move.min_hits >= 2) {
+      levelDamage *= move.min_hits;
     }
+
+    return levelDamage;
   }
 }
