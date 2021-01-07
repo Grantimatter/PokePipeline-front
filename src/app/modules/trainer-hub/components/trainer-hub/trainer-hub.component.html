@@ -1,21 +1,22 @@
-
-<div class="container-fluid">
+<div class="container">
   <div class="row no-gutters" id="trainerHub">
-
     <div id="mainScreen" class="col-lg-9">
       <router-outlet name="main" #myOutlet="outlet"></router-outlet>
-      <!-- <img [hidden]="myOutlet.isActivated"
-      id="center" src="/assets/Images/Icons/pikachu.gif"> -->
+
+      <img
+        [hidden]="myOutlet.isActivated"
+        id="center"
+        src="/assets/Images/Icons/pikachu.gif"
+      />
     </div>
     <div id="sideScreen" class="col-lg-3">
-      <div id="optionScreen" >
+      <div id="optionScreen">
         <app-option-screen></app-option-screen>
       </div>
-      <div id="pokemonScreen" >
+      <div id="pokemonScreen">
         <app-pokemon-screen></app-pokemon-screen>
       </div>
     </div>
-
   </div>
 </div>
 
