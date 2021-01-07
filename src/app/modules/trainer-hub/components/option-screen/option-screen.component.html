@@ -1,25 +1,11 @@
 <div class="container" id="main">
   <div id="welcome">
-    <span>Welcome</span>
+    <span>Welcome, Trainer!</span>
   </div>
 
   <div id="battleButton" class="type-1 centerBlock">
     <div>
-      <a
-        *ngIf="!isDisabledBattleButton"
-        routerLinkActive="active"
-        (click)="resetChoosePokemon()"
-        [routerLink]="[{ outlets: { main: ['battle'] } }]"
-        class="btn btn-3 animation"
-      >
-        <span class="txt">Start Battle</span>
-        <span class="round"><i class="icon-bolt"></i></span>
-      </a>
-      <a
-        *ngIf="isDisabledBattleButton"
-        class="btn btn-3 nav-link"
-        style="cursor: not-allowed"
-      >
+      <a routerLinkActive="active" [routerLink]="[{ outlets: { main: ['battle'] } }]" class="btn btn-3 animation">
         <span class="txt">Start Battle</span>
         <span class="round"><i class="icon-bolt"></i></span>
       </a>
@@ -28,21 +14,8 @@
 
   <div id="partyButton" class="type-1 centerBlock btn-custom-height">
     <div>
-      <a
-        *ngIf="!isDisabled"
-        (click)="choosingPokemon()"
-        routerLinkActive="active"
-        [routerLink]="[{ outlets: { main: ['party'] } }]"
-        class="btn btn-3 nav-link animation"
-      >
-        <span class="txt">Choose Pokemon</span>
-        <span class="round"><i class="icon-group"></i></span>
-      </a>
-      <a
-        *ngIf="isDisabledChoosePokemon"
-        class="btn btn-3 nav-link"
-        style="cursor: not-allowed"
-      >
+      <a routerLinkActive="active" [routerLink]="[{ outlets: { main: ['party'] } }]"
+        class="btn btn-3 nav-link animation">
         <span class="txt">Choose Pokemon</span>
         <span class="round"><i class="icon-group"></i></span>
       </a>
@@ -51,12 +24,8 @@
 
   <div id="settingsButton" class="type-1 centerBlock">
     <div>
-      <a
-        routerLinkActive="active"
-        [routerLink]="[{ outlets: { main: ['account'] } }]"
-        class="btn btn-3 nav-link animation"
-        class="btn btn-3 animation"
-      >
+      <a routerLinkActive="active" [routerLink]="[{ outlets: { main: ['account'] } }]"
+        class="btn btn-3 nav-link animation" class="btn btn-3 animation">
         <span class="txt">Account</span>
         <span class="round"><i class="icon-gear"></i></span>
       </a>
