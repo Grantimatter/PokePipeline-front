@@ -28,6 +28,7 @@ export class BattleScreenComponent implements OnInit {
   public trainerMaxHealth:number;
   public opponentMaxHealth:number;
   public attackUsed:String;
+  public attackText:string;
 
   isTrainer:boolean = false;
   isOpponent:boolean = false;
@@ -56,18 +57,33 @@ export class BattleScreenComponent implements OnInit {
     this.getOpponentPokemon();
 
     this.attackUsed = '';
+    this.attackText = '';
   }
 
-  // EXTRA: disable battle button if no pokemon selected
-  enemyInfoHide() {
+  private revertStyles() {
+    document.getElementById("attackText").style.display = "none";
     document.getElementById("enemyInfo").style.display = "none";
+    document.getElementById("move0").style.display = "";
+    document.getElementById("move1").style.display = "";
+    document.getElementById("move2").style.display = "";
+    document.getElementById("move3").style.display = "";
+  }
+
+  private visualAttackSequence(attackNum:number) {
+    document.getElementById("attackText").style.display = "inline-block";
+    document.getElementById("enemyInfo").style.display = "inline-block";
+    document.getElementById("move0").style.display = "none";
+    document.getElementById("move1").style.display = "none";
+    document.getElementById("move2").style.display = "none";
+    document.getElementById("move3").style.display = "none";
+ 
+    setTimeout(this.revertStyles, 2500);
   }
   
   attack(attackNum : number) {
-    document.getElementById("enemyInfo").style.display = "inline-block";
+    this.visualAttackSequence(attackNum);
+    this.attackText = this.trainer.moves[attackNum].name;
 
-    setTimeout(this.enemyInfoHide, 3000);
-    
     this.attackUsed = this.battleService.performAttacks(this.trainer, this.opponent, attackNum);    
     
     console.log(this.attackUsed);

@@ -64,9 +64,9 @@
 }
 
 .botTable td {  vertical-align: middle; text-align: center;  }
-.moveTable { width: 70%; float: left; margin-left: 1vh; cursor: pointer; }
+.moveTable { width: 70%; float: left; margin-left: 1vh; }
 .moveTable tr { height: 8vh; }
-.moveTable td:hover { border-radius: 5px; }
+.moveTable td:hover { border-radius: 5px; cursor: pointer; }
 .infoTable { 
   height: 19vh;
   width: 28%; 
@@ -121,4 +121,18 @@ table { table-layout: fixed; }
   border: 5px solid black;
   border-radius: 10px;
   padding: 0 8px;
+}
+
+#attackText {
+  display: none;
+  background:#f7f8d6;
+  border-collapse:separate;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%,-50%); 
+  position: absolute; 
+  border: 5px solid black;
+  border-radius: 10px;
+  padding: 0 8px;
+  z-index: 1;
 }
