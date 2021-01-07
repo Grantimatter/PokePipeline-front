@@ -6,7 +6,8 @@ import { Stats } from "../stats/stats";
 
 export class Pokemon {
 
-  public id: number;
+  public pokemonId: number;
+  public pokemonAPI: number;
   public name: string;
   public currentHP: number;
   private level: number;
@@ -24,7 +25,8 @@ export class Pokemon {
    * @param {Move[]} moves - The specific moves that this Pokemon possesses.
    */
   constructor(pokemonJSON: JSON, level?: number, currentHP?: number, moves?: Move[]) {
-
+    
+    this.pokemonAPI = pokemonJSON["id"];
     // Set level to 1 or whatever is provided.
     this.level = (level && level > 1) ? level : 1;
     // Set moves to given or JSON if none are provided.

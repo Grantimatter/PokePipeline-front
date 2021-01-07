@@ -39,7 +39,8 @@ export class TestComponent implements OnInit {
     );
   }
 
-  selectRandomPokemon(){
+  selectRandomPokemon() {
+    //waits(3000);
     this.selectingRandom = true;
     this.pokeApiHelperService.getRandomValidPokemon((x:JSON)=>{
       this.selectingRandom = false;
@@ -48,7 +49,7 @@ export class TestComponent implements OnInit {
     });
   }
   
-  selectPokemonWithMoves(){
+  selectPokemonWithMoves() {
     this.selectingPokemon = true;
     this.pokeApiHelperService.getPokemonWithAllMovesAPI(this.input, (x:JSON)=>{
       this.selectingPokemon = false;
