@@ -37,7 +37,6 @@ export class PartySelectionComponent implements OnInit {
       this.pokemon.pokemonId = x[0]["pokemonId"];
       this.partyService.pokemonChange(this.pokemon);
       this.partyService.resetBattleCount();
-      console.log("Pokemon from Database", this.pokemon);
     });
   }
 

@@ -63,7 +63,6 @@ export class PokemonService {
     }
     // Apply next 2 moves of the single-type Pokemon making sure they are the same type
     if (pokemonTypes.length == 1) {
-      console.debug("Choosing last 2 moves of single-type");
       do {
         let x = this.utilityService.getRandomInt(0, moveCount - 1);
         let move: Move = new Move(detailedMovesJSON[x]);
@@ -74,7 +73,6 @@ export class PokemonService {
       // Apply next 2 moves of dual-type pokemon making sure there is at least one of each type
     } else {
       for (let i = 0; i < 2; i++) {
-        console.debug("Choosing last 2 moves of dual-type");
         do {
           let x = this.utilityService.getRandomInt(0, moveCount - 1);
           let move: Move = new Move(detailedMovesJSON[x]);
@@ -124,7 +122,7 @@ export class PokemonService {
    */
   isValidPokemonId(id: number): boolean {
     if (id < 1 || id == 132 || id == 555 || id >= environment.pokemonRange) {
-      console.log("Invalid Pokemon ID! Try another one!");
+      console.warn("Invalid Pokemon ID! Try another one!");
       return false;
     }
 
@@ -138,7 +136,7 @@ export class PokemonService {
   isValidPokemon(pokemon: any): boolean {
     if (!this.isValidPokemonId(pokemon.id)) return false;
     if (pokemon.moves.length < 2) {
-      console.log("Pokemon is invalid due to not having any moves");
+      console.warn("Pokemon is invalid due to not having any moves");
       return false;
     }
     if (!pokemon.sprites || !pokemon.sprites.other["official-artwork"] || !pokemon.sprites.other["official-artwork"].front_default || !pokemon.sprites.front_default || !pokemon.sprites.back_default || !pokemon.sprites.front_shiny || !pokemon.sprites.back_shiny) return false;

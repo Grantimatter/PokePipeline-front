@@ -90,10 +90,6 @@ export class LoginComponent {
       // define next, error, and completion callbacks for the observable subscription
       loginRequestTemplate.subscribe(
         (response) => {
-
-          console.log("Got response: ", response);
-          this.apiHelperService.getTrainerPokemonWithSpecificMoves(response['pokemonList'][0]);
-
           this.clearLogInForm();
           this.router.navigate(['']);
         },

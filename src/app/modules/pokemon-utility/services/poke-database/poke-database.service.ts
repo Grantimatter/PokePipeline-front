@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { env } from 'process';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { environment } from 'src/environments/environment';
 
@@ -32,7 +31,7 @@ export class PokeDatabaseService {
    * Inserts Pokemon into the database.
    * @param pokemon The pokemon to be added into the database
    */
-  addPokemonToParty(pokemon: Pokemon, onSucess:(x)=>void): void {
+  addPokemonToParty(pokemon: Pokemon, onSucess: (x)=>void): void {
     this.httpClient.post(`${environment.ec2Url}/pokemon`, this.mapPokemonObject(pokemon), {withCredentials: true,}).subscribe(
         (resp) => {
           console.debug('Pokemon added successfully!', resp);
@@ -50,9 +49,10 @@ export class PokeDatabaseService {
    * @param onSuccess Callback function to use when the update is successful
    */
   updatePokemon(pokemon: Pokemon, onSuccess: (x: any) => void): void {
+    console.debug("Attempting to update pokemon: " + pokemon);
     this.httpClient.put(`${environment.ec2Url}/pokemon`, this.mapPokemonObject(pokemon), {withCredentials: true}).subscribe(
         (resp) => {
-          console.debug('Pokemon updated in the database');
+          console.debug('Pokemon updated in the database' + pokemon);
           onSuccess(resp);
         },
         (err) => {

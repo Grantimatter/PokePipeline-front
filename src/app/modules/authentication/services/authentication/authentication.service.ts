@@ -46,8 +46,9 @@ export class AuthenticationService {
             '' + false
           );
 
-          console.log("Got response: ", resp);
-          this.apiHelperService.getTrainerPokemonWithSpecificMoves(resp['pokemonList'][0]);
+          if(resp['body']['pokemonList'][0]) {
+            this.apiHelperService.getTrainerPokemonWithSpecificMoves(resp['body']['pokemonList'][0]);
+          }
 
           //this.injectedloggedOutGuardService.provideService(!isAuthenticated);
           serviceListener.next(true);
