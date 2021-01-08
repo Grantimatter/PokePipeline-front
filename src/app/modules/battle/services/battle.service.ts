@@ -9,113 +9,116 @@ import { TrainerHubComponent } from '../../trainer-hub/components/trainer-hub/tr
 import { PartyService } from '../../trainer-hub/services/party/party.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BattleService {
-  
-  performAttacks(trainer: Pokemon, opponent: Pokemon, attackNum: number) : String {
-    let trainerMove:Move = trainer.moves[attackNum];
-    let opponentMove:Move = opponent.moves[this.util.getRandomInt(0,3)];
-    let isTrainerFirst:boolean = this.setAttackOrder(trainer, opponent);
+  performAttacks(
+    trainer: Pokemon,
+    opponent: Pokemon,
+    attackNum: number
+  ): String {
+    let trainerMove: Move = trainer.moves[attackNum];
+    let opponentMove: Move = opponent.moves[this.util.getRandomInt(0, 3)];
+    let isTrainerFirst: boolean = this.setAttackOrder(trainer, opponent);
 
     if (isTrainerFirst) {
-      let trainerDamage:number = this.calculateDamage(
-        trainer, opponent, trainerMove);
+      let trainerDamage: number = this.calculateDamage(
+        trainer,
+        opponent,
+        trainerMove
+      );
       if (trainerMove.recoil != 0.0) {
-        trainer.currentHP += 
-          Math.ceil((trainerMove.recoil / 100) * trainerDamage);
-      }   
-      if ((opponent.currentHP - trainerDamage) <= 0) {
-        opponent.currentHP = 0;
+        trainer.currentHP += Math.ceil(
+          (trainerMove.recoil / 100) * trainerDamage
+        );
       }
-      else {
+      if (opponent.currentHP - trainerDamage <= 0) {
+        opponent.currentHP = 0;
+      } else {
         opponent.currentHP -= trainerDamage;
       }
 
       if (opponent.currentHP > 0) {
         let opponentDamage = this.calculateDamage(
-          opponent, trainer, opponentMove);
+          opponent,
+          trainer,
+          opponentMove
+        );
 
         if (opponentMove.recoil != 0.0) {
-          opponent.currentHP += 
-            Math.ceil((opponentMove.recoil / 100) * opponentDamage);
+          opponent.currentHP += Math.ceil(
+            (opponentMove.recoil / 100) * opponentDamage
+          );
         }
 
-        if ((trainer.currentHP - opponentDamage) <= 0) {
+        if (trainer.currentHP - opponentDamage <= 0) {
           trainer.currentHP = 0;
-        }
-  
-        else {
+        } else {
           trainer.currentHP -= opponentDamage;
         }
 
         return opponentMove.name.toUpperCase();
-      }
-
-      else {
+      } else {
         return null;
       }
-    }
-
-    else {
+    } else {
       let opponentDamage = this.calculateDamage(
-        opponent, trainer, opponentMove);
+        opponent,
+        trainer,
+        opponentMove
+      );
 
       if (opponentMove.recoil != 0.0) {
-        opponent.currentHP += 
-          Math.ceil((opponentMove.recoil / 100) * opponentDamage);
+        opponent.currentHP += Math.ceil(
+          (opponentMove.recoil / 100) * opponentDamage
+        );
       }
 
-      if ((trainer.currentHP - opponentDamage) <= 0) {
+      if (trainer.currentHP - opponentDamage <= 0) {
         trainer.currentHP = 0;
-      }
-
-      else {
+      } else {
         trainer.currentHP -= opponentDamage;
       }
 
       if (trainer.currentHP > 0) {
-        let trainerDamage:number = this.calculateDamage(
-          trainer, opponent, trainerMove);
+        let trainerDamage: number = this.calculateDamage(
+          trainer,
+          opponent,
+          trainerMove
+        );
 
         if (trainerMove.recoil != 0.0) {
-          trainer.currentHP += 
-            Math.ceil((trainerMove.recoil / 100) * trainerDamage);
+          trainer.currentHP += Math.ceil(
+            (trainerMove.recoil / 100) * trainerDamage
+          );
         }
-        
-        if ((opponent.currentHP - trainerDamage) <= 0) {
+
+        if (opponent.currentHP - trainerDamage <= 0) {
           opponent.currentHP = 0;
-        }
-  
-        else {
+        } else {
           opponent.currentHP -= trainerDamage;
         }
 
         return opponentMove.name.toUpperCase();
-      }
-
-      else {
+      } else {
         return null;
       }
     }
   }
 
-  constructor(private pokeHelper:PokeApiHelperService, 
-    private pokeService:PokemonService,
-    private partyService:PartyService,
-    private util:UtilityService,
-    private typeCalculation:TypeCalculationService,
-    ) { 
-    
-  }
+  constructor(
+    private pokeHelper: PokeApiHelperService,
+    private pokeService: PokemonService,
+    private partyService: PartyService,
+    private util: UtilityService,
+    private typeCalculation: TypeCalculationService
+  ) {}
 
-  setOpponentLevel(trainerLevel:number, isLegendary:boolean) : number {
+  setOpponentLevel(trainerLevel: number, isLegendary: boolean): number {
     if (trainerLevel == 2) {
       if (!isLegendary) {
-        return this.util.getRandomInt(1,2);
-      }
-
-      else {
+        return this.util.getRandomInt(1, 2);
+      } else {
         return 1;
       }
     }
@@ -123,9 +126,7 @@ export class BattleService {
     if (trainerLevel > 2 && trainerLevel <= 5) {
       if (!isLegendary) {
         return this.util.getRandomInt(trainerLevel - 1, trainerLevel + 1);
-      }
-
-      else {
+      } else {
         return this.util.getRandomInt(trainerLevel - 1, trainerLevel);
       }
     }
@@ -133,9 +134,7 @@ export class BattleService {
     if (trainerLevel > 5 && trainerLevel <= 10) {
       if (!isLegendary) {
         return this.util.getRandomInt(trainerLevel - 2, trainerLevel + 2);
-      }
-
-      else {
+      } else {
         return this.util.getRandomInt(trainerLevel - 2, trainerLevel);
       }
     }
@@ -143,52 +142,41 @@ export class BattleService {
     if (trainerLevel > 10) {
       if (!isLegendary) {
         return this.util.getRandomInt(trainerLevel - 2, trainerLevel + 5);
-      }
-
-      else {
+      } else {
         return this.util.getRandomInt(trainerLevel - 4, trainerLevel);
       }
     }
   }
-  
-  setAttackOrder(trainer:Pokemon, opponent:Pokemon): boolean {
-        
+
+  setAttackOrder(trainer: Pokemon, opponent: Pokemon): boolean {
     if (trainer.stats.speed > opponent.stats.speed) {
-      
       return true;
-    }
+    } else if (trainer.stats.speed == opponent.stats.speed) {
+      let randInt: number = this.util.getRandomInt(1, 101);
 
-    else if (trainer.stats.speed == opponent.stats.speed) {
-        
-        let randInt:number = this.util.getRandomInt(1, 101);
-
-        if (randInt <= 51) {
-          return true;
-        }
-
-        else { 
-          return false;
-        }
-    }
-
-    else {
+      if (randInt <= 51) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
       return false;
     }
   }
 
-  calculateDamage(attacker:Pokemon, defender: Pokemon, move:Move) : number {
-    let level:number = attacker.getLevel();
-    let power:number = move.power;
-    let attack:number = 0;
-    let defense:number = 0;
-    let criticalHit:number = this.util.getRandomInt(1,100);
-    
-    if (move.damage_class == "physical") {
+  calculateDamage(attacker: Pokemon, defender: Pokemon, move: Move): number {
+    let level: number = attacker.getLevel();
+    let power: number = move.power;
+    let attack: number = 0;
+    let defense: number = 0;
+    let criticalHit: number = this.util.getRandomInt(1, 100);
+
+    if (move.damage_class == 'physical') {
       attack = attacker.stats.attack;
       defense = defender.stats.defense;
     }
-    
-    if (move.damage_class == "special") {
+
+    if (move.damage_class == 'special') {
       attack = attacker.stats.specialAttack;
       defense = defender.stats.specialDefense;
     }
@@ -197,7 +185,7 @@ export class BattleService {
 
     levelDamage *= power;
 
-    levelDamage *= Math.floor(attack/defense);
+    levelDamage *= Math.floor(attack / defense);
 
     levelDamage = Math.floor(levelDamage / 50) + 2;
 
@@ -214,18 +202,20 @@ export class BattleService {
     }
 
     // levelDamage = Math.ceil(this.typeCalculation.addSTAB(
-    //   levelDamage, 
+    //   levelDamage,
     //   move.type,
-    //   attacker.types[0], 
+    //   attacker.types[0],
     //   attacker.types[1] ? attacker.types[1] : null
     // ));
 
-    levelDamage = Math.ceil(this.typeCalculation.calculateTypeModifier(
-      levelDamage,
-      move.type,
-      defender.types[0],
-      defender.types[1] ? defender.types[1] : null
-    ));
+    levelDamage = Math.ceil(
+      this.typeCalculation.calculateTypeModifier(
+        levelDamage,
+        move.type,
+        defender.types[0],
+        defender.types[1] ? defender.types[1] : null
+      )
+    );
 
     console.log(levelDamage);
 

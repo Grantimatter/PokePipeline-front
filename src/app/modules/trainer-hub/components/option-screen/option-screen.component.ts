@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { TrainerModel } from 'src/app/models/trainer';
 import { PartyService } from '../../services/party/party.service';
+import { LogoutService } from 'src/app/modules/authentication/services/logout/logout.service';
 
 @Component({
   selector: 'app-option-screen',
@@ -9,11 +10,15 @@ import { PartyService } from '../../services/party/party.service';
   styleUrls: ['./option-screen.component.css'],
 })
 export class OptionScreenComponent implements OnInit {
-
   pokemon: Pokemon;
-  isHidden:boolean = false;
+  isHidden: boolean = false;
+  private logoutService: LogoutService;
 
-  constructor(private partyService: PartyService) {
+  constructor(
+    private partyService: PartyService,
+    private injectedlogoutService: LogoutService
+  ) {
+    this.logoutService = injectedlogoutService;
   }
 
   ngOnInit(): void {
@@ -30,5 +35,8 @@ export class OptionScreenComponent implements OnInit {
 
   getPokemonFromService() {
     this.pokemon = this.partyService.getPokemon1();
+  }
+  logOutOfTrainerHub(): void {
+    this.logoutService.provideService();
   }
 }

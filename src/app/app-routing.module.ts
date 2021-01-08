@@ -30,7 +30,6 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    pathMatch: 'full',
     canActivate: [LoggedOutGuardService],
   },
 
@@ -40,19 +39,14 @@ const routes: Routes = [
     canActivate: [LoggedOutGuardService],
   },
   {
-    path: 'test',
-    component: TestComponent,
-    canActivate: [LoggedOutGuardService],
-  },
-  {
     path: '',
     component: DefaultpathresolverComponent,
-    pathMatch: 'full',
   },
   {
     path: 'gameover',
     component: GameoverComponent,
   },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
