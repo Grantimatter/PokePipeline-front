@@ -99,7 +99,7 @@ export class BattleScreenComponent implements OnInit {
         }
 
         else {
-          this.trainer.currentHP = this.trainer.stats.hp;          
+          this.trainer.currentHP = this.trainer.stats.hp;         
         }
 
         this.pokeDatabaseService.updatePokemon(this.trainer, ()=>console.log("Pokemon updated: ", this.trainer));
