@@ -7,3 +7,8 @@
   background-color: white;
   height: 200px;
 }
+
+.textColor {
+  color: rgb(223, 223, 32);
+  text-shadow: 0 0 1px black;
+}
