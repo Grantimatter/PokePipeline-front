@@ -94,12 +94,12 @@ export class BattleScreenComponent implements OnInit {
         
         this.trainer.setLevel(this.trainer.getLevel() + 1);
 
-        if (this.trainer.currentHP / this.trainerMaxHealth <= 0.5) {
-          this.trainer.currentHP += Math.ceil(this.trainerMaxHealth * .5);
+        if (this.trainer.currentHP / this.trainer.stats.hp <= 0.5) {
+          this.trainer.currentHP += Math.ceil(this.trainer.stats.hp * .5);
         }
 
         else {
-          this.trainer.currentHP = this.trainerMaxHealth;          
+          this.trainer.currentHP = this.trainer.stats.hp;          
         }
 
         this.pokeDatabaseService.updatePokemon(this.trainer, ()=>console.log("Pokemon updated: ", this.trainer));
