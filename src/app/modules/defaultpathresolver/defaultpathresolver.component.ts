@@ -34,9 +34,6 @@ export class DefaultpathresolverComponent implements OnChanges, OnInit {
       (err) => {
         this.isAuthenticated = false;
         this.navigateToAppropriateView();
-      },
-      () => {
-        this.navigateToAppropriateView();
       }
     );
   }
