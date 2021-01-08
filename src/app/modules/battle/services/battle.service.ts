@@ -5,7 +5,6 @@ import { TypeCalculationService } from 'src/app/services/type-calculation/type-c
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { PokeApiHelperService } from '../../pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from '../../pokemon-utility/services/pokemon/pokemon.service';
-import { TrainerHubComponent } from '../../trainer-hub/components/trainer-hub/trainer-hub.component';
 import { PartyService } from '../../trainer-hub/services/party/party.service';
 
 @Injectable({
@@ -201,13 +200,6 @@ export class BattleService {
       }
     }
 
-    // levelDamage = Math.ceil(this.typeCalculation.addSTAB(
-    //   levelDamage,
-    //   move.type,
-    //   attacker.types[0],
-    //   attacker.types[1] ? attacker.types[1] : null
-    // ));
-
     levelDamage = Math.ceil(
       this.typeCalculation.calculateTypeModifier(
         levelDamage,
@@ -216,8 +208,6 @@ export class BattleService {
         defender.types[1] ? defender.types[1] : null
       )
     );
-
-    console.log(levelDamage);
 
     if (criticalHit < 16) {
       levelDamage = Math.ceil(levelDamage * 1.5);

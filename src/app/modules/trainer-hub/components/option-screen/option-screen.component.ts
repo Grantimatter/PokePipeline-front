@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
-import { TrainerModel } from 'src/app/models/trainer';
 import { PartyService } from '../../services/party/party.service';
 import { LogoutService } from 'src/app/modules/authentication/services/logout/logout.service';
 

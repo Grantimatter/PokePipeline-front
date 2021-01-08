@@ -2,12 +2,6 @@
   <div class="row no-gutters" id="trainerHub">
     <div id="mainScreen" class="col-lg-9">
       <router-outlet name="main" #myOutlet="outlet"></router-outlet>
-
-      <!-- <img
-        [hidden]="myOutlet.isActivated"
-        id="center"
-        src="/assets/Images/Icons/pikachu.gif"
-      /> -->
     </div>
     <div id="sideScreen" class="col-lg-3">
       <div id="optionScreen">
@@ -19,9 +13,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div [hidden]="!showOutlet">
-  <router-outlet name="my-outlet"
-      (activate)="onActivate($event)"
-      (deactivate)="onDeactivate($event)"></router-outlet>
-</div> -->

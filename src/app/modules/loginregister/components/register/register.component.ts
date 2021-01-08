@@ -3,7 +3,6 @@ import { RegisterService } from '../../services/register.service';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { Observable } from 'rxjs';
 import { TrainerModel } from 'src/app/models/trainer';
-import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 

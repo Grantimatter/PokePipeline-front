@@ -3,14 +3,9 @@ import { LoginService } from 'src/app/modules/loginregister/services/login.servi
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';
 import { TrainerModel as TrainerModel } from 'src/app/models/trainer';
 import { Observable } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
 import { AuthenticationGuardService } from 'src/app/modules/authentication/services/guards/authentication.guard.service';
 import { Router } from '@angular/router';
-import { PartyService } from 'src/app/modules/trainer-hub/services/party/party.service';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
-import { Pokemon } from 'src/app/models/pokemon/pokemon';
-import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
-import { GetPokemonAPIService } from 'src/app/modules/pokemon-utility/services/get-pokemon-api/get-pokemon-api.service';
 
 /** This component is responsible for providing login View functionality. */
 @Component({

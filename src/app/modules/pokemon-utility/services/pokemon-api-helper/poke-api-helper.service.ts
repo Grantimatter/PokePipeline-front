@@ -97,7 +97,7 @@ export class PokeApiHelperService {
       
       pokemon.pokemonId = pokemonJSON["pokemonId"];
       this.partyService.pokemonChange(pokemon);
-    }, ()=>console.log("Failed to get trainer's pokemon"));
+    }, ()=>console.warn("Failed to get trainer's pokemon"));
   }
 
   /**

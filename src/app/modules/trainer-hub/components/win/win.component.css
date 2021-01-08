@@ -1,0 +1,14 @@
+.win-component {
+  background: url("../../../../../assets/Images/Backgrounds/mew.jpeg");
+  background-size: cover;
+}
+
+.win-card {
+  background-color: white;
+  height: 200px;
+}
+
+.textColor {
+  color: rgb(223, 223, 32);
+  text-shadow: 0 0 1px black;
+}

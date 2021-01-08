@@ -5,7 +5,6 @@ import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeDatabaseService } from 'src/app/modules/pokemon-utility/services/poke-database/poke-database.service';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
-import { TrainerHubComponent } from 'src/app/modules/trainer-hub/components/trainer-hub/trainer-hub.component';
 import { PartyService } from 'src/app/modules/trainer-hub/services/party/party.service';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { BattleService } from '../../services/battle.service';
@@ -84,9 +83,7 @@ export class BattleScreenComponent implements OnInit {
     this.visualAttackSequence(attackNum);
     this.attackText = this.trainer.moves[attackNum].name;
 
-    this.attackUsed = this.battleService.performAttacks(this.trainer, this.opponent, attackNum);    
-    
-    console.log(this.attackUsed);
+    this.attackUsed = this.battleService.performAttacks(this.trainer, this.opponent, attackNum);
     if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) { // check if battle ends
       if (this.opponent.currentHP == 0) {
         
@@ -102,9 +99,9 @@ export class BattleScreenComponent implements OnInit {
           this.trainer.currentHP = this.trainer.stats.hp;         
         }
 
-        this.pokeDatabaseService.updatePokemon(this.trainer, ()=>console.log("Pokemon updated: ", this.trainer));
+        this.pokeDatabaseService.updatePokemon(this.trainer, ()=>console.debug("Pokemon updated: ", this.trainer));
 
-        this.router.navigate(['/trainerhub/']);
+        this.router.navigate([{outlets:{main:['win']}}],{relativeTo: this.route.parent});
       }
       if (this.trainer.currentHP == 0) {
 

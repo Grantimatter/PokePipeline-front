@@ -57,23 +57,6 @@ export class TypeCalculationService {
   }
 
   /**
-   * Adds STAB bonus if Pokemon's type matches the move's type.
-   * @param power The power of the move.
-   * @param moveType The type of the move.
-   * @param type1 Type of Pokemon.
-   * @param type2 Type of Pokemon.
-   */
-  addSTAB(power: number, moveType: Type, type1: Type, type2: Type): number {
-    if (moveType == type1) {
-      return (power = power * 0.5 + power);
-    } else if (type2) {
-      if (moveType == type2) {
-        return (power = power * 0.5 + power);
-      }
-    }
-  }
-
-  /**
    * Helper function that returns how effective an attack type is against the opponent's type
    * inside the typeChart.
    */
@@ -86,44 +69,25 @@ export class TypeCalculationService {
    */
   private getIndex(type: Type): number {
     switch (type) {
-      case 'BUG':
-        return 11;
-      case 'DARK':
-        return 15;
-      case 'DRAGON':
-        return 14;
-      case 'ELECTRIC':
-        return 4;
-      case 'FAIRY':
-        return 17;
-      case 'FIGHTING':
-        return 6;
-      case 'FIRE':
-        return 1;
-      case 'FLYING':
-        return 9;
-      case 'GHOST':
-        return 13;
-      case 'GRASS':
-        return 3;
-      case 'GROUND':
-        return 8;
-      case 'ICE':
-        return 5;
-      case 'NORMAL':
-        return 0;
-      case 'POISON':
-        return 7;
-      case 'PSYCHIC':
-        return 10;
-      case 'ROCK':
-        return 12;
-      case 'STEEL':
-        return 16;
-      case 'WATER':
-        return 2;
-      default:
-        console.warn('Somehow got a nonexistant enum.');
+      case 'BUG': return 11;
+      case 'DARK': return 15;
+      case 'DRAGON': return 14;
+      case 'ELECTRIC': return 4;
+      case 'FAIRY': return 17;
+      case 'FIGHTING': return 6;
+      case 'FIRE': return 1;
+      case 'FLYING': return 9;
+      case 'GHOST': return 13;
+      case 'GRASS': return 3;
+      case 'GROUND': return 8;
+      case 'ICE': return 5;
+      case 'NORMAL': return 0;
+      case 'POISON': return 7;
+      case 'PSYCHIC': return 10;
+      case 'ROCK': return 12;
+      case 'STEEL': return 16;
+      case 'WATER': return 2;
+      default: console.warn('Somehow got a nonexistant enum.');
     }
   }
 }

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BattleInterfaceComponent } from './battle-interface.component';
+import { WinComponent } from './win.component';
 
-describe('BattleInterfaceComponent', () => {
-  let component: BattleInterfaceComponent;
-  let fixture: ComponentFixture<BattleInterfaceComponent>;
+describe('WinComponent', () => {
+  let component: WinComponent;
+  let fixture: ComponentFixture<WinComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BattleInterfaceComponent ]
+      declarations: [ WinComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BattleInterfaceComponent);
+    fixture = TestBed.createComponent(WinComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
