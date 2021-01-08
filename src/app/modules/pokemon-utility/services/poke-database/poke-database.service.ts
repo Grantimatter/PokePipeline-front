@@ -14,7 +14,7 @@ export class PokeDatabaseService {
    * Takes pokemon object and maps it to a DTO
    * @param pokemon
    */
-  mapPokemonObject(pokemon: Pokemon): any {
+  private mapPokemonObject(pokemon: Pokemon): any {
     return {
       pokemonId: pokemon.pokemonId,
       pokemonAPI: pokemon.pokemonAPI,
@@ -23,7 +23,7 @@ export class PokeDatabaseService {
       move1API: pokemon.moves[0],
       move2API: pokemon.moves[1],
       move3API: pokemon.moves[2],
-      move4API: pokemon.moves[3],
+      move4API: pokemon.moves[3]
     };
   }
 
@@ -32,22 +32,12 @@ export class PokeDatabaseService {
    * @param pokemon The pokemon to be added into the database
    */
   addPokemonToParty(pokemon: Pokemon): void {
-    // not working yet
-    let pokemonDTO: any = pokemon;
-    pokemonDTO.pokemonDTO.move1API = pokemon.moves[0];
-    this.httpClient
-      .post(`${environment.ec2Url}/pokemon`, this.mapPokemonObject(pokemon), {
-        withCredentials: true,
-      })
-      .subscribe(
+    this.httpClient.post(`${environment.ec2Url}/pokemon`, this.mapPokemonObject(pokemon), {withCredentials: true,}).subscribe(
         (resp) => {
           console.debug('Pokemon added successfully!', resp);
         },
         (error) => {
-          console.warn(
-            'Pokemon was not added to database due to the following exception',
-            error
-          );
+          console.warn('Pokemon was not added to database due to the following exception', error);
         }
       );
   }
@@ -58,11 +48,7 @@ export class PokeDatabaseService {
    * @param onSuccess Callback function to use when the update is successful
    */
   updatePokemon(pokemon: Pokemon, onSuccess: (x: any) => void): void {
-    this.httpClient
-      .put(`${environment.ec2Url}/pokemon`, this.mapPokemonObject(pokemon), {
-        withCredentials: true,
-      })
-      .subscribe(
+    this.httpClient.put(`${environment.ec2Url}/pokemon`, this.mapPokemonObject(pokemon), {withCredentials: true}).subscribe(
         (resp) => {
           console.debug('Pokemon updated in the database');
           onSuccess(resp);
@@ -79,9 +65,7 @@ export class PokeDatabaseService {
    * @param {Function} onSuccess - The callback function to use when the pokemon is deleted
    */
   killPokemon(pokemon: Pokemon, onSuccess: () => void) {
-    this.httpClient
-      .delete(`${environment.ec2Url}/pokemon`, { withCredentials: true })
-      .subscribe(
+    this.httpClient.delete(`${environment.ec2Url}/pokemon/${pokemon.pokemonId}`, { withCredentials: true }).subscribe(
         (resp) => {
           console.debug('Pokemon deleted!');
           onSuccess();
