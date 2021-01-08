@@ -97,8 +97,9 @@ export class PokeApiHelperService {
 
       pokemon.currentHP = pokemonJSON["currentHP"];
       pokemon.setLevel(pokemonJSON["experience"]);
-
+      console.log("Adding Pokemon to party: ", pokemon);
       this.partyService.pokemonChange(pokemon);
+      console.log("Pokemon assigned to party", this.partyService.getPokemon1());
     }, ()=>console.log("Failed to get trainer's pokemon"));
   }
 

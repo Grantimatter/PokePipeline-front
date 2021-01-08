@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Service } from 'src/app/interfaces/service';
 import { LoggedOutGuardService } from '../guards/logged.out.guard.service';
 import { authAPIendpoint } from 'src/environments/environment';
+import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 
 /** This service pings the back end and icnludes the trainers JSESSIONID cookie in the request.
  * Doing so, the server can verify whether or not the trainer is valid trainer.
@@ -18,7 +19,7 @@ export class AuthenticationService {
   private endPoint: string;
 
   httpService: HttpClient;
-  constructor(private injectedHttpService: HttpClient) {
+  constructor(private injectedHttpService: HttpClient, private apiHelperService:PokeApiHelperService) {
     this.httpService = injectedHttpService;
     this.authListener = new Subject<HttpResponse<Object>>();
     this.authenticated = false;
@@ -44,6 +45,10 @@ export class AuthenticationService {
             AuthenticationService.loggedOutToken,
             '' + false
           );
+
+          console.log("Got response: ", resp);
+          this.apiHelperService.getTrainerPokemonWithSpecificMoves(resp['pokemonList'][0]);
+
           //this.injectedloggedOutGuardService.provideService(!isAuthenticated);
           serviceListener.next(true);
         },
