@@ -55,7 +55,6 @@ export class TrainerComponent implements OnInit {
       (profileData: TrainerModel) => {
         this.trainerAccount = profileData;
         this.templateToRender = this.RenderTemplate.ProfileView;
-        this.trainerAccount.email = '';
       },
       (err) => {
         //log the user out in case of server error.
@@ -71,21 +70,33 @@ export class TrainerComponent implements OnInit {
   }
 
   public updateTrainerProfile(): void {
-    this.trainerService.provideService(this.trainerAccount).subscribe(
+    this.templateToRender = this.RenderTemplate.LoadingView;
+    let updateJson: any = {
+      email: this.trainerAccount.email,
+      description: this.trainerAccount.description,
+    };
+    this.trainerService.updateProfile(updateJson).subscribe(
       (success) => {
         this.loadProfileFromDataBase();
       },
       (err) => {
         this.message = this.CANNOT_UPDATE_FIELDS;
+        this.logoutService.provideService();
       }
     );
   }
 
   public updatePassword(): void {
+    let passwordObj: any = null;
     if (this.newPass != '' && this.newPass === this.confirmNewPass) {
+      this.templateToRender = this.RenderTemplate.LoadingView;
+
+      passwordObj = { password: this.newPass };
       this.trainerAccount.password = this.newPass;
-      this.trainerService.provideService(this.trainerAccount).subscribe(
+      this.trainerService.updateProfile(passwordObj).subscribe(
         (success) => {
+          this.newPass = '';
+          this.confirmNewPass = '';
           this.loadProfileFromDataBase();
         },
         (err) => {

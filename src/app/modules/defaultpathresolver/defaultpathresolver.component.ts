@@ -5,8 +5,8 @@ import { AuthenticationService } from '../authentication/services/authentication
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core/testing';
 
-/**This component forwards the user to the appropriate view, depending on if they're logged in or not. If the app finds they are logged in,
- * the user is forwarded to the trainer dashboard; otherwise, the user is forwarded to login.
+/**This component forwards the trainer to the appropriate view, depending on if they're logged in or not. If the app finds they are logged in,
+ * the trainer is forwarded to the trainer dashboard; otherwise, the trainer is forwarded to login.
  */
 @Component({ template: '' })
 export class DefaultpathresolverComponent implements OnChanges, OnInit {
@@ -15,7 +15,7 @@ export class DefaultpathresolverComponent implements OnChanges, OnInit {
    * the transition as seamless as possible.
    * @params injectedRouter Angular's supplied router which will perform view forwarding
    * @params injectedLoggedOutGuard the loggedOutRouteguard for this app. It is the quickest way of deciding which view to forward to as it
-   * does not involve any network requests. As a result the forward is not perceptable to the user.
+   * does not involve any network requests. As a result the forward is not perceptable to the trainer.
    */
 
   private router: Router;
@@ -34,9 +34,6 @@ export class DefaultpathresolverComponent implements OnChanges, OnInit {
       (err) => {
         this.isAuthenticated = false;
         this.navigateToAppropriateView();
-      },
-      () => {
-        this.navigateToAppropriateView();
       }
     );
   }
@@ -49,6 +46,6 @@ export class DefaultpathresolverComponent implements OnChanges, OnInit {
 
   private navigateToAppropriateView(): void {
     if (!this.isAuthenticated) this.router.navigate(['login']);
-    else this.router.navigate(['account']);
+    else this.router.navigate(['trainerhub']);
   }
 }

@@ -13,16 +13,16 @@ import { PartyService } from '../../services/party/party.service';
 })
 export class PartySelectionComponent implements OnInit {
 
-  pokemon:Pokemon;
-  selectingStarter:boolean = false;
+  pokemon: Pokemon;
+  selectingStarter: boolean = false;
   private _subscription_user_name: any;
 
   constructor(
-    private pokeApiHelperService:PokeApiHelperService,
-    private partyService:PartyService,
-    private pokemonService:PokemonService,
-    private pokemonDatabaseService:PokeDatabaseService,
-    ) { }
+    private pokeApiHelperService: PokeApiHelperService,
+    private partyService: PartyService,
+    private pokemonService: PokemonService,
+    private pokemonDatabaseService: PokeDatabaseService,
+  ) { }
 
   ngOnInit(): void {
     this.displayStarterPokemon();
@@ -33,9 +33,11 @@ export class PartySelectionComponent implements OnInit {
    * PokemonDatabaseService which sends post request to insert this.pokemon into the database.
    */
   selectStarter() {
-    this.partyService.pokemonChange(this.pokemon);
-    this.pokemonDatabaseService.addPokemonToParty(this.pokemon);
-    this.partyService.resetBattleCount();
+    this.pokemonDatabaseService.addPokemonToParty(this.pokemon, (x) => {
+      this.pokemon.pokemonId = x[0]["pokemonId"];
+      this.partyService.pokemonChange(this.pokemon);
+      this.partyService.resetBattleCount();
+    });
   }
 
   /**

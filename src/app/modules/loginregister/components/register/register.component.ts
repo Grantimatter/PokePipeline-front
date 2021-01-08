@@ -4,6 +4,8 @@ import { BasicValidationService } from 'src/app/services/basicvalidation/basic-v
 import { Observable } from 'rxjs';
 import { TrainerModel } from 'src/app/models/trainer';
 import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 /** This components sends a registration request to the backend */
 @Component({
@@ -13,38 +15,41 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
   private static readonly INVALID_REGISTRATION_FIELDS: string =
-    'Username,password, and email are required to register.';
+    'Trainername,password, and email are required to register.';
   private static readonly REGISTRATION_FAILED: string =
-    'Your registration failed. Your username or email may be taken.';
+    'Your registration failed. Your trainername or email may be taken.';
   private static readonly SERVER_ERROR: string =
     'There was an error signing up. Please try again later.';
 
   private registerService: RegisterService;
   private validationService: BasicValidationService;
-
+  private loginService: LoginService;
+  private router: Router;
   public validRegistratonFields: boolean;
   public warningMessage: string;
 
   /**The constructor accepts two  injected parameters.
    * @param injectedRegisterService this service is responsible for dispatching registration requests.
-   * @param injectedValidationService this service is responsible for validating user input.
+   * @param injectedValidationService this service is responsible for validating trainer input.
    */
   public trainerToRegister: TrainerModel;
   constructor(
     private injectedRegisterService: RegisterService,
-    private injectedValidationService: BasicValidationService
+    private injectedValidationService: BasicValidationService,
+    private injectedRouter: Router
   ) {
     this.registerService = injectedRegisterService;
     this.validationService = injectedValidationService;
     this.trainerToRegister = new TrainerModel();
     this.validRegistratonFields = false;
     this.warningMessage = '';
+    this.router = injectedRouter;
   }
 
   ngOnInit(): void {}
 
-  /** This method validates user input and attempts to register them to the back end, if basic
-   * validation is based. I.e, username, password, and email are not empty.
+  /** This method validates trainer input and attempts to register them to the back end, if basic
+   * validation is based. I.e, trainername, password, and email are not empty.
    */
   registerTrainer(): void {
     let registerRequestTemplate: Observable<Object>;
@@ -77,17 +82,8 @@ export class RegisterComponent implements OnInit {
   ): void {
     httpRequestTemplate.subscribe(
       (response) => {
-        //cast to httpreponse for intellisense
-        let resp: HttpResponse<Object> = response as HttpResponse<Object>;
-
-        if (resp.status == 200) {
-          this.resetFormState();
-          alert(
-            'User succesfully registered. Redirect once auth guard in place.'
-          );
-        } else {
-          this.warningMessage = RegisterComponent.INVALID_REGISTRATION_FIELDS;
-        }
+        this.resetFormState();
+        this.router.navigate(['']);
       },
       (err) => {
         this.warningMessage = RegisterComponent.SERVER_ERROR;

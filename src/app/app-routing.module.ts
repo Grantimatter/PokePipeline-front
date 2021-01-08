@@ -23,34 +23,31 @@ const routes: Routes = [
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
       { path: 'battle', component: BattleScreenComponent, outlet: 'main' },
       { path: 'gameover', component: GameoverComponent, outlet: 'main' },
+      { path: 'account', component: TrainerComponent, outlet: 'main' },
     ],
   },
 
   {
     path: 'login',
     component: LoginComponent,
-    pathMatch: 'full',
     canActivate: [LoggedOutGuardService],
   },
+
   {
     path: 'register',
     component: RegisterComponent,
     canActivate: [LoggedOutGuardService],
   },
   {
-    path: 'test',
-    component: TestComponent,
-    canActivate: [LoggedOutGuardService],
+    path: 'gameover',
+    component: GameoverComponent,
   },
   {
     path: '',
     component: DefaultpathresolverComponent,
-    pathMatch: 'full',
   },
-  {
-    path: 'gameover',
-    component: GameoverComponent,
-  },
+
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

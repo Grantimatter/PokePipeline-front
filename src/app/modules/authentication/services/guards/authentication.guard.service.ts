@@ -32,9 +32,7 @@ export class AuthenticationGuardService implements CanActivate {
       (authSuccess) => {
         serviceListener.next(authSuccess);
       },
-      (err) => {
-        //logged out service
-      }
+      (err) => {}
     );
 
     return serviceListener.asObservable();

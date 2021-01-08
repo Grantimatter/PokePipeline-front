@@ -25,32 +25,6 @@ export class TrainerService
     this.http = injectedClient;
     this.validationService = injectedValidationService;
   }
-
-  public updateProfile(json: any) {
-    let listener: Subject<boolean> = new Subject<boolean>();
-
-    if (
-      (json.email !== null && json.email !== undefined && json.email != '') ||
-      (json.password !== null &&
-        json.password !== undefined &&
-        json.password !== '')
-    ) {
-      this.http
-        .put(this.trainerEndpoint, json, {
-          observe: 'response',
-          responseType: 'json',
-          withCredentials: true,
-        })
-        .subscribe(
-          (resp) => {
-            listener.next(true);
-          },
-          (err) => listener.next(false)
-        );
-    }
-
-    return listener.asObservable();
-  }
   public provideService(trainerToUpdate: TrainerModel): Observable<boolean> {
     let listener: Subject<boolean> = new Subject<boolean>();
 

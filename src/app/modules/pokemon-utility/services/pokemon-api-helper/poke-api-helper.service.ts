@@ -68,7 +68,15 @@ export class PokeApiHelperService {
   getRandomValidPokemon(onSuccess: (pokemon:JSON) => void): void {
     let id = this.utilityService.getRandomInt(1, environment.pokemonRange);
     if (this.pokemonService.isValidPokemonId(id)) {
-      this.getPokemonWithAllMovesAPI(id, onSuccess, ()=>console.warn("Failed to retrieve random valid pokemon with detailed JSON"));
+      this.getPokemonService.getPokemonWithAllMovesAPI(id).subscribe(
+        (resp) => {
+          if (this.pokemonService.isValidPokemon(resp)) {
+              onSuccess(resp);
+          } else {
+            this.getRandomValidPokemon(onSuccess);
+          }
+        }
+      );
     }
   }
 
@@ -78,18 +86,16 @@ export class PokeApiHelperService {
    */
   getTrainerPokemonWithSpecificMoves(pokemonJSON: JSON): void {
     this.getPokemonWithAllMovesAPI(pokemonJSON["pokemonAPI"] as number, (resp)=>{
-
-      let pokemon:Pokemon = new Pokemon(resp);
-      pokemon.moves = this.getSpecificMoves(resp["moves"],[
-      pokemonJSON["move1API"],
-      pokemonJSON["move2API"],
-      pokemonJSON["move3API"],
-      pokemonJSON["move4API"]
-      ]);
-
-      pokemon.currentHP = pokemonJSON["currentHP"];
-      pokemon.setLevel(pokemonJSON["experience"]);
-
+      console.dir("Pokemon FROM DB: ", pokemonJSON);
+      let pokemon:Pokemon = new Pokemon(resp, pokemonJSON["experience"], pokemonJSON["currentHP"],
+      this.getSpecificMoves(resp["moves"],[
+        pokemonJSON["move1API"],
+        pokemonJSON["move2API"],
+        pokemonJSON["move3API"],
+        pokemonJSON["move4API"]
+        ]));
+      
+      pokemon.pokemonId = pokemonJSON["pokemonId"];
       this.partyService.pokemonChange(pokemon);
     }, ()=>console.log("Failed to get trainer's pokemon"));
   }
@@ -99,12 +105,19 @@ export class PokeApiHelperService {
    * @param movesJSON The detailed moves JSON from the PokeAPI
    * @param moveIDs
    */
-  private getSpecificMoves(movesJSON: JSON, moveIDs: number[]): Move[] {
+  private getSpecificMoves(movesJSON: any, moveIDs: number[]): Move[] {
+
     let moves: Move[] = [];
-    moves.push(movesJSON[moveIDs[0]]);
-    moves.push(movesJSON[moveIDs[1]]);
-    moves.push(movesJSON[moveIDs[2]]);
-    moves.push(movesJSON[moveIDs[3]]);
+
+    for(const i in moveIDs) {
+      for(const move of movesJSON) {
+        if(move["id"] == moveIDs[i]){
+            moves.push(new Move(move));
+            break;
+        }
+      }
+    }
+
     return moves;
   }
 
@@ -136,12 +149,12 @@ export class PokeApiHelperService {
           if (this.pokemonService.isValidPokemon(pokemonData)) {
             onSuccess(pokemonData);
           } else {
-            console.debug(`${pokemonData["name"]} is not a valid Pokémon!`);
+            console.warn(`${pokemonData["name"]} is not a valid Pokémon!`);
             onFail();
           }
         },
         () => {
-          console.error(`Error retrieving Pokémon [${id}] from PokéAPI`);
+          console.warn(`Error retrieving Pokémon [${id}] from PokéAPI`);
           onFail();
         });
     }

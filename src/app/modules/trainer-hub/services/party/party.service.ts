@@ -26,7 +26,7 @@ export class PartyService {
     this.reset.next();
   }
 
-  getPokemon1() {
+  getPokemon1(): Pokemon {
     return this.pokemonVar;
   }
 

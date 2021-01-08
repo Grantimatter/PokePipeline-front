@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { TrainerModel } from 'src/app/models/trainer';
 import { PartyService } from '../../services/party/party.service';
+import { LogoutService } from 'src/app/modules/authentication/services/logout/logout.service';
 
 @Component({
   selector: 'app-option-screen',
@@ -9,43 +10,33 @@ import { PartyService } from '../../services/party/party.service';
   styleUrls: ['./option-screen.component.css'],
 })
 export class OptionScreenComponent implements OnInit {
-  isDisabledChoosePokemon: boolean = true;
-  isDisabledBattleButton: boolean = true;
-  private _subscription_user_name: any;
   pokemon: Pokemon;
+  isHidden: boolean = false;
+  private logoutService: LogoutService;
 
-  trainer: TrainerModel = {
-    trainerName: 'Trainer',
-    password: 'pass',
-    email: 'trainer@gmail.com',
-    description: 'Pokemon Master (in training)',
-    profilePicture: null,
-  };
-
-  constructor(private partyService: PartyService) {
-    this._subscription_user_name = this.partyService.pokemon1.subscribe(
-      (value) => {
-        this.pokemon = value;
-      }
-    );
+  constructor(
+    private partyService: PartyService,
+    private injectedlogoutService: LogoutService
+  ) {
+    this.logoutService = injectedlogoutService;
   }
 
   ngOnInit(): void {
     this.getPokemonFromService();
   }
 
-  setDisabled() {
-    this.isDisabledBattleButton = false;
-    this.isDisabledChoosePokemon = true;
+  unHidePartyButton() {
+    this.isHidden = false;
   }
 
-  resetChoosePokemon() {
-    this.isDisabledChoosePokemon = false;
+  hidePartyButton() {
+    this.isHidden = true;
   }
 
   getPokemonFromService() {
     this.pokemon = this.partyService.getPokemon1();
-    if (this.pokemon == null) this.isDisabledChoosePokemon = false;
-    else this.isDisabledChoosePokemon = true;
+  }
+  logOutOfTrainerHub(): void {
+    this.logoutService.provideService();
   }
 }

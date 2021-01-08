@@ -69,7 +69,7 @@ export class LoginComponent {
     );
 
     if (this.validUsrPassCombo) {
-      loginRequestTemplate = this.logInService.provideService(
+        loginRequestTemplate = this.logInService.provideService(
         this.trainerModel
       );
       this.subscribeToLoginObservable(loginRequestTemplate);
@@ -92,20 +92,6 @@ export class LoginComponent {
         (response) => {
           this.clearLogInForm();
           this.router.navigate(['']);
-
-          let httpResponse: HttpResponse<Object> = response as HttpResponse<Object>;
-
-          if (httpResponse.status == 200) {
-            this.apiHelperService.getTrainerPokemonWithSpecificMoves(
-              response['pokemonList'][0]
-            );
-
-            this.clearLogInForm();
-            this.router.navigate(['']);
-          } //we get a 401 because of invalid credentials.
-          else {
-            this.trainerMessage = LoginComponent.INCORRECT_CREDENTIALS_MESSAGE;
-          }
         },
         (error) => {
           // this is called in case of internal server error. A generic message
