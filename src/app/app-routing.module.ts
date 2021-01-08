@@ -30,11 +30,13 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoggedOutGuardService],
   },
 
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [LoggedOutGuardService],
   },
   {
     path: 'gameover',
