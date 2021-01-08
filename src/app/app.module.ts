@@ -4,22 +4,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './modules/loginregister/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TestComponent } from './components/test/test.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { TempNavBarComponent } from './components/temp-nav-bar/temp-nav-bar.component';
 import { PokemonUtilityModule } from './modules/pokemon-utility/pokemon-utility.module';
-import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TrainerHubModule } from './modules/trainer-hub/trainer-hub.module';
-import { BattleInterfaceComponent } from './components/battle-interface/battle-interface.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
-    TestComponent, 
-    TempNavBarComponent, 
-    BattleInterfaceComponent,
   ],
   imports: [
     FormsModule,
