@@ -86,44 +86,25 @@ export class TypeCalculationService {
    */
   private getIndex(type: Type): number {
     switch (type) {
-      case 'BUG':
-        return 11;
-      case 'DARK':
-        return 15;
-      case 'DRAGON':
-        return 14;
-      case 'ELECTRIC':
-        return 4;
-      case 'FAIRY':
-        return 17;
-      case 'FIGHTING':
-        return 6;
-      case 'FIRE':
-        return 1;
-      case 'FLYING':
-        return 9;
-      case 'GHOST':
-        return 13;
-      case 'GRASS':
-        return 3;
-      case 'GROUND':
-        return 8;
-      case 'ICE':
-        return 5;
-      case 'NORMAL':
-        return 0;
-      case 'POISON':
-        return 7;
-      case 'PSYCHIC':
-        return 10;
-      case 'ROCK':
-        return 12;
-      case 'STEEL':
-        return 16;
-      case 'WATER':
-        return 2;
-      default:
-        console.warn('Somehow got a nonexistant enum.');
+      case 'BUG': return 11;
+      case 'DARK': return 15;
+      case 'DRAGON': return 14;
+      case 'ELECTRIC': return 4;
+      case 'FAIRY': return 17;
+      case 'FIGHTING': return 6;
+      case 'FIRE': return 1;
+      case 'FLYING': return 9;
+      case 'GHOST': return 13;
+      case 'GRASS': return 3;
+      case 'GROUND': return 8;
+      case 'ICE': return 5;
+      case 'NORMAL': return 0;
+      case 'POISON': return 7;
+      case 'PSYCHIC': return 10;
+      case 'ROCK': return 12;
+      case 'STEEL': return 16;
+      case 'WATER': return 2;
+      default: console.warn('Somehow got a nonexistant enum.');
     }
   }
 }
