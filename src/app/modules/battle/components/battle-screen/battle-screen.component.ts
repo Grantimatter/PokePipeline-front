@@ -104,7 +104,7 @@ export class BattleScreenComponent implements OnInit {
 
         this.pokeDatabaseService.updatePokemon(this.trainer, ()=>console.log("Pokemon updated: ", this.trainer));
 
-        this.router.navigate(['/trainerhub/']);
+        this.router.navigate([{outlets:{main:['win']}}],{relativeTo: this.route.parent})
       }
       if (this.trainer.currentHP == 0) {
 
