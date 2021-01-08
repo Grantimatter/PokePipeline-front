@@ -13,7 +13,7 @@ import { DefaultpathresolverComponent } from './modules/defaultpathresolver/defa
 import { BattleInterfaceComponent } from './components/battle-interface/battle-interface.component';
 import { GameoverComponent } from './modules/battle/components/gameover/gameover.component';
 import { TrainerComponent } from './modules/trainer-hub/components/trainer/trainer.component';
-import { WinComponent } from './modules/trainer-hub/components/win/win.component';
+
 
 const routes: Routes = [
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
     children: [
       { path: 'user', component: TrainerComponent },
       { path: 'party', component: PartySelectionComponent, outlet: 'main' },
-      { path: 'win', component: WinComponent, outlet: 'main' },
+     
       { path: 'battle', component: BattleScreenComponent, outlet: 'main' },
       { path: 'gameover', component: GameoverComponent, outlet: 'main' },
       { path: 'account', component: TrainerComponent, outlet: 'main' },

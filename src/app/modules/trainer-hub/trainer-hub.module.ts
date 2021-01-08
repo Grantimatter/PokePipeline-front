@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { PartyService } from './services/party/party.service';
 import { TrainerComponent } from './components/trainer/trainer.component';
 import { FormsModule } from '@angular/forms';
-import { WinComponent } from './components/win/win.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +17,12 @@ import { WinComponent } from './components/win/win.component';
     PokemonScreenComponent,
     PartySelectionComponent,
     TrainerComponent,
-    WinComponent,
   ],
   exports: [
     TrainerHubComponent,
     OptionScreenComponent,
     PokemonScreenComponent,
     PartySelectionComponent,
-    WinComponent
   ],
   imports: [CommonModule, FontAwesomeModule, RouterModule, FormsModule],
 
