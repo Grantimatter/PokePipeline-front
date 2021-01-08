@@ -15,26 +15,28 @@ export class PokeDatabaseService {
    * @param pokemon
    */
   private mapPokemonObject(pokemon: Pokemon): any {
-    return {
+    let anyPokemon: any = {
       pokemonId: pokemon.pokemonId,
       pokemonAPI: pokemon.pokemonAPI,
       currentHP: pokemon.currentHP,
       experience: pokemon.getLevel(),
-      move1API: pokemon.moves[0],
-      move2API: pokemon.moves[1],
-      move3API: pokemon.moves[2],
-      move4API: pokemon.moves[3]
+      move1API: pokemon.moves[0]["id"],
+      move2API: pokemon.moves[1]["id"],
+      move3API: pokemon.moves[2]["id"],
+      move4API: pokemon.moves[3]["id"]
     };
+    return anyPokemon;
   }
 
   /**
    * Inserts Pokemon into the database.
    * @param pokemon The pokemon to be added into the database
    */
-  addPokemonToParty(pokemon: Pokemon): void {
+  addPokemonToParty(pokemon: Pokemon, onSucess:(x)=>void): void {
     this.httpClient.post(`${environment.ec2Url}/pokemon`, this.mapPokemonObject(pokemon), {withCredentials: true,}).subscribe(
         (resp) => {
           console.debug('Pokemon added successfully!', resp);
+          onSucess(resp);
         },
         (error) => {
           console.warn('Pokemon was not added to database due to the following exception', error);
@@ -71,7 +73,7 @@ export class PokeDatabaseService {
           onSuccess();
         },
         (error) => {
-          console.warn('Failed to delete pokemon');
+          console.warn('Failed to delete pokemon', error);
         }
       );
   }
