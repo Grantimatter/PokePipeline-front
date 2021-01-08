@@ -70,6 +70,7 @@ export class TrainerComponent implements OnInit {
   }
 
   public updateTrainerProfile(): void {
+    this.templateToRender = this.RenderTemplate.LoadingView;
     let updateJson: any = {
       email: this.trainerAccount.email,
       description: this.trainerAccount.description,
@@ -80,6 +81,7 @@ export class TrainerComponent implements OnInit {
       },
       (err) => {
         this.message = this.CANNOT_UPDATE_FIELDS;
+        this.logoutService.provideService();
       }
     );
   }
@@ -87,6 +89,8 @@ export class TrainerComponent implements OnInit {
   public updatePassword(): void {
     let passwordObj: any = null;
     if (this.newPass != '' && this.newPass === this.confirmNewPass) {
+      this.templateToRender = this.RenderTemplate.LoadingView;
+
       passwordObj = { password: this.newPass };
       this.trainerAccount.password = this.newPass;
       this.trainerService.updateProfile(passwordObj).subscribe(

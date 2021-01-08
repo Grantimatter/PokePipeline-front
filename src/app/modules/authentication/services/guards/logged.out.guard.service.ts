@@ -4,12 +4,13 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoggedOutGuardService implements CanActivate {
-  constructor() {
+  constructor(private httpAuthService: AuthenticationService) {
     localStorage.setItem(LoggedOutGuardService.loggedOutToken, 'false');
   }
   private static readonly loggedOutToken: string = 'X1333a1344544ssf';
