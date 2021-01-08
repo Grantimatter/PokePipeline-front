@@ -52,10 +52,8 @@ export class PokemonService {
     // Apply the first two moves at random
     for (let i = 0; i < 2; i++) {
       do {
-        //console.log("Choosing first 2 moves!");
         let x = this.utilityService.getRandomInt(0, moveCount - 1);
         let move: Move = new Move(detailedMovesJSON[x]);
-        //console.dir(`Selected Move # ${x} and it is...`, move);
         if (!this.doesMoveExist(move, moves) && this.isValidMove(detailedMovesJSON[x])) {
           moves.push(move);
         }

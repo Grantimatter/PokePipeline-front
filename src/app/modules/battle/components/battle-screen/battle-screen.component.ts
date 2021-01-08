@@ -84,9 +84,7 @@ export class BattleScreenComponent implements OnInit {
     this.visualAttackSequence(attackNum);
     this.attackText = this.trainer.moves[attackNum].name;
 
-    this.attackUsed = this.battleService.performAttacks(this.trainer, this.opponent, attackNum);    
-    
-    console.log(this.attackUsed);
+    this.attackUsed = this.battleService.performAttacks(this.trainer, this.opponent, attackNum);
     if (this.trainer.currentHP == 0 || this.opponent.currentHP == 0) { // check if battle ends
       if (this.opponent.currentHP == 0) {
         
@@ -102,9 +100,9 @@ export class BattleScreenComponent implements OnInit {
           this.trainer.currentHP = this.trainer.stats.hp;         
         }
 
-        this.pokeDatabaseService.updatePokemon(this.trainer, ()=>console.log("Pokemon updated: ", this.trainer));
+        this.pokeDatabaseService.updatePokemon(this.trainer, ()=>console.debug("Pokemon updated: ", this.trainer));
 
-        this.router.navigate([{outlets:{main:['win']}}],{relativeTo: this.route.parent})
+        this.router.navigate([{outlets:{main:['win']}}],{relativeTo: this.route.parent});
       }
       if (this.trainer.currentHP == 0) {
 

@@ -20,7 +20,6 @@ export class PokemonScreenComponent implements OnInit {
     private partyService:PartyService,
     ) {
       this._subscription_user_name = this.partyService.pokemon1.subscribe((value) => {
-        console.log(value);
         this.pokemon = value;
         if(this.pokemon.types[1]) this.hasTwoTypes = true;
         else this.hasTwoTypes = false;
@@ -28,7 +27,6 @@ export class PokemonScreenComponent implements OnInit {
       });
 
       this._subscription_user_name = this.partyService.reset.subscribe((value) => {
-        console.log(value);
         this.reset();
       })
 

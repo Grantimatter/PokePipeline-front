@@ -31,21 +31,19 @@ export class TestComponent implements OnInit {
     this.selectStarterPokemon();
     this.http.post("http://localhost:8080/PokePipeline/auth", {"trainerName":"grantimatter","password":"password","email":"wiswellgrant@gmail.com"}, {withCredentials: true}).subscribe(
       (resp)=>{
-        console.log(resp);
+        console.debug("Starter Pokemon retrieved!");
       },
       (err)=>{
-        console.log(err);
+        console.debug("Failed to select a starter Pokemon!");
       }
     );
   }
 
   selectRandomPokemon() {
-    //waits(3000);
     this.selectingRandom = true;
     this.pokeApiHelperService.getRandomValidPokemon((x:JSON)=>{
       this.selectingRandom = false;
       this.randomPokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
-      console.log(this.randomPokemon);
     });
   }
   
@@ -53,12 +51,9 @@ export class TestComponent implements OnInit {
     this.selectingPokemon = true;
     this.pokeApiHelperService.getPokemonWithAllMovesAPI(this.input, (x:JSON)=>{
       this.selectingPokemon = false;
-      console.log("Selected Pokemon, getting moves");
       this.pokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
-      console.log(this.pokemon);
     }, ()=>{
       this.selectingPokemon = false;
-      console.log("The requested Pokemon with detailed moves could not be retrieved!")
     });
   }
 
@@ -69,7 +64,6 @@ export class TestComponent implements OnInit {
       this.starterPokemon = this.pokemonService.createNewPokemonWithRandomMoves(x);
       this.starterPokemon.setLevel(10);
       this.starterPokemon.heal(this.starterPokemon.stats.hp);
-      console.log(this.starterPokemon);
     });
   }
   

@@ -62,19 +62,17 @@ export class BattleInterfaceComponent implements OnInit {
 
   generateOpponent(id:number) {
     this.pokeApiHelperService.getPokemonWithAllMovesAPI(id, (x:JSON)=>{
-      console.log("Selected Pokemon, getting moves");
       this.opponent = this.pokemonService.createNewPokemonWithRandomMoves(x);
     }, ()=>{
-      console.log("The requested Pokemon with detailed moves could not be retrieved!")
+      console.warn("The requested Pokemon with detailed moves could not be retrieved!")
     });
   }
 
   generateTrainer(id:number) {
     this.pokeApiHelperService.getPokemonWithAllMovesAPI(id, (x:JSON)=>{
-      console.log("Selected Pokemon, getting moves");
       this.trainer = this.pokemonService.createNewPokemonWithRandomMoves(x);
     }, ()=>{
-      console.log("The requested Pokemon with detailed moves could not be retrieved!")
+      console.warn("The requested Pokemon with detailed moves could not be retrieved!")
     });
   }
 

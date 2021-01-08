@@ -217,8 +217,6 @@ export class BattleService {
       )
     );
 
-    console.log(levelDamage);
-
     if (criticalHit < 16) {
       levelDamage = Math.ceil(levelDamage * 1.5);
     }
