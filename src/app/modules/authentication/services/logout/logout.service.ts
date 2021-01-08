@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Service } from 'src/app/interfaces/service';
 import { Observable, Subject } from 'rxjs';
-import { LoggedOutGuardService } from '../guards/logged.out.guard.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 

@@ -5,7 +5,6 @@ import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { PokeDatabaseService } from 'src/app/modules/pokemon-utility/services/poke-database/poke-database.service';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 import { PokemonService } from 'src/app/modules/pokemon-utility/services/pokemon/pokemon.service';
-import { TrainerHubComponent } from 'src/app/modules/trainer-hub/components/trainer-hub/trainer-hub.component';
 import { PartyService } from 'src/app/modules/trainer-hub/services/party/party.service';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 import { BattleService } from '../../services/battle.service';

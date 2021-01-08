@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 
 /**
@@ -22,7 +22,6 @@ export class PartyService {
   resetPokemon() {
     this.pokemon1 = new Subject<Pokemon>();
     this.pokemonVar = null;
-    // this.pokemon1.next(null);
     this.reset.next();
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Service } from 'src/app/interfaces/service';
 import { TrainerModel } from 'src/app/models/trainer';
 import { BasicValidationService } from 'src/app/services/basicvalidation/basic-validation.service';

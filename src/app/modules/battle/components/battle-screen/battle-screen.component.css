@@ -1,5 +1,4 @@
 
-
 .namePlateTable {
   background:#f7f8d6;
   border: 5px solid black;
@@ -13,7 +12,6 @@
 .botRow td {
   padding-bottom: 10px;
 }
-
 
 .name, .move { padding-left: 3vh; }
 #trainerSprite { left: 7vh; top: 5vh; }

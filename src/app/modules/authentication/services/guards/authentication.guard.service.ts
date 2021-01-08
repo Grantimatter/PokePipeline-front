@@ -5,7 +5,6 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { LoggedOutGuardService } from './logged.out.guard.service';
 

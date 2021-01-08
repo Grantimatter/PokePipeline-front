@@ -1,9 +1,6 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoggedOutGuardService } from '../authentication/services/guards/logged.out.guard.service';
 import { AuthenticationService } from '../authentication/services/authentication/authentication.service';
-import { Observable } from 'rxjs';
-import { inject } from '@angular/core/testing';
 
 /**This component forwards the trainer to the appropriate view, depending on if they're logged in or not. If the app finds they are logged in,
  * the trainer is forwarded to the trainer dashboard; otherwise, the trainer is forwarded to login.

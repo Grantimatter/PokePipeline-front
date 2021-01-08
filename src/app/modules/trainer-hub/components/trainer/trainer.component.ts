@@ -18,7 +18,6 @@ enum TrainerTemplateToRender {
 })
 export class TrainerComponent implements OnInit {
   public RenderTemplate = TrainerTemplateToRender;
-  //private userService: TrainerService;
 
   public CANNOT_UPDATE_FIELDS =
     ' There was some trouble updating your profile. Please try again.';

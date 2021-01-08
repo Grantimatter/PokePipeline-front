@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Service } from 'src/app/interfaces/service';
-import { LoggedOutGuardService } from '../guards/logged.out.guard.service';
 import { authAPIendpoint } from 'src/environments/environment';
 import { PokeApiHelperService } from 'src/app/modules/pokemon-utility/services/pokemon-api-helper/poke-api-helper.service';
 
