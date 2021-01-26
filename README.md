@@ -30,7 +30,7 @@ PokePipeline will allow the user to choose a Pokémeon and battle their way thro
 
 ```https://github.com/Grantimatter/PokePipeline-back```
 
-2. Copy the repository https url by pressing the green clone button, or copy the url and add .git to the end.
+2. Copy the repository https url by pressing the green clone button, or copy the url and add `.git` to the end.
 
 3. Clone the repository by opening Git Bash at the desired location and running the clone command:
 
