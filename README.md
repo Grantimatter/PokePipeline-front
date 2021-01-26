@@ -28,7 +28,7 @@ PokePipeline will allow the user to choose a Pokémeon and battle their way thro
 
 1. Properly setup the backend at:
 
-> https://github.com/Grantimatter/PokePipeline-back
+```https://github.com/Grantimatter/PokePipeline-back```
 
 2. Copy the repository https url by pressing the green clone button, or copy the url and add .git to the end.
 
